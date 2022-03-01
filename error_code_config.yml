@@ -1,0 +1,4 @@
+error-tags:
+  VSABS:
+    packages:
+      - com.exasol.adapter.document.files
