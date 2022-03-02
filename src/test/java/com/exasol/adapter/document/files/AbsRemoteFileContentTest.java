@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.*;
 
+import com.azure.core.util.BinaryData;
 import org.junit.jupiter.api.*;
 
 import com.exasol.adapter.document.documentfetcher.files.RemoteFileContent;
@@ -26,7 +27,8 @@ class AbsRemoteFileContentTest {
     static void beforeAll() {
         testSetup = new LocalAbsTestSetup();
         testBucket = new TestContainer(testSetup);
-        testBucket.getBlobContainerClient().create(TEST_DATA_KEY, TEST_DATA_VALUE.getBytes());
+        var blobContainerClient = testBucket.getBlobContainerClient();
+                blobContainerClient.getBlobClient(TEST_DATA_KEY).upload(BinaryData.fromBytes( TEST_DATA_VALUE.getBytes()));
         executorServiceFactory = new ExecutorServiceFactory();
         remoteFileContent = new AbsRemoteFileContent(testBucket.getBlobContainerClient(),
                 new AbsObjectDescription(TEST_DATA_KEY, TEST_DATA_VALUE.length()), executorServiceFactory);

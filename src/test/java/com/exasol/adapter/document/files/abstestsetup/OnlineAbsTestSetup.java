@@ -5,31 +5,32 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import com.azure.storage.blob.BlobServiceClient;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
 
-public class OnlineGcsTestSetup implements AbsTestSetup {
+public class OnlineAbsTestSetup implements AbsTestSetup {
     private static final String KEY_FILE = "google-key.json";
-    private final BlobServiceClient storageClient;
+    private final BlobServiceClient blobServiceClient;
 
-    public OnlineGcsTestSetup() {
+    public OnlineAbsTestSetup() {
         if (!Files.exists(Path.of(KEY_FILE))) {
             throw new IllegalStateException("Could not find " + KEY_FILE
                     + ". Please create a google-cloud service account, create a key and store it in this project as "
                     + KEY_FILE + ".");
         }
         try {
-            final GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(KEY_FILE));
-            this.storageClient = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
+            //final GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(KEY_FILE));
+            this.blobServiceClient = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         } catch (final IOException exception) {
             throw new UncheckedIOException("Failed to read gcs credentials from file.", exception);
         }
     }
 
     @Override
-    public Storage getAbsClient() {
-        return this.storageClient;
+    public BlobServiceClient getAbsClient() {
+        return this.blobServiceClient;
     }
 
     @Override

@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Supplier;
 
+import com.azure.core.util.BinaryData;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.*;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -28,37 +29,37 @@ import com.exasol.exasoltestsetup.testcontainers.ExasolTestcontainerTestSetup;
 @Testcontainers
 class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
     private static IntegrationTestSetup SETUP;
-    private static TestContainer testBucket;
+    private static TestContainer testContainer;
     private static AbsTestSetup absTestSetup;
 
     @BeforeAll
     static void beforeAll() throws Exception {
         final ExasolTestSetup exasolTestSetup = new ExasolTestSetupFactory(
                 Path.of("cloudSetup/generated/testConfig.json")).getTestSetup();
-        absTestSetup = getGcsTestSetup(exasolTestSetup);
-        testBucket = new TestContainer(absTestSetup);
-        SETUP = new IntegrationTestSetup(exasolTestSetup, absTestSetup, testBucket.getBlobContainerClient());
+        absTestSetup = getAbsTestSetup(exasolTestSetup);
+        testContainer = new TestContainer(absTestSetup);
+        SETUP = new IntegrationTestSetup(exasolTestSetup, absTestSetup, testContainer.getBlobContainerClient());
     }
 
     @NotNull
-    private static AbsTestSetup getGcsTestSetup(final ExasolTestSetup exasolTestSetup) {
+    private static AbsTestSetup getAbsTestSetup(final ExasolTestSetup exasolTestSetup) {
         if (exasolTestSetup instanceof ExasolTestcontainerTestSetup) {
             return new LocalAbsTestSetup();
         } else {
-            return new OnlineGcsTestSetup();
+            return new OnlineAbsTestSetup();
         }
     }
 
     @AfterAll
     static void afterAll() throws Exception {
-        testBucket.close();
+        testContainer.close();
         SETUP.close();
         absTestSetup.close();
     }
 
     @AfterEach
     void after() {
-        testBucket.empty();
+        testContainer.empty();
         SETUP.dropCreatedObjects();
     }
 
@@ -82,7 +83,7 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
     @Override
     protected void uploadDataFile(final Path fileContent, final String fileName) {
         try (final FileInputStream fileInputStream = new FileInputStream(fileContent.toFile())) {
-            testBucket.getBlobContainerClient().create(fileName, fileInputStream);
+            testContainer.getBlobContainerClient().getBlobClient(fileName).upload(BinaryData.fromStream(fileInputStream));
         } catch (final IOException exception) {
             throw new IllegalStateException("Failed to read test-file", exception);
         }

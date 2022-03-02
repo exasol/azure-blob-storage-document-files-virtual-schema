@@ -4,31 +4,47 @@ import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 import com.azure.storage.blob.BlobServiceClient;
+import com.azure.storage.blob.BlobServiceClientBuilder;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
-import com.google.cloud.NoCredentials;
-import com.google.cloud.storage.Storage;
-import com.google.cloud.storage.StorageOptions;
+//https://tech-blog.lectra.com/article/781-azurite-testcontainers-comment-tester-azure-blob-storage-sans-nuage
+//@Testcontainers
+//class AzuriteContainer extends GenericContainer<AzuriteContainer> ("mcr.microsoft.com/azure-storage/azurite") {
+//    inherits ;
+//}
 
 public class LocalAbsTestSetup implements AbsTestSetup {
-    private static final int PORT_IN_CONTAINER = 4443;
-    private final GenericContainer<? extends GenericContainer<?>> container;
+    private static final int PORT_IN_CONTAINER = 10000;
+    private final GenericContainer<? extends GenericContainer<?>> azuriteContainer;
     private final String host;
-    //TODO: see if something like this exists for abs
+    //TODO: see if something like this exists for abs -> azurite
     public LocalAbsTestSetup() {
-        this.container = new GenericContainer<>("fsouza/fake-gcs-server:1.34");
-        this.container.addExposedPort(PORT_IN_CONTAINER);
-        this.container
-                .withCreateContainerCmdModifier(cmd -> cmd.withEntrypoint("/bin/fake-gcs-server", "-scheme", "http"));
-        this.container.start();
-        final Integer portOnHost = this.container.getMappedPort(PORT_IN_CONTAINER);
+        this.azuriteContainer = new GenericContainer<>("mcr.microsoft.com/azure-storage/azurite");
+        this.azuriteContainer.addExposedPort(PORT_IN_CONTAINER);
+        this.azuriteContainer.start();
+
+        final Integer portOnHost = this.azuriteContainer.getMappedPort(PORT_IN_CONTAINER);
         this.host = "localhost:" + portOnHost;
     }
 
     @Override
     public BlobServiceClient getAbsClient() {
-        return StorageOptions.newBuilder().setHost("http://" + this.host).setProjectId("test-project")
-                .setCredentials(NoCredentials.getInstance()).build().getService();
+//        return StorageOptions.newBuilder().setHost("http://" + this.host).setProjectId("test-project")
+//                .setCredentials(NoCredentials.getInstance()).build().getService();
+
+        //todo add connectionProperties
+        // Azurite default configuration
+        var defaultEndpointsProtocol = "http";
+        var accountName = "devstoreaccount1";
+        var accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
+        var blobEndpoint = "http://127.0.0.1:${azuriteContainer.getMappedPort(10000)}/devstoreaccount1";
+        var connectionString = String.format( "DefaultEndpointsProtocol=$defaultEndpointsProtocol;AccountName=$accountName;AccountKey=$accountKey;BlobEndpoint=$blobEndpoint;",
+                defaultEndpointsProtocol,accountName,accountKey,blobEndpoint);
+
+        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectionString).buildClient();
+
+        return blobServiceClient;
     }
 
     @Override
@@ -39,7 +55,7 @@ public class LocalAbsTestSetup implements AbsTestSetup {
 
     @Override
     public void close() {
-        this.container.stop();
+        this.azuriteContainer.stop();
     }
 
     @Override

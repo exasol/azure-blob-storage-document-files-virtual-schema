@@ -36,7 +36,6 @@ class AbsRemoteFileContent implements RemoteFileContent {
     public InputStream getInputStream() {
         return getFile().openInputStream();
     }
-    //prob need to be blobclient instead of BlobItem
     private BlobClient getFile() {
 
         BlobClient blobClient = this.blobContainerClient.getBlobClient(this.fileToRead.getName());

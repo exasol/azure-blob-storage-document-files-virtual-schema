@@ -15,7 +15,7 @@ class AbsConnectionPropertiesReaderTest {
     @Test
     void testReadOnlyRequired() {
         final AbsConnectionProperties properties = runReader(
-                "{\"gcKey\": \"my-connectionstring\", \"gcsBucket\": \"my-containername\" }");
+                "{\"storageAccountConnectionString\": \"my-connectionstring\", \"containerName\": \"my-containername\" }");
         assertAll(
                 () -> assertThat(properties.getStorageAcountConnectionString(), equalTo("my-connectionstring")),
                 () -> assertThat(properties.getContainerName(), equalTo("my-containername"))

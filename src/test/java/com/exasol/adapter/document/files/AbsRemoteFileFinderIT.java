@@ -31,18 +31,16 @@ class AbsRemoteFileFinderIT {
         testContainer = new TestContainer(TEST_SETUP);
         var blobContainerClient = testContainer.getBlobContainerClient();
         var file1= blobContainerClient.getBlobClient("file-1.json"); //CONTENT_1.getBytes());
-        file1.upload(CONTENT_1.);
         //var byteArrayInputStream = new ByteArrayInputStream(CONTENT_1.getBytes());
-        //todo: BinaryData fromStream or fromBytes or byte
         file1.upload(BinaryData.fromBytes(CONTENT_1.getBytes()));
-
-//todo: BinaryData fromStream or fromBytes or byte
-        var file2 = blobContainerClient.getBlobClient("file-2.json").upload(BinaryData.fromStream(byteArrayInputStream));//, CONTENT_2.getBytes());
+        //todo: BinaryData fromStream or fromBytes or byte
+        var file2 = blobContainerClient.getBlobClient("file-2.json");//, CONTENT_2.getBytes());
+        file2.upload(BinaryData.fromBytes(CONTENT_2.getBytes()));
         var file3 = blobContainerClient.getBlobClient("other.json"); //CONTENT_OTHER.getBytes());
+        file3.upload(BinaryData.fromBytes(CONTENT_OTHER.getBytes()));
 
-        connectionInformation = AbsConnectionProperties.builder().containerName(testContainer.getBlobContainerClient().getName())
-                .gcKey(TEST_SETUP.getKeyFileAsJson()).gcHost(TEST_SETUP.getHostOverride().orElse(null))
-                .useSsl(TEST_SETUP.useSsl()).build();
+        connectionInformation = AbsConnectionProperties.builder().containerName(testContainer.getBlobContainerClient().getBlobContainerName())
+                .storageAcountConnectionString(TEST_SETUP.getKeyFileAsJson()).build();
     }
 
     @AfterAll

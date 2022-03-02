@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.*;
 import java.util.concurrent.TimeoutException;
 
+import com.azure.storage.blob.BlobContainerClient;
 import org.jetbrains.annotations.NotNull;
 
 import com.exasol.adapter.document.UdfEntryPoint;
@@ -35,19 +36,19 @@ public class IntegrationTestSetup implements AutoCloseable {
     private final AdapterScript adapterScript;
     private final Bucket bucket;
     private final List<DatabaseObject> createdObjects = new LinkedList<>();
-    private final AbsTestSetup gcsTestSetup;
-    private final com.google.cloud.storage.Bucket gcsBucket;
+    private final AbsTestSetup absTestSetup;
+    private final BlobContainerClient absContainer;
     private final UdfTestSetup udfTestSetup;
     @Getter
     @Setter
     private ConnectionDefinition connectionDefinition;
 
-    public IntegrationTestSetup(final ExasolTestSetup exasolTestSetup, final AbsTestSetup gcsTestSetup,
-            final com.google.cloud.storage.Bucket gcsBucket)
+    public IntegrationTestSetup(final ExasolTestSetup exasolTestSetup, final AbsTestSetup absTestSetup,
+            final BlobContainerClient absContainer)
             throws SQLException, BucketAccessException, TimeoutException, FileNotFoundException {
         this.exasolTestSetup = exasolTestSetup;
-        this.gcsTestSetup = gcsTestSetup;
-        this.gcsBucket = gcsBucket;
+        this.absTestSetup = absTestSetup;
+        this.absContainer = absContainer;
         this.connection = this.exasolTestSetup.createConnection();
         this.statement = this.connection.createStatement();
         this.statement.executeUpdate("ALTER SESSION SET QUERY_CACHE = 'OFF';");
@@ -75,15 +76,16 @@ public class IntegrationTestSetup implements AutoCloseable {
         final JsonObjectBuilder configJson = getConnectionConfig();
         return createConnectionDefinition(configJson);
     }
-
+    //TODO:
+    //creates the json connection config object
     public JsonObjectBuilder getConnectionConfig() {
-        final byte[] json = this.gcsTestSetup.getKeyFileAsJson();
+        final byte[] json = this.absTestSetup.getKeyFileAsJson();
         final JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
         final Optional<String> hostOverride = getHostOverride();
         hostOverride.ifPresent(s -> objectBuilder.add("gcHost", s));
         return objectBuilder//
-                .add("gcsBucket", this.gcsBucket.getName())//
-                .add("gcKey", readJson(json)).add("useSsl", this.gcsTestSetup.useSsl());
+                .add("containerName", this.absContainer.getBlobContainerName())//
+                .add("gcKey", readJson(json)).add("useSsl", this.absTestSetup.useSsl());
     }
 
     private JsonValue readJson(final byte[] json) {
@@ -96,7 +98,7 @@ public class IntegrationTestSetup implements AutoCloseable {
     }
 
     public ConnectionDefinition createConnectionDefinition(final JsonObjectBuilder details) {
-        return this.exasolObjectFactory.createConnectionDefinition("GCS_CONNECTION_" + System.currentTimeMillis(), "",
+        return this.exasolObjectFactory.createConnectionDefinition("ABS_CONNECTION_" + System.currentTimeMillis(), "",
                 "", toJson(details.build()));
     }
 
@@ -111,7 +113,7 @@ public class IntegrationTestSetup implements AutoCloseable {
     }
 
     private Optional<String> getHostOverride() {
-        return this.gcsTestSetup.getHostOverride().map(address -> this.exasolTestSetup
+        return this.absTestSetup.getHostOverride().map(address -> this.exasolTestSetup
                 .makeTcpServiceAccessibleFromDatabase(ServiceAddress.parse(address)).toString());
     }
 

@@ -12,11 +12,6 @@ public class AbsConnectionPropertiesReader {
      */
     public AbsConnectionProperties read(final ConnectionPropertiesReader reader) {
         return AbsConnectionProperties.builder()//
-                //.useSsl(reader.readBooleanWithDefault("useSsl", true))//
-                //.gcKey(reader.readRequiredJsonProperty("gcKey"))//
-                //.gcHost(reader.readString("gcHost").orElse(null))//
-                //.gcsBucket(reader.readRequiredString("gcsBucket"))//
-                //TODO: maybe use property, clean up code in comments
                 .storageAcountConnectionString(reader.readRequiredString("storageAcountConnectionString"))
                 .containerName(reader.readRequiredString("containerName"))
                 .build();

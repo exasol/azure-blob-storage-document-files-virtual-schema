@@ -7,39 +7,42 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.azure.core.util.BinaryData;
 import org.junit.jupiter.api.*;
 
 import com.exasol.adapter.document.files.connection.AbsConnectionProperties;
 import com.exasol.adapter.document.files.abstestsetup.AbsTestSetup;
-import com.exasol.adapter.document.files.abstestsetup.OnlineGcsTestSetup;
+import com.exasol.adapter.document.files.abstestsetup.OnlineAbsTestSetup;
 import com.exasol.adapter.document.files.stringfilter.wildcardexpression.WildcardExpression;
 
 @Tag("integration")
 class AbsRemoteFileFinderOnlineIT {
-    private static final AbsTestSetup TEST_SETUP = new OnlineGcsTestSetup();
+    private static final AbsTestSetup TEST_SETUP = new OnlineAbsTestSetup();
     private static final String CONTENT_1 = "content-1";
     private static AbsConnectionProperties connectionInformation;
-    private static TestContainer testBucket;
+    private static TestContainer testContainer;
 
     @BeforeAll
     static void beforeAll() {
-        testBucket = new TestContainer(TEST_SETUP);
-        testBucket.getBlobContainerClient().create("file-1.json", CONTENT_1.getBytes());
-        connectionInformation = AbsConnectionProperties.builder().containerName(testBucket.getBlobContainerClient().getName())
+        testContainer = new TestContainer(TEST_SETUP);
+        var blobContainerClient = testContainer.getBlobContainerClient();
+        var file1= blobContainerClient.getBlobClient("file-1.json");
+        file1.upload(BinaryData.fromBytes(CONTENT_1.getBytes()));
+        connectionInformation = AbsConnectionProperties.builder().containerName(testContainer.getBlobContainerClient().getBlobContainerName())
                 .gcKey(TEST_SETUP.getKeyFileAsJson()).gcHost(TEST_SETUP.getHostOverride().orElse(null))
                 .useSsl(TEST_SETUP.useSsl()).build();
     }
 
     @AfterAll
     static void afterAll() {
-        testBucket.close();
+        testContainer.close();
     }
 
     @Test
     void testReadFile() {
-        final AbsRemoteFileFinder gcsFileLoader = new AbsRemoteFileFinder(
+        final AbsRemoteFileFinder absFileLoader = new AbsRemoteFileFinder(
                 WildcardExpression.forNonWildcardString("file-1.json"), connectionInformation);
-        assertThat(runAndGetFirstLines(gcsFileLoader), containsInAnyOrder(CONTENT_1));
+        assertThat(runAndGetFirstLines(absFileLoader), containsInAnyOrder(CONTENT_1));
     }
 
     private List<String> runAndGetFirstLines(final AbsRemoteFileFinder gcsFileLoader) {
