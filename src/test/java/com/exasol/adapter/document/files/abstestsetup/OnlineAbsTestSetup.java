@@ -6,23 +6,24 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import com.azure.storage.blob.BlobServiceClient;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.cloud.storage.Storage;
-import com.google.cloud.storage.StorageOptions;
+import com.azure.storage.blob.BlobServiceClientBuilder;
 
 public class OnlineAbsTestSetup implements AbsTestSetup {
-    private static final String KEY_FILE = "google-key.json";
+    private static final String KEY_FILE = "abs-cs.json";
+    private String connectionString;
     private final BlobServiceClient blobServiceClient;
 
     public OnlineAbsTestSetup() {
         if (!Files.exists(Path.of(KEY_FILE))) {
             throw new IllegalStateException("Could not find " + KEY_FILE
-                    + ". Please create a google-cloud service account, create a key and store it in this project as "
+                    + ". Please create a azure blob service account, create a key and store it in this project as "
                     + KEY_FILE + ".");
         }
         try {
             //final GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(KEY_FILE));
-            this.blobServiceClient = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
+            this.connectionString = Files.readString(Path.of(KEY_FILE));
+            this.blobServiceClient = new BlobServiceClientBuilder().connectionString(connectionString).buildClient();
+            //this.blobServiceClient = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         } catch (final IOException exception) {
             throw new UncheckedIOException("Failed to read gcs credentials from file.", exception);
         }
@@ -34,12 +35,8 @@ public class OnlineAbsTestSetup implements AbsTestSetup {
     }
 
     @Override
-    public byte[] getKeyFileAsJson() {
-        try {
-            return Files.readAllBytes(Path.of(KEY_FILE));
-        } catch (final IOException exception) {
-            throw new UncheckedIOException("Faile to read credential file", exception);
-        }
+    public String getStorageAccountConnectionString() {
+        return connectionString;
     }
 
     @Override

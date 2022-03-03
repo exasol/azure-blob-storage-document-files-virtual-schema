@@ -7,8 +7,7 @@ import com.azure.storage.blob.BlobServiceClient;
 public interface AbsTestSetup extends AutoCloseable {
     BlobServiceClient getAbsClient();
 
-    byte[] getKeyFileAsJson();
-
+    String getStorageAccountConnectionString();
     @Override
     void close();
 

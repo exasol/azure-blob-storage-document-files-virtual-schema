@@ -79,13 +79,13 @@ public class IntegrationTestSetup implements AutoCloseable {
     //TODO:
     //creates the json connection config object
     public JsonObjectBuilder getConnectionConfig() {
-        final byte[] json = this.absTestSetup.getKeyFileAsJson();
+        //final byte[] json = this.absTestSetup.getKeyFileAsJson();
         final JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-        final Optional<String> hostOverride = getHostOverride();
-        hostOverride.ifPresent(s -> objectBuilder.add("gcHost", s));
+        //final Optional<String> hostOverride = getHostOverride();
+        //hostOverride.ifPresent(s -> objectBuilder.add("gcHost", s));
         return objectBuilder//
                 .add("containerName", this.absContainer.getBlobContainerName())//
-                .add("gcKey", readJson(json)).add("useSsl", this.absTestSetup.useSsl());
+                .add("storageAccountConnectionString", this.absTestSetup.getStorageAccountConnectionString());
     }
 
     private JsonValue readJson(final byte[] json) {

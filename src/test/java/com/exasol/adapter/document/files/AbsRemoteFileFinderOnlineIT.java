@@ -28,9 +28,9 @@ class AbsRemoteFileFinderOnlineIT {
         var blobContainerClient = testContainer.getBlobContainerClient();
         var file1= blobContainerClient.getBlobClient("file-1.json");
         file1.upload(BinaryData.fromBytes(CONTENT_1.getBytes()));
+        //TODO: check this
         connectionInformation = AbsConnectionProperties.builder().containerName(testContainer.getBlobContainerClient().getBlobContainerName())
-                .gcKey(TEST_SETUP.getKeyFileAsJson()).gcHost(TEST_SETUP.getHostOverride().orElse(null))
-                .useSsl(TEST_SETUP.useSsl()).build();
+                .storageAcountConnectionString(TEST_SETUP.getStorageAccountConnectionString()).build();
     }
 
     @AfterAll
