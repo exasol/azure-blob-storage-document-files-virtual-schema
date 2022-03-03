@@ -12,7 +12,7 @@ public class TestContainer implements AutoCloseable {
     private final BlobContainerClient blobContainerClient;
 
     public TestContainer(final AbsTestSetup testSetup) {
-        final String containerName = "gcs-document-vs-test-" + System.currentTimeMillis();
+        final String containerName = "abs-document-vs-test-" + System.currentTimeMillis();
         final BlobServiceClient absClient = testSetup.getAbsClient();
         this.blobContainerClient = absClient.createBlobContainer(containerName);
     }

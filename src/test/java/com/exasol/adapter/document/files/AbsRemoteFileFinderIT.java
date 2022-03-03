@@ -50,14 +50,14 @@ class AbsRemoteFileFinderIT {
 
     @Test
     void testReadFile() {
-        final AbsRemoteFileFinder gcsFileLoader = new AbsRemoteFileFinder(
+        final AbsRemoteFileFinder absFileLoader = new AbsRemoteFileFinder(
                 WildcardExpression.forNonWildcardString("file-1.json"), connectionInformation);
-        assertThat(runAndGetFirstLines(gcsFileLoader), containsInAnyOrder(CONTENT_1));
+        assertThat(runAndGetFirstLines(absFileLoader), containsInAnyOrder(CONTENT_1));
     }
 
-    private List<String> runAndGetFirstLines(final AbsRemoteFileFinder gcsFileLoader) {
+    private List<String> runAndGetFirstLines(final AbsRemoteFileFinder absFileLoader) {
         final List<String> result = new ArrayList<>();
-        gcsFileLoader.loadFiles()
+        absFileLoader.loadFiles()
                 .forEachRemaining(file -> result.add(readFirstLine(file.getContent().getInputStream())));
         return result;
     }
@@ -70,15 +70,15 @@ class AbsRemoteFileFinderIT {
     @ParameterizedTest
     void testReadFilesWithWildcard(final String fileGlob) {
         final WildcardExpression filePattern = WildcardExpression.fromGlob(fileGlob);
-        final AbsRemoteFileFinder gcsFileLoader = new AbsRemoteFileFinder(filePattern, connectionInformation);
-        assertThat(runAndGetFirstLines(gcsFileLoader), containsInAnyOrder(CONTENT_1, CONTENT_2));
+        final AbsRemoteFileFinder absFileLoader = new AbsRemoteFileFinder(filePattern, connectionInformation);
+        assertThat(runAndGetFirstLines(absFileLoader), containsInAnyOrder(CONTENT_1, CONTENT_2));
     }
 
     @Test
     void testReadAllFiles() {
         final WildcardExpression filePattern = WildcardExpression.fromGlob("*");
-        final AbsRemoteFileFinder gcsRemoteFileFinder = new AbsRemoteFileFinder(filePattern, connectionInformation);
-        assertThat(runAndGetFirstLines(gcsRemoteFileFinder), containsInAnyOrder(CONTENT_1, CONTENT_2, CONTENT_OTHER));
+        final AbsRemoteFileFinder absRemoteFileFinder = new AbsRemoteFileFinder(filePattern, connectionInformation);
+        assertThat(runAndGetFirstLines(absRemoteFileFinder), containsInAnyOrder(CONTENT_1, CONTENT_2, CONTENT_OTHER));
     }
 
     private String readFirstLine(final InputStream stream) {

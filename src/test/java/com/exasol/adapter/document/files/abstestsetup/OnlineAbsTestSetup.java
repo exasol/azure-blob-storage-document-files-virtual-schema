@@ -25,7 +25,7 @@ public class OnlineAbsTestSetup implements AbsTestSetup {
             this.blobServiceClient = new BlobServiceClientBuilder().connectionString(connectionString).buildClient();
             //this.blobServiceClient = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         } catch (final IOException exception) {
-            throw new UncheckedIOException("Failed to read gcs credentials from file.", exception);
+            throw new UncheckedIOException("Failed to read abs credentials from file.", exception);
         }
     }
 

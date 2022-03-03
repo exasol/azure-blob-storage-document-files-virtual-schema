@@ -99,7 +99,7 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
         SETUP.getBucket().uploadInputStream(() -> getClass().getClassLoader().getResourceAsStream("simpleMapping.json"),
                 "mapping.json");
         final ConnectionDefinition connection = SETUP.getExasolObjectFactory()
-                .createConnectionDefinition("EMPTY_GCS_CONNECTION", "", "", "{");
+                .createConnectionDefinition("EMPTY_ABS_CONNECTION", "", "", "{");
         final VirtualSchema.Builder virtualSchemaBuilder = SETUP
                 .getPreconfiguredVirtualSchemaBuilder("EMPTY_CONNECTION_SCHEMA").connectionDefinition(connection)
                 .properties(Map.of("MAPPING", "/bfsdefault/default/mapping.json"));

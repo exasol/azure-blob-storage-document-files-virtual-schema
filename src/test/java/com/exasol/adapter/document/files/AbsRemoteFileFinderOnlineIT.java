@@ -45,9 +45,9 @@ class AbsRemoteFileFinderOnlineIT {
         assertThat(runAndGetFirstLines(absFileLoader), containsInAnyOrder(CONTENT_1));
     }
 
-    private List<String> runAndGetFirstLines(final AbsRemoteFileFinder gcsFileLoader) {
+    private List<String> runAndGetFirstLines(final AbsRemoteFileFinder absFileLoader) {
         final List<String> result = new ArrayList<>();
-        gcsFileLoader.loadFiles()
+        absFileLoader.loadFiles()
                 .forEachRemaining(file -> result.add(readFirstLine(file.getContent().getInputStream())));
         return result;
     }

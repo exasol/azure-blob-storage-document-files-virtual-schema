@@ -63,7 +63,7 @@ public class AbsRemoteFileFinder implements RemoteFileFinder {
      * Get a list of object keys.
      *
      * <p>
-     * This method only applies the filters that can be applied on GCS. So you have to filter the output once again with
+     * This method only applies the filters that can be applied on ABS. So you have to filter the output once again with
      * a more featured matcher.
      * </p>
      *

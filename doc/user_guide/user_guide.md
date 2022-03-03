@@ -1,6 +1,6 @@
 # User Guide
 
-This user guide helps you with getting started with the Azure Blob Storage (GCS) Files Virtual Schemas.
+This user guide helps you with getting started with the Azure Blob Storage (abs) Files Virtual Schemas.
 
 ### Installation
 
@@ -36,12 +36,12 @@ CREATE OR REPLACE JAVA SET SCRIPT ADAPTER.IMPORT_FROM_AZURE_BLOB_STORAGE_DOCUMEN
 
 ## Creating a Connection
 
-For granting the Virtual Schema access to your GCS bucket you need a Service Role. Please follow the [following tutorial](https://cloud.google.com/docs/authentication/production#create_service_account) on how to create it. The account needs permissions to read and list files on the bucket. We recommend the `Storage Object Viewer` role. After creating the role please download a key file as a JSON formatted file. Open the file and copy the contents.
+For granting the Virtual Schema access to your abs bucket you need a Service Role. Please follow the [following tutorial](https://cloud.google.com/docs/authentication/production#create_service_account) on how to create it. The account needs permissions to read and list files on the bucket. We recommend the `Storage Object Viewer` role. After creating the role please download a key file as a JSON formatted file. Open the file and copy the contents.
 
 Now you need to define a connection that includes the contents of the key file:
 
  ```sql
-CREATE CONNECTION GCS_CONNECTION
+CREATE CONNECTION ABS_CONNECTION
     TO ''
     USER ''
     IDENTIFIED BY '{
@@ -50,7 +50,7 @@ CREATE CONNECTION GCS_CONNECTION
             "project_id": "",
             ...
         }  
-        "gcsBucket": "<GCS BUCKET NAME>" 
+        "absBucket": "<ABS BUCKET NAME>" 
     }';
 ```
 
@@ -61,7 +61,7 @@ The connection stores all connection details as JSON in the `IDENTIFIED BY` part
 | Key                 | Default                   | Required | Example                          |
 |---------------------|---------------------------|:--------:|----------------------------------|
 | `gcKey`             |                           |    ✓     | {"type": "service_account", ...} |
-| `gcsBucket`         |                           |    ✓     | `"my-bucket"`                    |
+| `absBucket`         |                           |    ✓     | `"my-bucket"`                    |
 | `gcHost`            | _Default google endpoint_ |    ✘     | `"my.custom.storarge.de"`        |
 | `useSsl`            | `true`                    |    ✘     | `false`                          |
 

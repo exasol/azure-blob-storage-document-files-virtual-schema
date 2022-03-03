@@ -13,7 +13,7 @@ public class CiIsolationApp {
         final App app = new App();
         final PolicyReader policyReader = new PolicyReader();
         new CiUserStack(app,
-                CiUserStack.CiUserStackProps.builder().projectName("gcs-files-vs")
+                CiUserStack.CiUserStackProps.builder().projectName("abs-files-vs")
                         .addRequiredPermissions(policyReader.readPolicyFromResources("test-permissions.json"),
                                 policyReader.readPolicyFromResources("exasol-permissions.json"))
                         .build());
