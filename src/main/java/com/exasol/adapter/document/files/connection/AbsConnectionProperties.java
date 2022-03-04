@@ -10,7 +10,7 @@ import lombok.Data;
 @Builder
 public class AbsConnectionProperties {
     @Builder.Default
-    private final String storageAcountConnectionString = null;
+    private final String storageAccountConnectionString = null;
     @Builder.Default
     private final String containerName = null;
 

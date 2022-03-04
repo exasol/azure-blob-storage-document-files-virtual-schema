@@ -30,7 +30,7 @@ class AbsRemoteFileFinderOnlineIT {
         file1.upload(BinaryData.fromBytes(CONTENT_1.getBytes()));
         //TODO: check this
         connectionInformation = AbsConnectionProperties.builder().containerName(testContainer.getBlobContainerClient().getBlobContainerName())
-                .storageAcountConnectionString(TEST_SETUP.getStorageAccountConnectionString()).build();
+                .storageAccountConnectionString(TEST_SETUP.getStorageAccountConnectionString()).build();
     }
 
     @AfterAll

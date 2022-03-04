@@ -37,7 +37,7 @@ public class AbsRemoteFileFinder implements RemoteFileFinder {
     }
     private BlobServiceClient buildAbsClient(final AbsConnectionProperties connectionProperties) {
         // Create a BlobServiceClient object which will be used to create a container client
-        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectionProperties.getStorageAcountConnectionString()).buildClient();
+        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectionProperties.getStorageAccountConnectionString()).buildClient();
 
         return blobServiceClient;
     }

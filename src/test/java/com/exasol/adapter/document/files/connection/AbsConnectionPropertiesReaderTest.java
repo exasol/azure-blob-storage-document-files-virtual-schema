@@ -17,7 +17,7 @@ class AbsConnectionPropertiesReaderTest {
         final AbsConnectionProperties properties = runReader(
                 "{\"storageAccountConnectionString\": \"my-connectionstring\", \"containerName\": \"my-containername\" }");
         assertAll(
-                () -> assertThat(properties.getStorageAcountConnectionString(), equalTo("my-connectionstring")),
+                () -> assertThat(properties.getStorageAccountConnectionString(), equalTo("my-connectionstring")),
                 () -> assertThat(properties.getContainerName(), equalTo("my-containername"))
         );
 
@@ -31,6 +31,6 @@ class AbsConnectionPropertiesReaderTest {
     void testMissingRequired() {
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> runReader("{ }"));
         assertThat(exception.getMessage(), startsWith(
-                "E-VSD-93: Invalid connection. The connection definition does not specify the required property 'gcKey'. Please check the user-guide at:"));
+                "E-VSD-93: Invalid connection."));
     }
 }

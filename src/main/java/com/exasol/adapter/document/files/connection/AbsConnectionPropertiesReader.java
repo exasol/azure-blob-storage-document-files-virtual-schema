@@ -12,7 +12,7 @@ public class AbsConnectionPropertiesReader {
      */
     public AbsConnectionProperties read(final ConnectionPropertiesReader reader) {
         return AbsConnectionProperties.builder()//
-                .storageAcountConnectionString(reader.readRequiredString("storageAcountConnectionString"))
+                .storageAccountConnectionString(reader.readRequiredString("storageAccountConnectionString"))
                 .containerName(reader.readRequiredString("containerName"))
                 .build();
     }
