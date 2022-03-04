@@ -17,26 +17,35 @@ public class LocalAbsTestSetup implements AbsTestSetup {
     private String connectionString;
     //TODO: see if something like this exists for abs -> azurite
     public LocalAbsTestSetup() {
-        this.azuriteContainer = new GenericContainer<>("mcr.microsoft.com/azure-storage/azurite");
+        this.azuriteContainer = new GenericContainer<>("mcr.microsoft.com/azure-storage/azurite:3.14.0");
         this.azuriteContainer.addExposedPort(PORT_IN_CONTAINER);
         this.azuriteContainer.start();
 
         final Integer portOnHost = this.azuriteContainer.getMappedPort(PORT_IN_CONTAINER);
         this.host = "localhost:" + portOnHost;
 
+        //createAzuriteBlobServiceClient();
+    }
+
+    private void createAzuriteBlobServiceClient() {
         //todo add connectionProperties
         // Azurite default configuration
         var defaultEndpointsProtocol = "http";
         var accountName = "devstoreaccount1";
         var accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
-        var blobEndpoint =  "http://127.0.0.1:" +azuriteContainer.getMappedPort(10000)+ "/devstoreaccount1";
-        this.connectionString = String.format( "DefaultEndpointsProtocol=$defaultEndpointsProtocol;AccountName=$accountName;AccountKey=$accountKey;BlobEndpoint=$blobEndpoint;",
-                defaultEndpointsProtocol,accountName,accountKey,blobEndpoint);
+        var blobEndpoint =  "http://127.0.0.1:" + azuriteContainer.getMappedPort(10000)+ "/devstoreaccount1";
+        this.connectionString = "DefaultEndpointsProtocol="+defaultEndpointsProtocol+
+                ";AccountName="+accountName+
+                ";AccountKey="+ accountKey+
+                ";BlobEndpoint="+ blobEndpoint+";";
+
         this.blobServiceClient = new BlobServiceClientBuilder().connectionString(connectionString).buildClient();
     }
 
     @Override
     public BlobServiceClient getAbsClient() {
+
+        createAzuriteBlobServiceClient();
         return this.blobServiceClient;
     }
 

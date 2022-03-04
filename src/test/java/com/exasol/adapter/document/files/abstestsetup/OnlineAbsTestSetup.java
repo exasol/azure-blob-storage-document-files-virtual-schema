@@ -16,7 +16,7 @@ public class OnlineAbsTestSetup implements AbsTestSetup {
     public OnlineAbsTestSetup() {
         if (!Files.exists(Path.of(KEY_FILE))) {
             throw new IllegalStateException("Could not find " + KEY_FILE
-                    + ". Please create a azure blob service account, create a key and store it in this project as "
+                    + ". Please create a azure blob storage account, get the connection string and store it in this project as "
                     + KEY_FILE + ".");
         }
         try {
