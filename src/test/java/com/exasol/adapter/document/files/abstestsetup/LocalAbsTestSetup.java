@@ -22,7 +22,6 @@ public class LocalAbsTestSetup implements AbsTestSetup {
         this.host = "localhost:" + portOnHost;
     }
     private void createAzuriteBlobServiceClient() {
-        //todo add connectionProperties
         // Azurite default configuration
         var defaultEndpointsProtocol = "http";
         var accountName = "devstoreaccount1";

@@ -68,7 +68,7 @@ class AbsRandomAccessInputStream extends RandomAccessInputStream {
 
     @Override
     public int read(final byte[] targetBuffer, final int offset, final int length) {
-        LOGGER.log(Level.INFO, "read length: "+ length +"- offset: "+offset);
+        LOGGER.log(Level.INFO, "read - length: "+ length +" - offset: "+offset);
 
         if (length == 0) {
             return 0;
@@ -79,7 +79,6 @@ class AbsRandomAccessInputStream extends RandomAccessInputStream {
             try {
 
                 this.blobClient.openInputStream(new BlobRange((long) position, (long) actualReadLength),new BlobRequestConditions()).read(targetBuffer);
-                //this.blobClient.openInputStream().read(targetBuffer, offset, actualReadLength);
             } catch (final IOException exception) {
                 throw getReadFailedException(exception);
             }

@@ -47,7 +47,6 @@ class AbsRemoteFileContent implements RemoteFileContent {
         return new RandomAccessInputStreamCache(new AbsRandomAccessInputStream(getFile(), this.fileToRead.getSize()),
                 SIZE_1_MB);
     }
-    //todo: look if this can be done in an async way
     @Override
     public Future<byte[]> loadAsync() {
         return this.executorServiceFactory.getExecutorService().submit(() -> getFile().downloadContent().toBytes());

@@ -33,12 +33,10 @@ class AbsRemoteFileFinderIT {
         var file1= blobContainerClient.getBlobClient("file-1.json"); //CONTENT_1.getBytes());
         //var byteArrayInputStream = new ByteArrayInputStream(CONTENT_1.getBytes());
         file1.upload(BinaryData.fromBytes(CONTENT_1.getBytes()));
-        //todo: BinaryData fromStream or fromBytes or byte
         var file2 = blobContainerClient.getBlobClient("file-2.json");//, CONTENT_2.getBytes());
         file2.upload(BinaryData.fromBytes(CONTENT_2.getBytes()));
         var file3 = blobContainerClient.getBlobClient("other.json"); //CONTENT_OTHER.getBytes());
         file3.upload(BinaryData.fromBytes(CONTENT_OTHER.getBytes()));
-        //TODO: check this
         connectionInformation = AbsConnectionProperties.builder().containerName(testContainer.getBlobContainerClient().getBlobContainerName())
                 .storageAccountConnectionString(TEST_SETUP.getStorageAccountConnectionString()).build();
     }

@@ -11,10 +11,11 @@ Code name: Initial Version
 
 ### Compile Dependency Updates
 
+* Added `com.azure:azure-storage-blob:12.14.3`
 * Added `com.exasol:error-reporting-java:0.4.1`
-* Added `com.exasol:virtual-schema-common-document-files:6.0.0`
+* Added `com.exasol:virtual-schema-common-document-files:6.0.1`
+* Added `com.fasterxml.jackson.core:jackson-annotations:2.13.1`
 * Added `com.fasterxml.jackson.core:jackson-core:2.13.1`
-* Added `com.google.cloud:azure-blob-storage:2.2.3`
 
 ### Test Dependency Updates
 
@@ -22,7 +23,7 @@ Code name: Initial Version
 * Added `com.exasol:hamcrest-resultset-matcher:1.5.1`
 * Added `com.exasol:test-db-builder-java:3.2.2`
 * Added `com.exasol:udf-debugging-java:0.5.0`
-* Added `com.exasol:virtual-schema-common-document-files:6.0.0`
+* Added `com.exasol:virtual-schema-common-document-files:6.0.1`
 * Added `junit:junit:4.13.2`
 * Added `org.hamcrest:hamcrest:2.2`
 * Added `org.jacoco:org.jacoco.agent:0.8.7`
