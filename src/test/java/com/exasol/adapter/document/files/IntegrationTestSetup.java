@@ -78,22 +78,10 @@ public class IntegrationTestSetup implements AutoCloseable {
     }
     //creates the json connection config object
     public JsonObjectBuilder getConnectionConfig() {
-        //final byte[] json = this.absTestSetup.getKeyFileAsJson();
         final JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-        //final Optional<String> hostOverride = getHostOverride();
-        //hostOverride.ifPresent(s -> objectBuilder.add("gcHost", s));
         return objectBuilder//
                 .add("containerName", this.absContainer.getBlobContainerName())//
                 .add("storageAccountConnectionString", this.absTestSetup.getStorageAccountConnectionString());
-    }
-
-    private JsonValue readJson(final byte[] json) {
-        try (final ByteArrayInputStream inputStream = new ByteArrayInputStream(json);
-                final JsonReader jsonReader = Json.createReader(inputStream);) {
-            return jsonReader.readValue();
-        } catch (final IOException exception) {
-            throw new UncheckedIOException(exception);
-        }
     }
 
     public ConnectionDefinition createConnectionDefinition(final JsonObjectBuilder details) {
@@ -109,11 +97,6 @@ public class IntegrationTestSetup implements AutoCloseable {
         } catch (final IOException exception) {
             throw new UncheckedIOException("Failed to serialize connection settings", exception);
         }
-    }
-
-    private Optional<String> getHostOverride() {
-        return this.absTestSetup.getHostOverride().map(address -> this.exasolTestSetup
-                .makeTcpServiceAccessibleFromDatabase(ServiceAddress.parse(address)).toString());
     }
 
     private AdapterScript createAdapterScript(final ExasolSchema adapterSchema)

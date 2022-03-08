@@ -16,11 +16,11 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 11
-      - name: Write google-key.json
+      - name: Write abs-cs.json
         run: |
-          echo "$GC_KEY" > google-key.json
+          echo "$ABS_CS" > abs-cs.json
         env:
-          GC_KEY: ${{ secrets.GC_KEY }}
+          ABS_CS: ${{ secrets.ABS_CS }}
       - name: Cache local Maven repository
         uses: actions/cache@v2
         with:

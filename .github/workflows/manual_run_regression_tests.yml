@@ -38,11 +38,11 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           OWNER: ${{ secrets.AWS_TAG_OWNER }}
           DEPUTY: ${{ secrets.AWS_TAG_DEPUTY }}
-      - name: Write google-key.json
+      - name: Write abs-cs.json
         run: |
-          echo "$GC_KEY" > google-key.json
+          echo "$ABS_CS" > abs-cs.json
         env:
-          GC_KEY: ${{ secrets.GC_KEY }}n
+          ABS_CS: ${{ secrets.ABS_CS }}n
       - name: Run tests and build with Maven
         run: mvn --batch-mode --update-snapshots clean verify -DtrimStackTrace=false -PregressionTests -Dtest.coverage=false -Derror-code-crawler.skip=true -Dmaven.javadoc.skip=true -Dproject-keeper.skip=true
         env:
