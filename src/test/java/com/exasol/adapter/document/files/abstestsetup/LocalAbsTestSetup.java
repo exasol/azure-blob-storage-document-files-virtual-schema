@@ -8,25 +8,19 @@ import com.azure.storage.blob.BlobServiceClientBuilder;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-//https://tech-blog.lectra.com/article/781-azurite-testcontainers-comment-tester-azure-blob-storage-sans-nuage
 public class LocalAbsTestSetup implements AbsTestSetup {
     private static final int PORT_IN_CONTAINER = 10000;
     private final GenericContainer<? extends GenericContainer<?>> azuriteContainer;
     private final String host;
     private BlobServiceClient blobServiceClient;
     private String connectionString;
-    //TODO: see if something like this exists for abs -> azurite
     public LocalAbsTestSetup() {
-        this.azuriteContainer = new GenericContainer<>("mcr.microsoft.com/azure-storage/azurite:3.14.0");
+        this.azuriteContainer = new GenericContainer<>("mcr.microsoft.com/azure-storage/azurite:3.16.0");
         this.azuriteContainer.addExposedPort(PORT_IN_CONTAINER);
         this.azuriteContainer.start();
-
         final Integer portOnHost = this.azuriteContainer.getMappedPort(PORT_IN_CONTAINER);
         this.host = "localhost:" + portOnHost;
-
-        //createAzuriteBlobServiceClient();
     }
-
     private void createAzuriteBlobServiceClient() {
         //todo add connectionProperties
         // Azurite default configuration
@@ -44,7 +38,6 @@ public class LocalAbsTestSetup implements AbsTestSetup {
 
     @Override
     public BlobServiceClient getAbsClient() {
-
         createAzuriteBlobServiceClient();
         return this.blobServiceClient;
     }

@@ -7,6 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.azure.storage.blob.BlobClient;
+import com.azure.storage.blob.models.BlobRange;
+import com.azure.storage.blob.models.BlobRequestConditions;
 import com.exasol.adapter.document.documentfetcher.files.randomaccessinputstream.RandomAccessInputStream;
 import com.exasol.errorreporting.ExaError;
 
@@ -47,16 +49,18 @@ class AbsRandomAccessInputStream extends RandomAccessInputStream {
 
     @Override
     public int read() {
+        //throw new UnsupportedOperationException();
         LOGGER.info("Performing single read at position.");
         if (this.position < getLength()) {
-            final byte[] data = new byte[1];
+            final byte[] data; //= new byte[1];
             try {
-                this.blobClient.openInputStream().read(data);
+                data = this.blobClient.openInputStream().readNBytes(1);
             } catch (final IOException exception) {
                 throw getReadFailedException(exception);
             }
             this.position++;
-            return data[0] & 0xFF;
+            return data[0] ;//& 0xFF;
+            //return data[0] & 0xFF;
         } else {
             return -1;
         }
@@ -64,7 +68,8 @@ class AbsRandomAccessInputStream extends RandomAccessInputStream {
 
     @Override
     public int read(final byte[] targetBuffer, final int offset, final int length) {
-        LOGGER.log(Level.INFO, "read length: {}", length);
+        LOGGER.log(Level.INFO, "read length: "+ length +"- offset: "+offset);
+
         if (length == 0) {
             return 0;
         }
@@ -72,7 +77,9 @@ class AbsRandomAccessInputStream extends RandomAccessInputStream {
         final int actualReadLength = (int) Math.min(length, remainingBytesInFile);
         if (actualReadLength > 0) {
             try {
-                this.blobClient.openInputStream().read(targetBuffer, offset, actualReadLength);
+
+                this.blobClient.openInputStream(new BlobRange((long) offset, (long) actualReadLength),new BlobRequestConditions()).read(targetBuffer);
+                //this.blobClient.openInputStream().read(targetBuffer, offset, actualReadLength);
             } catch (final IOException exception) {
                 throw getReadFailedException(exception);
             }

@@ -20,10 +20,8 @@ public class OnlineAbsTestSetup implements AbsTestSetup {
                     + KEY_FILE + ".");
         }
         try {
-            //final GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(KEY_FILE));
             this.connectionString = Files.readString(Path.of(KEY_FILE));
             this.blobServiceClient = new BlobServiceClientBuilder().connectionString(connectionString).buildClient();
-            //this.blobServiceClient = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         } catch (final IOException exception) {
             throw new UncheckedIOException("Failed to read abs credentials from file.", exception);
         }

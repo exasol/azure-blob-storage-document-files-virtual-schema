@@ -12,21 +12,22 @@ class AbsRandomAccessInputStreamTest extends RandomAccessInputStreamTestBase {
     private static final String TEST_DATA_KEY = "TEST_DATA";
     long testDataLength;
     private AbsTestSetup testSetup;
-    private TestContainer testBucket;
+    private TestContainer testContainer;
     private BlobClient blob;
 
     @Override
     protected void prepareTestSetup(final byte[] bytes) {
         this.testSetup = new LocalAbsTestSetup();
-        this.testBucket = new TestContainer(this.testSetup);
+        this.testContainer = new TestContainer(this.testSetup);
         this.testDataLength = bytes.length;
-        this.blob = this.testBucket.getBlobContainerClient().getBlobClient(TEST_DATA_KEY);
+        //
+        this.blob = this.testContainer.getBlobContainerClient().getBlobClient(TEST_DATA_KEY);
         this.blob.upload(BinaryData.fromBytes(bytes));
     }
 
     @Override
     protected void cleanupTestSetup() {
-        this.testBucket.close();
+        this.testContainer.close();
         this.testSetup.close();
     }
 

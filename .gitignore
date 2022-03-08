@@ -38,4 +38,4 @@ setEnv.sh
 *.md.html
 test_config.yml
 deleteLambdaResources.sh
-/google-key.json
+/abs-cs.json
