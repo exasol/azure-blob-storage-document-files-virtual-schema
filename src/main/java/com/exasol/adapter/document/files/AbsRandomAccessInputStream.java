@@ -54,7 +54,7 @@ class AbsRandomAccessInputStream extends RandomAccessInputStream {
         if (this.position < getLength()) {
             final byte[] data; //= new byte[1];
             try {
-                data = this.blobClient.openInputStream().readNBytes(1);
+                data = this.blobClient.openInputStream(new BlobRange(position,1L),null).readNBytes(1);
             } catch (final IOException exception) {
                 throw getReadFailedException(exception);
             }
@@ -78,7 +78,7 @@ class AbsRandomAccessInputStream extends RandomAccessInputStream {
         if (actualReadLength > 0) {
             try {
 
-                this.blobClient.openInputStream(new BlobRange((long) offset, (long) actualReadLength),new BlobRequestConditions()).read(targetBuffer);
+                this.blobClient.openInputStream(new BlobRange((long) position, (long) actualReadLength),new BlobRequestConditions()).read(targetBuffer);
                 //this.blobClient.openInputStream().read(targetBuffer, offset, actualReadLength);
             } catch (final IOException exception) {
                 throw getReadFailedException(exception);
