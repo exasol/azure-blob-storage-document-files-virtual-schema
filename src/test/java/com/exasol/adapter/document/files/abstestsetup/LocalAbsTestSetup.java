@@ -1,12 +1,10 @@
 package com.exasol.adapter.document.files.abstestsetup;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
 import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 public class LocalAbsTestSetup implements AbsTestSetup {
     private static final int PORT_IN_CONTAINER = 10000;
@@ -20,13 +18,21 @@ public class LocalAbsTestSetup implements AbsTestSetup {
         this.azuriteContainer.start();
         final Integer portOnHost = this.azuriteContainer.getMappedPort(PORT_IN_CONTAINER);
         this.host = "localhost:" + portOnHost;
+
+        createAzuriteBlobServiceClient();
+    }
+//    public String getTestHostIpAddress(){
+//        return this.azuriteContainer.getTestHostIpAddress();
+//    }
+    public String getMappedPort(){
+        return String.valueOf(this.azuriteContainer.getMappedPort(PORT_IN_CONTAINER));
     }
     private void createAzuriteBlobServiceClient() {
         // Azurite default configuration
         var defaultEndpointsProtocol = "http";
         var accountName = "devstoreaccount1";
         var accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
-        var blobEndpoint =  "http://127.0.0.1:" + azuriteContainer.getMappedPort(10000)+ "/devstoreaccount1";
+        var blobEndpoint =  "http://127.0.0.1:" + azuriteContainer.getMappedPort(PORT_IN_CONTAINER)+ "/devstoreaccount1";
         this.connectionString = "DefaultEndpointsProtocol="+defaultEndpointsProtocol+
                 ";AccountName="+accountName+
                 ";AccountKey="+ accountKey+
@@ -37,7 +43,6 @@ public class LocalAbsTestSetup implements AbsTestSetup {
 
     @Override
     public BlobServiceClient getAbsClient() {
-        createAzuriteBlobServiceClient();
         return this.blobServiceClient;
     }
 

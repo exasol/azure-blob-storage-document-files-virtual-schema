@@ -34,10 +34,15 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
 
     @BeforeAll
     static void beforeAll() throws Exception {
+
         final ExasolTestSetup exasolTestSetup = new ExasolTestSetupFactory(
                 Path.of("cloudSetup/generated/testConfig.json")).getTestSetup();
+        //since this file doesn't exist we just get a local exasol test container setup back
+        //ABS - and this will return a 'local' azure blob storage, using the azurite emulator.
         absTestSetup = getAbsTestSetup(exasolTestSetup);
+        //this will set up a new Azure Blob Storage test container for us
         testContainer = new TestContainer(absTestSetup);
+        //Exasol
         SETUP = new IntegrationTestSetup(exasolTestSetup, absTestSetup, testContainer.getBlobContainerClient());
     }
 
@@ -65,7 +70,7 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
 
     @Override
     protected Statement getStatement() {
-        return SETUP.getStatement();
+        return SETUP.getExasolStatement();
     }
 
     @Override

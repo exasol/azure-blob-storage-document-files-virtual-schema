@@ -6,7 +6,7 @@ variable "deputy" {
 
 # Use a short project tag. Long tags will cause the exasol cluster creation to fail (see https://github.com/exasol/cloudformation-aws-exasol/issues/3)
 variable "project" {
-  default = "VS-GCP"
+  default = "VS-ABS"
 }
 
 variable "additional_tags" {

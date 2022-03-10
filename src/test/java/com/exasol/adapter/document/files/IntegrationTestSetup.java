@@ -8,8 +8,11 @@ import java.nio.file.Path;
 import java.sql.*;
 import java.util.*;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
 
 import com.azure.storage.blob.BlobContainerClient;
+import com.exasol.adapter.document.files.abstestsetup.LocalAbsTestSetup;
+import com.exasol.exasoltestsetup.ServiceAddress;
 import org.jetbrains.annotations.NotNull;
 
 import com.exasol.adapter.document.UdfEntryPoint;
@@ -20,7 +23,6 @@ import com.exasol.dbbuilder.dialects.DatabaseObject;
 import com.exasol.dbbuilder.dialects.exasol.*;
 import com.exasol.dbbuilder.dialects.exasol.udf.UdfScript;
 import com.exasol.exasoltestsetup.ExasolTestSetup;
-import com.exasol.exasoltestsetup.ServiceAddress;
 import com.exasol.udfdebugging.UdfTestSetup;
 
 import jakarta.json.*;
@@ -30,8 +32,8 @@ import lombok.Setter;
 public class IntegrationTestSetup implements AutoCloseable {
     private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-6.0.1-azure-blob-storage-1.0.0.jar";
     private final ExasolTestSetup exasolTestSetup;
-    private final Connection connection;
-    private final Statement statement;
+    private final Connection exasolConnection;
+    private final Statement exasolStatement;
     private final ExasolObjectFactory exasolObjectFactory;
     private final AdapterScript adapterScript;
     private final Bucket bucket;
@@ -46,20 +48,28 @@ public class IntegrationTestSetup implements AutoCloseable {
     public IntegrationTestSetup(final ExasolTestSetup exasolTestSetup, final AbsTestSetup absTestSetup,
             final BlobContainerClient absContainer)
             throws SQLException, BucketAccessException, TimeoutException, FileNotFoundException {
-        this.exasolTestSetup = exasolTestSetup;
+
         this.absTestSetup = absTestSetup;
         this.absContainer = absContainer;
-        this.connection = this.exasolTestSetup.createConnection();
-        this.statement = this.connection.createStatement();
-        this.statement.executeUpdate("ALTER SESSION SET QUERY_CACHE = 'OFF';");
+
+        this.exasolTestSetup = exasolTestSetup;
+        this.exasolConnection = this.exasolTestSetup.createConnection();
+        this.exasolStatement = this.exasolConnection.createStatement();
+        this.exasolStatement.executeUpdate("ALTER SESSION SET QUERY_CACHE = 'OFF';");
+
         this.bucket = this.exasolTestSetup.getDefaultBucket();
-        this.udfTestSetup = new UdfTestSetup(this.exasolTestSetup, this.connection);
+        this.udfTestSetup = new UdfTestSetup(this.exasolTestSetup, this.exasolConnection);
+
         final List<String> jvmOptions = new ArrayList(Arrays.asList(this.udfTestSetup.getJvmOptions()));
-        this.exasolObjectFactory = new ExasolObjectFactory(this.connection,
+        this.exasolObjectFactory = new ExasolObjectFactory(this.exasolConnection,
                 ExasolObjectConfiguration.builder().withJvmOptions(jvmOptions.toArray(String[]::new)).build());
+        //we create a schema called adapter
         final ExasolSchema adapterSchema = this.exasolObjectFactory.createSchema("ADAPTER");
+        //create a connection to Azure Blob Storage in the
         this.connectionDefinition = createConnectionDefinition();
+
         this.adapterScript = createAdapterScript(adapterSchema);
+
         createUdf(adapterSchema);
     }
 
@@ -76,17 +86,40 @@ public class IntegrationTestSetup implements AutoCloseable {
         final JsonObjectBuilder configJson = getConnectionConfig();
         return createConnectionDefinition(configJson);
     }
+    private Optional<String> getHostOverride() {
+        return this.absTestSetup.getHostOverride().map(address -> this.exasolTestSetup
+                .makeTcpServiceAccessibleFromDatabase(ServiceAddress.parse(address)).toString());
+    }
     //creates the json connection config object
     public JsonObjectBuilder getConnectionConfig() {
         final JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-        return objectBuilder//
-                .add("containerName", this.absContainer.getBlobContainerName())//
-                .add("storageAccountConnectionString", this.absTestSetup.getStorageAccountConnectionString());
+        if ( absTestSetup instanceof LocalAbsTestSetup){
+            //we're calling/working in the exasol database here so the connectionstring should be different
+            var defaultEndpointsProtocol = "http";
+            var accountName = "devstoreaccount1";
+            var accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
+            var gho = getHostOverride();
+            //String hostMachineIp = gho.get();
+            var blobEndpoint =  "http://"+ gho.get()+ "/devstoreaccount1";
+            //var blobEndpoint =  "http://"+ hostMachineIp + ":" + ((LocalAbsTestSetup) absTestSetup).getMappedPort()+ "/devstoreaccount1";
+            var connectionString = "DefaultEndpointsProtocol="+defaultEndpointsProtocol+
+                    ";AccountName="+accountName+
+                    ";AccountKey="+ accountKey+
+                    ";BlobEndpoint="+ blobEndpoint+";";
+            return objectBuilder
+                    .add("containerName", this.absContainer.getBlobContainerName())//
+                    .add("storageAccountConnectionString", connectionString);
+        } else {
+            return objectBuilder//
+                    .add("containerName", this.absContainer.getBlobContainerName())//
+                    .add("storageAccountConnectionString", this.absTestSetup.getStorageAccountConnectionString());
+        }
     }
 
     public ConnectionDefinition createConnectionDefinition(final JsonObjectBuilder details) {
+        String json =toJson(details.build());
         return this.exasolObjectFactory.createConnectionDefinition("ABS_CONNECTION_" + System.currentTimeMillis(), "",
-                "", toJson(details.build()));
+                "", json );
     }
 
     private String toJson(final JsonObject configJson) {
@@ -111,16 +144,16 @@ public class IntegrationTestSetup implements AutoCloseable {
     public void close() throws Exception {
         try {
             this.udfTestSetup.close();
-            this.statement.close();
-            this.connection.close();
+            this.exasolStatement.close();
+            this.exasolConnection.close();
             this.exasolTestSetup.close();
         } catch (final SQLException exception) {
             // at least we tried to close it
         }
     }
 
-    public Statement getStatement() {
-        return this.statement;
+    public Statement getExasolStatement() {
+        return this.exasolStatement;
     }
 
     protected VirtualSchema createVirtualSchema(final String schemaName, final String mapping) {
