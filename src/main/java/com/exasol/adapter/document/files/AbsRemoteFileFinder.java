@@ -4,6 +4,7 @@ import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
 import com.azure.storage.blob.models.BlobItem;
+import com.azure.storage.blob.models.ListBlobsOptions;
 import com.exasol.adapter.document.documentfetcher.files.RemoteFile;
 import com.exasol.adapter.document.documentfetcher.files.RemoteFileFinder;
 import com.exasol.adapter.document.files.connection.AbsConnectionProperties;
@@ -17,29 +18,23 @@ import com.exasol.adapter.document.iterators.*;
 public class AbsRemoteFileFinder implements RemoteFileFinder {
     private final StringFilter filePattern;
     private final BlobContainerClient blobContainerClient;
-    //START HERE
     /**
      * Create a new instance of {@link AbsRemoteFileFinder}.
      *
      * @param filePattern          pattern to search for
      * @param connectionProperties connection information
      */
-
     //the c'tor sets up a Blob Storage Container client and saves the file pattern for internal operations.
     public AbsRemoteFileFinder(final StringFilter filePattern, final AbsConnectionProperties connectionProperties) {
         //"storage" in GCP
         final BlobServiceClient storageAccountBlobServiceClient = buildAbsClient(connectionProperties);
-        //container is the equivalent to the GCP bucket
-        BlobContainerClient blobContainerClient = storageAccountBlobServiceClient.getBlobContainerClient(connectionProperties.getContainerName());
-        //"bucket" in GCP
-        this.blobContainerClient = blobContainerClient;
+        //"container" is the equivalent to the "bucket" in GCP
+        this.blobContainerClient = storageAccountBlobServiceClient.getBlobContainerClient(connectionProperties.getContainerName());
         this.filePattern = filePattern;
     }
     private BlobServiceClient buildAbsClient(final AbsConnectionProperties connectionProperties) {
         // Create a BlobServiceClient object which will be used to create a container client
-        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectionProperties.getStorageAccountConnectionString()).buildClient();
-
-        return blobServiceClient;
+        return new BlobServiceClientBuilder().connectionString(connectionProperties.getStorageAccountConnectionString()).buildClient();
     }
 
     @SuppressWarnings("java:S2095") // executorServiceFactory is closed by CloseInjectIterator
@@ -72,10 +67,10 @@ public class AbsRemoteFileFinder implements RemoteFileFinder {
     private CloseableIterator<AbsObjectDescription> getQuickFilteredObjectKeys() {
 
         final String globFreeKey = this.filePattern.getStaticPrefix();
-        //todo: look at early filtering here again, the globFreeKey thing, if possible within the call,
-        // change function description above accordingly
+        ListBlobsOptions options = new ListBlobsOptions()
+                .setPrefix(globFreeKey);
         final CloseableIterator<BlobItem> files = new CloseableIteratorWrapper<>(
-                this.blobContainerClient.listBlobs().iterator()
+                this.blobContainerClient.listBlobs(options,null).iterator()
         );
         return new TransformingIterator<>(files, file -> new AbsObjectDescription(file.getName(), file.getProperties().getContentLength()));
     }
