@@ -10,7 +10,7 @@ import com.azure.storage.blob.BlobServiceClientBuilder;
 
 public class OnlineAbsTestSetup implements AbsTestSetup {
     private static final String KEY_FILE = "abs-cs.json";
-    private String connectionString;
+    private final String connectionString;
     private final BlobServiceClient blobServiceClient;
 
     public OnlineAbsTestSetup() {

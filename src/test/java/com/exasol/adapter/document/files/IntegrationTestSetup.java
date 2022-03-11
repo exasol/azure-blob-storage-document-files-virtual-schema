@@ -65,7 +65,7 @@ public class IntegrationTestSetup implements AutoCloseable {
                 ExasolObjectConfiguration.builder().withJvmOptions(jvmOptions.toArray(String[]::new)).build());
         //we create a schema called adapter
         final ExasolSchema adapterSchema = this.exasolObjectFactory.createSchema("ADAPTER");
-        //create a connection to Azure Blob Storage in the
+        //create a connection to Azure Blob Storage
         this.connectionDefinition = createConnectionDefinition();
 
         this.adapterScript = createAdapterScript(adapterSchema);

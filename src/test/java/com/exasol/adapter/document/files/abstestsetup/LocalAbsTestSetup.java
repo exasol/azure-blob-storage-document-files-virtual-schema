@@ -21,12 +21,6 @@ public class LocalAbsTestSetup implements AbsTestSetup {
 
         createAzuriteBlobServiceClient();
     }
-//    public String getTestHostIpAddress(){
-//        return this.azuriteContainer.getTestHostIpAddress();
-//    }
-    public String getMappedPort(){
-        return String.valueOf(this.azuriteContainer.getMappedPort(PORT_IN_CONTAINER));
-    }
     private void createAzuriteBlobServiceClient() {
         // Azurite default configuration
         var defaultEndpointsProtocol = "http";
