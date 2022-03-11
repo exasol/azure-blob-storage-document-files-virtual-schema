@@ -2,7 +2,6 @@ package com.exasol.adapter.document.files;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,8 +13,7 @@ import com.exasol.errorreporting.ExaError;
 
 class AbsRandomAccessInputStream extends RandomAccessInputStream {
     private static final Logger LOGGER = Logger.getLogger(AbsRandomAccessInputStream.class.getName());
-    //private final ReadChannel reader;
-    private BlobClient blobClient;
+    private final BlobClient blobClient;
     private final long fileSize;
     long position = 0;
 
@@ -26,14 +24,13 @@ class AbsRandomAccessInputStream extends RandomAccessInputStream {
      * @param fileSize file size in bytes
      */
     AbsRandomAccessInputStream(final BlobClient blobClient, final long fileSize) {
-        //this.reader = blob.reader();
         this.blobClient = blobClient;
         this.fileSize = fileSize;
     }
 
     @Override
     public void seek(final long position) {
-        LOGGER.log(Level.INFO, "Seeked to position {}", position);
+        LOGGER.log(Level.INFO, "Seek to position {0}", position);
         this.position = position;
     }
 
@@ -49,18 +46,16 @@ class AbsRandomAccessInputStream extends RandomAccessInputStream {
 
     @Override
     public int read() {
-        //throw new UnsupportedOperationException();
         LOGGER.info("Performing single read at position.");
         if (this.position < getLength()) {
-            final byte[] data; //= new byte[1];
-            try {
-                data = this.blobClient.openInputStream(new BlobRange(position,1L),null).readNBytes(1);
+            final byte[] data;
+            try (var stream = this.blobClient.openInputStream(new BlobRange(position,1L),null)){
+                data = stream.readNBytes(1);
             } catch (final IOException exception) {
                 throw getReadFailedException(exception);
             }
             this.position++;
-            return data[0] ;//& 0xFF;
-            //return data[0] & 0xFF;
+            return data[0] & 0xFF;
         } else {
             return -1;
         }
@@ -68,17 +63,15 @@ class AbsRandomAccessInputStream extends RandomAccessInputStream {
 
     @Override
     public int read(final byte[] targetBuffer, final int offset, final int length) {
-        LOGGER.log(Level.INFO, "read - length: "+ length +" - offset: "+offset);
-
+        LOGGER.log(Level.INFO, "read - length: {0} - offset: {1}", new Object[]{length, offset});
         if (length == 0) {
             return 0;
         }
         final long remainingBytesInFile = getLength() - this.position;
-        final int actualReadLength = (int) Math.min(length, remainingBytesInFile);
+        int actualReadLength = (int) Math.min(length, remainingBytesInFile);
         if (actualReadLength > 0) {
-            try {
-
-                this.blobClient.openInputStream(new BlobRange((long) position, (long) actualReadLength),new BlobRequestConditions()).read(targetBuffer);
+            try (var stream = this.blobClient.openInputStream(new BlobRange(position, (long) actualReadLength),new BlobRequestConditions())){
+                actualReadLength = stream.read(targetBuffer);
             } catch (final IOException exception) {
                 throw getReadFailedException(exception);
             }
