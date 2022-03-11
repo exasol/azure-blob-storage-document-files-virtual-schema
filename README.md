@@ -14,9 +14,7 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Aazure-blob-storage-document-files-virtual-schema&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=com.exasol%3Aazure-blob-storage-document-files-virtual-schema)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Aazure-blob-storage-document-files-virtual-schema&metric=ncloc)](https://sonarcloud.io/dashboard?id=com.exasol%3Aazure-blob-storage-document-files-virtual-schema)
 
-This Virtual Schemas allows you to access document files stored in Azure Blob Storage like any regular Exasol table. For different file systems sources check the [files Virtual Schema][files-vs]
-
-This Virtual Schema is built for and tested with the official Azure Blob Storage. Third-party API compatible products are expected to work as well. It is highly recommended to thoroughly test 3rd party products used in combination with Exasol, especially regarding sufficient azure-blob-storage API compatibility.
+This Virtual Schema allows you to access document files stored in Azure Blob Storage like a regular Exasol table. For different file systems sources check the [Files Virtual Schemas][files-vs]
 
 For supported document file formats, see [Files Virtual Schema][files-vs]
 

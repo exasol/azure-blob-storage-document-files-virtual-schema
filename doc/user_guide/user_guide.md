@@ -1,6 +1,6 @@
 # User Guide
 
-This user guide helps you with getting started with the Azure Blob Storage (abs) Files Virtual Schemas.
+This user guide will help you to get started with the Azure Blob Storage (ABS) File Virtual Schema.
 
 ### Installation
 
@@ -36,7 +36,9 @@ CREATE OR REPLACE JAVA SET SCRIPT ADAPTER.IMPORT_FROM_AZURE_BLOB_STORAGE_DOCUMEN
 
 ## Creating a Connection
 
-For granting the Virtual Schema access to your abs bucket you need a Service Role. Please follow the [following tutorial](https://cloud.google.com/docs/authentication/production#create_service_account) on how to create it. The account needs permissions to read and list files on the bucket. We recommend the `Storage Object Viewer` role. After creating the role please download a key file as a JSON formatted file. Open the file and copy the contents.
+For granting the Virtual Schema access to your Azure Blob Storage container you need a connection string of your Azure Storage Account containing your container and the container name.
+ 
+You can find your storage account's connection strings in the Azure portal. Navigate to SETTINGS > Access keys in your storage account's menu blade to see connection strings for both primary and secondary access keys. (More info [here](https://docs.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string#:~:text=You%20can%20find%20your%20storage,primary%20and%20secondary%20access%20keys.))
 
 Now you need to define a connection that includes the contents of the key file:
 
@@ -45,25 +47,21 @@ CREATE CONNECTION ABS_CONNECTION
     TO ''
     USER ''
     IDENTIFIED BY '{
-        "gcKey":  {
-            "type": "service_account",
-            "project_id": "",
-            ...
-        }  
-        "absBucket": "<ABS BUCKET NAME>" 
+        "storageAccountConnectionString": "DefaultEndpointsProtocol=https;AccountName=accountName;AccountKey=accountKey;EndpointSuffix=core.windows.net
+",
+        "containerName": "<ABS CONTAINER NAME>" 
     }';
 ```
 
-Here you can use the content of the key file as value for `gcKey`.
+Here you can use the connection string as value for `storageAccountConnectionString`.
 
 The connection stores all connection details as JSON in the `IDENTIFIED BY` part. There you can use the following keys:
 
-| Key                 | Default                   | Required | Example                          |
-|---------------------|---------------------------|:--------:|----------------------------------|
-| `gcKey`             |                           |    ✓     | {"type": "service_account", ...} |
-| `absBucket`         |                           |    ✓     | `"my-bucket"`                    |
-| `gcHost`            | _Default google endpoint_ |    ✘     | `"my.custom.storarge.de"`        |
-| `useSsl`            | `true`                    |    ✘     | `false`                          |
+| Key                              | Default                   | Required | Example                          |
+|----------------------------------|---------------------------|:--------:|----------------------------------|
+| `storageAccountConnectionString` |                           |    ✓     | `"DefaultEndpointsProtocol=https;AccountName=..."` |
+| `containerName`                  |                           |    ✓     | `"my-container"`                 |
+
 
 ## Defining the Schema Mapping
 
@@ -84,8 +82,8 @@ For some file type (for example JSON) each source file contains only a single do
 Finally, create the Virtual Schema using:
 
 ```sql
-CREATE VIRTUAL SCHEMA FILES_VS_TEST USING ADAPTER.S3_FILES_ADAPTER WITH
-    CONNECTION_NAME = 'S3_CONNECTION'
+CREATE VIRTUAL SCHEMA FILES_VS_TEST USING ADAPTER.AZURE_BLOB_STORAGE_FILES_ADAPTER WITH
+    CONNECTION_NAME = 'ABS_CONNECTION'
     MAPPING         = '/bfsdefault/default/path/to/mappings/in/bucketfs';
 ```
 
@@ -98,6 +96,4 @@ The `CREATE VIRTUAL SCHEMA` command accepts the following properties:
 
 Now browse the data using your favorite SQL client.
 
-## Known Issues:
-
-* Certain Virtual Schema queries can cause a database crash. For details see [#41](https://github.com/exasol/virtual-schema-common-document-files/issues/41).
+## Known Issues
