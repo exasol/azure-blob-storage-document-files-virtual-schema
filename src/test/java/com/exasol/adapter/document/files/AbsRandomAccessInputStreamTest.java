@@ -20,7 +20,6 @@ class AbsRandomAccessInputStreamTest extends RandomAccessInputStreamTestBase {
         this.testSetup = new LocalAbsTestSetup();
         this.testContainer = new TestContainer(this.testSetup);
         this.testDataLength = bytes.length;
-        //
         this.blob = this.testContainer.getBlobContainerClient().getBlobClient(TEST_DATA_KEY);
         this.blob.upload(BinaryData.fromBytes(bytes));
     }
