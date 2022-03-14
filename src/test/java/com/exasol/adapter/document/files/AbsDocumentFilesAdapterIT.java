@@ -28,21 +28,19 @@ import com.exasol.exasoltestsetup.testcontainers.ExasolTestcontainerTestSetup;
 @Tag("integration")
 @Testcontainers
 class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
-    private static IntegrationTestSetup SETUP;
+    private static IntegrationTestSetup setup;
     private static TestContainer testContainer;
     private static AbsTestSetup absTestSetup;
 
     @BeforeAll
     static void beforeAll() throws Exception {
-
         final ExasolTestSetup exasolTestSetup = new ExasolTestSetupFactory(
                 Path.of("cloudSetup/generated/testConfig.json")).getTestSetup();
-        //since this file doesn't exist we just get a local exasol test container setup back
+        //if this file doesn't exist we just get a local exasol test container setup back
         //ABS - and this will return a 'local' azure blob storage, using the azurite emulator.
         absTestSetup = getAbsTestSetup(exasolTestSetup);
         //this will set up a new Azure Blob Storage test container for us
         testContainer = new TestContainer(absTestSetup);
-        //Exasol
         SETUP = new IntegrationTestSetup(exasolTestSetup, absTestSetup, testContainer.getBlobContainerClient());
     }
 
