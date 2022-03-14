@@ -15,8 +15,8 @@ public class AbsConnectionPropertiesReader {
      */
     public AbsConnectionProperties read(final ConnectionPropertiesReader reader) {
         return AbsConnectionProperties.builder()//
-                .storageAccountConnectionString(reader.readRequiredString("storageAccountConnectionString"))
-                .containerName(reader.readRequiredString("containerName"))
+                .absStorageAccountConnectionString(reader.readRequiredString("absStorageAccountConnectionString"))
+                .absContainerName(reader.readRequiredString("absContainerName"))
                 .build();
     }
 }

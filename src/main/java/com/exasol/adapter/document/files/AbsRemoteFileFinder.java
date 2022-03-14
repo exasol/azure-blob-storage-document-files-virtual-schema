@@ -29,12 +29,12 @@ public class AbsRemoteFileFinder implements RemoteFileFinder {
         //"storage" in GCP
         final BlobServiceClient storageAccountBlobServiceClient = buildAbsClient(connectionProperties);
         //"container" is the equivalent to the "bucket" in GCP
-        this.blobContainerClient = storageAccountBlobServiceClient.getBlobContainerClient(connectionProperties.getContainerName());
+        this.blobContainerClient = storageAccountBlobServiceClient.getBlobContainerClient(connectionProperties.getAbsContainerName());
         this.filePattern = filePattern;
     }
     private BlobServiceClient buildAbsClient(final AbsConnectionProperties connectionProperties) {
         // Create a BlobServiceClient object which will be used to create a container client
-        return new BlobServiceClientBuilder().connectionString(connectionProperties.getStorageAccountConnectionString()).buildClient();
+        return new BlobServiceClientBuilder().connectionString(connectionProperties.getAbsStorageAccountConnectionString()).buildClient();
     }
 
     @SuppressWarnings("java:S2095") // executorServiceFactory is closed by CloseInjectIterator

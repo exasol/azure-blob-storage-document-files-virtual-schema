@@ -105,12 +105,12 @@ public class IntegrationTestSetup implements AutoCloseable {
                     ";AccountKey="+ accountKey+
                     ";BlobEndpoint="+ blobEndpoint+";";
             return objectBuilder
-                    .add("containerName", this.absContainer.getBlobContainerName())//
-                    .add("storageAccountConnectionString", connectionString);
+                    .add("absContainerName", this.absContainer.getBlobContainerName())//
+                    .add("absStorageAccountConnectionString", connectionString);
         } else {
             return objectBuilder//
-                    .add("containerName", this.absContainer.getBlobContainerName())//
-                    .add("storageAccountConnectionString", this.absTestSetup.getStorageAccountConnectionString());
+                    .add("absContainerName", this.absContainer.getBlobContainerName())//
+                    .add("absStorageAccountConnectionString", this.absTestSetup.getStorageAccountConnectionString());
         }
     }
 

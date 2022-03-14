@@ -47,20 +47,20 @@ CREATE CONNECTION ABS_CONNECTION
     TO ''
     USER ''
     IDENTIFIED BY '{
-        "storageAccountConnectionString": "DefaultEndpointsProtocol=https;AccountName=accountName;AccountKey=accountKey;EndpointSuffix=core.windows.net
+        "absStorageAccountConnectionString": "DefaultEndpointsProtocol=https;AccountName=accountName;AccountKey=accountKey;EndpointSuffix=core.windows.net
 ",
-        "containerName": "<ABS CONTAINER NAME>" 
+        "absContainerName": "<ABS CONTAINER NAME>" 
     }';
 ```
 
-Here you can use the connection string as value for `storageAccountConnectionString`.
+Here you can use the connection string as value for `absStorageAccountConnectionString`.
 
 The connection stores all connection details as JSON in the `IDENTIFIED BY` part. There you can use the following keys:
 
 | Key                              | Default                   | Required | Example                          |
 |----------------------------------|---------------------------|:--------:|----------------------------------|
-| `storageAccountConnectionString` |                           |    ✓     | `"DefaultEndpointsProtocol=https;AccountName=..."` |
-| `containerName`                  |                           |    ✓     | `"my-container"`                 |
+| `absStorageAccountConnectionString` |                           |    ✓     | `"DefaultEndpointsProtocol=https;AccountName=..."` |
+| `absContainerName`                  |                           |    ✓     | `"my-container"`                 |
 
 
 ## Defining the Schema Mapping

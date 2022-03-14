@@ -41,7 +41,7 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
         absTestSetup = getAbsTestSetup(exasolTestSetup);
         //this will set up a new Azure Blob Storage test container for us
         testContainer = new TestContainer(absTestSetup);
-        SETUP = new IntegrationTestSetup(exasolTestSetup, absTestSetup, testContainer.getBlobContainerClient());
+        setup = new IntegrationTestSetup(exasolTestSetup, absTestSetup, testContainer.getBlobContainerClient());
     }
 
     @NotNull
@@ -56,19 +56,19 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
     @AfterAll
     static void afterAll() throws Exception {
         testContainer.close();
-        SETUP.close();
+        setup.close();
         absTestSetup.close();
     }
 
     @AfterEach
     void after() {
         testContainer.empty();
-        SETUP.dropCreatedObjects();
+        setup.dropCreatedObjects();
     }
 
     @Override
     protected Statement getStatement() {
-        return SETUP.getExasolStatement();
+        return setup.getExasolStatement();
     }
 
     @Override
@@ -94,16 +94,16 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
 
     @Override
     protected void createVirtualSchema(final String schemaName, final String mapping) {
-        SETUP.createVirtualSchema(schemaName, mapping);
+        setup.createVirtualSchema(schemaName, mapping);
     }
 
     @Test
     void testInvalidConnection() throws BucketAccessException, TimeoutException {
-        SETUP.getBucket().uploadInputStream(() -> getClass().getClassLoader().getResourceAsStream("simpleMapping.json"),
+        setup.getBucket().uploadInputStream(() -> getClass().getClassLoader().getResourceAsStream("simpleMapping.json"),
                 "mapping.json");
-        final ConnectionDefinition connection = SETUP.getExasolObjectFactory()
+        final ConnectionDefinition connection = setup.getExasolObjectFactory()
                 .createConnectionDefinition("EMPTY_ABS_CONNECTION", "", "", "{");
-        final VirtualSchema.Builder virtualSchemaBuilder = SETUP
+        final VirtualSchema.Builder virtualSchemaBuilder = setup
                 .getPreconfiguredVirtualSchemaBuilder("EMPTY_CONNECTION_SCHEMA").connectionDefinition(connection)
                 .properties(Map.of("MAPPING", "/bfsdefault/default/mapping.json"));
         final DatabaseObjectException exception = assertThrows(DatabaseObjectException.class,

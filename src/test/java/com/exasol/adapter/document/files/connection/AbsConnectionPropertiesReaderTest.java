@@ -11,14 +11,13 @@ import org.junit.jupiter.api.Test;
 import com.exasol.adapter.document.connection.ConnectionPropertiesReader;
 
 class AbsConnectionPropertiesReaderTest {
-    //test parsing the JSON settings
     @Test
     void testReadOnlyRequired() {
         final AbsConnectionProperties properties = runReader(
-                "{\"storageAccountConnectionString\": \"my-connectionstring\", \"containerName\": \"my-containername\" }");
+                "{\"absStorageAccountConnectionString\": \"my-connectionstring\", \"absContainerName\": \"my-containername\" }");
         assertAll(
-                () -> assertThat(properties.getStorageAccountConnectionString(), equalTo("my-connectionstring")),
-                () -> assertThat(properties.getContainerName(), equalTo("my-containername"))
+                () -> assertThat(properties.getAbsStorageAccountConnectionString(), equalTo("my-connectionstring")),
+                () -> assertThat(properties.getAbsContainerName(), equalTo("my-containername"))
         );
 
     }

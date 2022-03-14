@@ -2,7 +2,6 @@ package com.exasol.adapter.document.files;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,8 @@ import com.exasol.adapter.document.files.stringfilter.wildcardexpression.Wildcar
 class AbsRemoteFileFinderTest {
     @Test
     void testInvalidAbsCsException() {
-        final var connectionInformation = AbsConnectionProperties.builder().containerName("my-bucket")
-                .storageAccountConnectionString("{ invalid JSON").build();
+        final var connectionInformation = AbsConnectionProperties.builder().absContainerName("my-bucket")
+                .absStorageAccountConnectionString("{ invalid JSON").build();
         final WildcardExpression filter = WildcardExpression.fromGlob("*");
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> new AbsRemoteFileFinder(filter, connectionInformation));
