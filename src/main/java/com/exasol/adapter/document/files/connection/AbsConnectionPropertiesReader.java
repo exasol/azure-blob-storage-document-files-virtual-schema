@@ -2,6 +2,9 @@ package com.exasol.adapter.document.files.connection;
 
 import com.exasol.adapter.document.connection.ConnectionPropertiesReader;
 
+/**
+ * Reads out the Azure Blob Storage connection properties.
+ */
 public class AbsConnectionPropertiesReader {
 
     /**
