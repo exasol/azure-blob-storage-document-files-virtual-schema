@@ -101,7 +101,6 @@ public class IntegrationTestSetup implements AutoCloseable {
             var gho = getHostOverride();
             //String hostMachineIp = gho.get();
             var blobEndpoint =  "http://"+ gho.get()+ "/devstoreaccount1";
-            //var blobEndpoint =  "http://"+ hostMachineIp + ":" + ((LocalAbsTestSetup) absTestSetup).getMappedPort()+ "/devstoreaccount1";
             var connectionString = "DefaultEndpointsProtocol="+defaultEndpointsProtocol+
                     ";AccountName="+accountName+
                     ";AccountKey="+ accountKey+
