@@ -90,7 +90,6 @@ public class IntegrationTestSetup implements AutoCloseable {
         return this.absTestSetup.getHostOverride().map(address -> this.exasolTestSetup
                 .makeTcpServiceAccessibleFromDatabase(ServiceAddress.parse(address)).toString());
     }
-    //creates the json connection config object
     public JsonObjectBuilder getConnectionConfig() {
         final JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
         if ( absTestSetup instanceof LocalAbsTestSetup){
