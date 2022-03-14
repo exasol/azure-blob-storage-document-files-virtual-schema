@@ -65,7 +65,6 @@ public class AbsRemoteFileFinder implements RemoteFileFinder {
      * @return partially filtered list of object keys
      */
     private CloseableIterator<AbsObjectDescription> getQuickFilteredObjectKeys() {
-
         final String globFreeKey = this.filePattern.getStaticPrefix();
         ListBlobsOptions options = new ListBlobsOptions()
                 .setPrefix(globFreeKey);
