@@ -98,7 +98,6 @@ public class IntegrationTestSetup implements AutoCloseable {
             var accountName = "devstoreaccount1";
             var accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
             var gho = getHostOverride();
-            //String hostMachineIp = gho.get();
             var blobEndpoint =  "http://"+ gho.get()+ "/devstoreaccount1";
             var connectionString = "DefaultEndpointsProtocol="+defaultEndpointsProtocol+
                     ";AccountName="+accountName+
