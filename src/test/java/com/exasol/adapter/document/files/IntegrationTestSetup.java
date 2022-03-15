@@ -63,7 +63,6 @@ public class IntegrationTestSetup implements AutoCloseable {
         final List<String> jvmOptions = new ArrayList(Arrays.asList(this.udfTestSetup.getJvmOptions()));
         this.exasolObjectFactory = new ExasolObjectFactory(this.exasolConnection,
                 ExasolObjectConfiguration.builder().withJvmOptions(jvmOptions.toArray(String[]::new)).build());
-        //we create a schema called adapter
         final ExasolSchema adapterSchema = this.exasolObjectFactory.createSchema("ADAPTER");
         //create a connection to Azure Blob Storage
         this.connectionDefinition = createConnectionDefinition();
