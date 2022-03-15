@@ -39,3 +39,5 @@ setEnv.sh
 test_config.yml
 deleteLambdaResources.sh
 /abs-cs.json
+
+*.flattened-pom.xml

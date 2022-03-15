@@ -16,11 +16,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 11
-      - name: Write abs-cs.json
-        run: |
-          echo "$ABS_CS" > abs-cs.json
-        env:
-          ABS_CS: ${{ secrets.ABS_CS }}
       - name: Cache local Maven repository
         uses: actions/cache@v2
         with:
