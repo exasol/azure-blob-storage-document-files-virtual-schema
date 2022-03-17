@@ -42,7 +42,7 @@ jobs:
         run: |
           echo "$ABS_CS" > abs-cs.json
         env:
-          ABS_CS: ${{ secrets.ABS_CS }}n
+          ABS_CS: ${{ secrets.ABS_CS }}
       - name: Run tests and build with Maven
         run: mvn --batch-mode --update-snapshots clean verify -DtrimStackTrace=false -PregressionTests -Dtest.coverage=false -Derror-code-crawler.skip=true -Dmaven.javadoc.skip=true -Dproject-keeper.skip=true
         env:
