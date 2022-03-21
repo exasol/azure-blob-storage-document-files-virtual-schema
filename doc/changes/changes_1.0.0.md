@@ -1,12 +1,10 @@
-# Virtual Schema for document data in files on Azure Blob Storage 1.0.0, released 2022-02-03
+# Virtual Schema for document data in files on Azure Blob Storage 1.0.0, released 2022-03-21
 
-Code name: Initial Version
+Code name: Initial release
 
 ## Features
 
-* #1: Initial Implementation
-* #3: Added local test setup
-
+*#41: First version
 ## Dependency Updates
 
 ### Compile Dependency Updates
