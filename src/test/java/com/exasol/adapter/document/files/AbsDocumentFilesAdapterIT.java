@@ -85,11 +85,7 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
 
     @Override
     protected void uploadDataFile(final Path fileContent, final String fileName) {
-        try (final FileInputStream fileInputStream = new FileInputStream(fileContent.toFile())) {
-            testContainer.getBlobContainerClient().getBlobClient(fileName).upload(BinaryData.fromStream(fileInputStream));
-        } catch (final IOException exception) {
-            throw new IllegalStateException("Failed to read test-file", exception);
-        }
+        testContainer.getBlobContainerClient().getBlobClient(fileName).uploadFromFile(fileContent.toString());
     }
 
     @Override
