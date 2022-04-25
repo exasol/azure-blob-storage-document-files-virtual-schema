@@ -30,7 +30,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class IntegrationTestSetup implements AutoCloseable {
-    private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-6.0.1-azure-blob-storage-1.0.0.jar";
+    private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-6.0.1-azure-blob-storage-1.0.1.jar";
     private final ExasolTestSetup exasolTestSetup;
     private final Connection exasolConnection;
     private final Statement exasolStatement;

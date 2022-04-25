@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.exasol</groupId>
     <artifactId>azure-blob-storage-document-files-virtual-schema</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>Virtual Schema for document data in files on Azure Blob Storage</name>
     <description>Adapter for document data access from files from Azure Blob Storage.</description>
-    <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema</url>
+    <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -165,7 +165,7 @@
         <dependency>
             <groupId>com.exasol</groupId>
             <artifactId>test-db-builder-java</artifactId>
-            <version>3.2.2</version>
+            <version>3.3.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -239,7 +239,7 @@
             <plugin>
                 <groupId>com.exasol</groupId>
                 <artifactId>project-keeper-maven-plugin</artifactId>
-                <version>2.0.0</version>
+                <version>2.3.2</version>
                 <executions>
                     <execution>
                         <goals>
@@ -260,7 +260,7 @@
     <parent>
         <artifactId>azure-blob-storage-document-files-virtual-schema-generated-parent</artifactId>
         <groupId>com.exasol</groupId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <relativePath>pk_generated_parent.pom</relativePath>
     </parent>
 </project>
