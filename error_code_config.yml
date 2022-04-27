@@ -2,3 +2,4 @@ error-tags:
   VSABS:
     packages:
       - com.exasol.adapter.document.files
+    highest-index: 56
