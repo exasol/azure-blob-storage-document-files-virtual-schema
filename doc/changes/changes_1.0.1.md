@@ -1,4 +1,4 @@
-# Virtual Schema for document data in files on Azure Blob Storage 1.0.1, released 2022-??-??
+# Virtual Schema for document data in files on Azure Blob Storage 1.0.1, released 2022-06-10
 
 Code name: 1.0.1: Upgrade dependencies on 1.0.0
 
@@ -8,7 +8,7 @@ This release upgrades dependencies and adapts the collection of regression tests
 
 ## Refactoring
 
-#9: Adapted to new regression test result database
+* #9: Adapted to new regression test result database
 
 ## Dependency Updates
 
