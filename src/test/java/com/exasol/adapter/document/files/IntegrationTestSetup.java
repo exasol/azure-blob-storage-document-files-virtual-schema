@@ -8,21 +8,20 @@ import java.nio.file.Path;
 import java.sql.*;
 import java.util.*;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Level;
 
-import com.azure.storage.blob.BlobContainerClient;
-import com.exasol.adapter.document.files.abstestsetup.LocalAbsTestSetup;
-import com.exasol.exasoltestsetup.ServiceAddress;
 import org.jetbrains.annotations.NotNull;
 
+import com.azure.storage.blob.BlobContainerClient;
 import com.exasol.adapter.document.UdfEntryPoint;
 import com.exasol.adapter.document.files.abstestsetup.AbsTestSetup;
+import com.exasol.adapter.document.files.abstestsetup.LocalAbsTestSetup;
 import com.exasol.bucketfs.Bucket;
 import com.exasol.bucketfs.BucketAccessException;
 import com.exasol.dbbuilder.dialects.DatabaseObject;
 import com.exasol.dbbuilder.dialects.exasol.*;
 import com.exasol.dbbuilder.dialects.exasol.udf.UdfScript;
 import com.exasol.exasoltestsetup.ExasolTestSetup;
+import com.exasol.exasoltestsetup.ServiceAddress;
 import com.exasol.udfdebugging.UdfTestSetup;
 
 import jakarta.json.*;
@@ -30,7 +29,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class IntegrationTestSetup implements AutoCloseable {
-    private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-6.0.1-azure-blob-storage-1.0.1.jar";
+    private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-7.0.2-azure-blob-storage-1.0.1.jar";
     private final ExasolTestSetup exasolTestSetup;
     private final Connection exasolConnection;
     private final Statement exasolStatement;
@@ -60,7 +59,7 @@ public class IntegrationTestSetup implements AutoCloseable {
         this.bucket = this.exasolTestSetup.getDefaultBucket();
         this.udfTestSetup = new UdfTestSetup(this.exasolTestSetup, this.exasolConnection);
 
-        final List<String> jvmOptions = new ArrayList(Arrays.asList(this.udfTestSetup.getJvmOptions()));
+        final List<String> jvmOptions = new ArrayList<>(Arrays.asList(this.udfTestSetup.getJvmOptions()));
         this.exasolObjectFactory = new ExasolObjectFactory(this.exasolConnection,
                 ExasolObjectConfiguration.builder().withJvmOptions(jvmOptions.toArray(String[]::new)).build());
         final ExasolSchema adapterSchema = this.exasolObjectFactory.createSchema("ADAPTER");
@@ -93,12 +92,12 @@ public class IntegrationTestSetup implements AutoCloseable {
         final JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
         if ( absTestSetup instanceof LocalAbsTestSetup){
             //we're calling/working in the exasol database here so the connectionstring should be different
-            var defaultEndpointsProtocol = "http";
-            var accountName = "devstoreaccount1";
-            var accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
-            var gho = getHostOverride();
-            var blobEndpoint =  "http://"+ gho.get()+ "/devstoreaccount1";
-            var connectionString = "DefaultEndpointsProtocol="+defaultEndpointsProtocol+
+            final var defaultEndpointsProtocol = "http";
+            final var accountName = "devstoreaccount1";
+            final var accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
+            final var gho = getHostOverride();
+            final var blobEndpoint =  "http://"+ gho.get()+ "/devstoreaccount1";
+            final var connectionString = "DefaultEndpointsProtocol="+defaultEndpointsProtocol+
                     ";AccountName="+accountName+
                     ";AccountKey="+ accountKey+
                     ";BlobEndpoint="+ blobEndpoint+";";
@@ -113,7 +112,7 @@ public class IntegrationTestSetup implements AutoCloseable {
     }
 
     public ConnectionDefinition createConnectionDefinition(final JsonObjectBuilder details) {
-        String json =toJson(details.build());
+        final String json =toJson(details.build());
         return this.exasolObjectFactory.createConnectionDefinition("ABS_CONNECTION_" + System.currentTimeMillis(), "",
                 "", json );
     }
