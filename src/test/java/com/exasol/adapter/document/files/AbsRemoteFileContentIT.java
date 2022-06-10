@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.*;
 
-import com.azure.core.util.BinaryData;
 import org.junit.jupiter.api.*;
 
+import com.azure.core.util.BinaryData;
 import com.exasol.adapter.document.documentfetcher.files.RemoteFileContent;
 import com.exasol.adapter.document.files.abstestsetup.AbsTestSetup;
 import com.exasol.adapter.document.files.abstestsetup.LocalAbsTestSetup;
 
-class AbsRemoteFileContentTest {
+class AbsRemoteFileContentIT {
     private static final String TEST_DATA_VALUE = "test content";
     private static final String TEST_DATA_KEY = "TEST_DATA";
     private static AbsTestSetup testSetup;

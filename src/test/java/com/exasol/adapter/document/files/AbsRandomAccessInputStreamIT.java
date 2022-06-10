@@ -8,7 +8,7 @@ import com.exasol.adapter.document.files.abstestsetup.AbsTestSetup;
 import com.exasol.adapter.document.files.abstestsetup.LocalAbsTestSetup;
 
 
-class AbsRandomAccessInputStreamTest extends RandomAccessInputStreamTestBase {
+class AbsRandomAccessInputStreamIT extends RandomAccessInputStreamTestBase {
     private static final String TEST_DATA_KEY = "TEST_DATA";
     long testDataLength;
     private AbsTestSetup testSetup;
