@@ -8,35 +8,10 @@
     <description>Adapter for document data access from files from Azure Blob Storage.</description>
     <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/</url>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
         <junit.version>5.8.2</junit.version>
-        <jacoco.version>0.8.7</jacoco.version>
-        <gpg.skip>true</gpg.skip>
-        <org.testcontainers.version>1.16.2</org.testcontainers.version>
+        <org.testcontainers.version>1.17.2</org.testcontainers.version>
         <vs-common-document-files.version>6.0.1</vs-common-document-files.version>
-        <!--
-            M4 does not fail tests if beforeAll fails
-            M5 fails in integration tests with a strange error
-            -->
-        <surefire.and.failsafe.plugin.version>3.0.0-M3</surefire.and.failsafe.plugin.version>
     </properties>
-    <licenses>
-        <license>
-            <name>MIT</name>
-            <url>https://opensource.org/licenses/MIT</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <developers>
-        <developer>
-            <name>Exasol</name>
-            <email>opensource@exasol.com</email>
-            <organization>Exasol AG</organization>
-            <organizationUrl>https://www.exasol.com/</organizationUrl>
-        </developer>
-    </developers>
     <profiles>
         <profile>
             <id>default</id>
@@ -64,9 +39,6 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
-    <dependencyManagement>
-        <dependencies/>
-    </dependencyManagement>
     <repositories>
         <repository>
             <id>sonatype</id>
@@ -81,12 +53,12 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.13.1</version>
+            <version>2.13.3</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.13.1</version>
+            <version>2.13.3</version>
         </dependency>
         <dependency>
             <groupId>com.exasol</groupId>
@@ -107,7 +79,7 @@
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-storage-blob</artifactId>
-            <version>12.14.3</version>
+            <version>12.17.1</version>
         </dependency>
         <!-- Test dependencies -->
         <dependency>
@@ -138,16 +110,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.1.0</version>
-            <scope>test</scope>
-        </dependency>
-        <!--Integration test dependencies-->
-        <!-- Overrides Junit 4.12 which is used in test containers but contains a security issue:
-            https://ossindex.sonatype.org/vuln/7ea56ad4-8a8b-4e51-8ed9-5aad83d8efb1 -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>4.6.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -169,15 +132,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jacoco</groupId>
-            <artifactId>org.jacoco.core</artifactId>
-            <version>${jacoco.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.exasol</groupId>
             <artifactId>udf-debugging-java</artifactId>
-            <version>0.5.0</version>
+            <version>0.6.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -189,57 +146,42 @@
         <dependency>
             <groupId>com.exasol</groupId>
             <artifactId>exasol-test-setup-abstraction-java</artifactId>
-            <version>0.2.2</version>
+            <version>0.3.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.29</version>
+            <version>1.30</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.exasol</groupId>
+            <artifactId>performance-test-recorder-java</artifactId>
+            <version>0.1.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.sonatype.ossindex.maven</groupId>
                 <artifactId>ossindex-maven-plugin</artifactId>
                 <configuration>
                     <excludeVulnerabilityIds>
-                        <!-- Ignores CVE-2020-15250, because we use Java 11 and junit 4.13.1 which contains a fix:
-                                    https://ossindex.sonatype.org/vuln/7ea56ad4-8a8b-4e51-8ed9-5aad83d8efb1 -->
-                        <exclude>7ea56ad4-8a8b-4e51-8ed9-5aad83d8efb1</exclude>
+                        <!-- com.google.guava:guava: https://ossindex.sonatype.org/vulnerability/sonatype-2020-0926
+                        Excluded because we assume that the attacker does not have access to the machine. -->
+                        <exclude>sonatype-2020-0926</exclude>
+                        <!-- io.netty:netty-handler: https://ossindex.sonatype.org/vulnerability/sonatype-2020-0026
+                        Not a vulnerability in netty but how it is configured by the client com.azure:azure-core-http-netty. -->
+                        <exclude>sonatype-2020-0026</exclude>
                     </excludeVulnerabilityIds>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <configuration>
-                    <forkCount>0</forkCount>
-                    <excludedGroups>${test.excludeTags}</excludedGroups>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <excludedGroups>${test.excludeTags}</excludedGroups>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>com.exasol</groupId>
                 <artifactId>project-keeper-maven-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.4.6</version>
                 <executions>
                     <execution>
                         <goals>
@@ -252,7 +194,7 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <groupId>org.apache.maven.plugins</groupId>
                 <configuration>
-                    <finalName>document-files-virtual-schema-dist-${vs-common-document-files.version}-azure-blob-storage-${version}</finalName>
+                    <finalName>document-files-virtual-schema-dist-${vs-common-document-files.version}-azure-blob-storage-${project.version}</finalName>
                 </configuration>
             </plugin>
         </plugins>
