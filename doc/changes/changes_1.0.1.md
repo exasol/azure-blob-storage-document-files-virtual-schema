@@ -15,6 +15,7 @@ This release upgrades dependencies and adapts the collection of regression tests
 ### Compile Dependency Updates
 
 * Updated `com.azure:azure-storage-blob:12.14.3` to `12.17.1`
+* Updated `com.exasol:virtual-schema-common-document-files:6.0.1` to `7.0.2`
 * Updated `com.fasterxml.jackson.core:jackson-annotations:2.13.1` to `2.13.3`
 * Updated `com.fasterxml.jackson.core:jackson-core:2.13.1` to `2.13.3`
 
@@ -24,6 +25,7 @@ This release upgrades dependencies and adapts the collection of regression tests
 * Added `com.exasol:performance-test-recorder-java:0.1.0`
 * Updated `com.exasol:test-db-builder-java:3.2.2` to `3.3.2`
 * Updated `com.exasol:udf-debugging-java:0.5.0` to `0.6.1`
+* Updated `com.exasol:virtual-schema-common-document-files:6.0.1` to `7.0.2`
 * Removed `junit:junit:4.13.2`
 * Updated `org.jacoco:org.jacoco.agent:0.8.5` to `0.8.8`
 * Removed `org.jacoco:org.jacoco.core:0.8.7`

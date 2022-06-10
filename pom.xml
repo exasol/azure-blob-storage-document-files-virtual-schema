@@ -10,7 +10,7 @@
     <properties>
         <junit.version>5.8.2</junit.version>
         <org.testcontainers.version>1.17.2</org.testcontainers.version>
-        <vs-common-document-files.version>6.0.1</vs-common-document-files.version>
+        <vs-common-document-files.version>7.0.2</vs-common-document-files.version>
     </properties>
     <profiles>
         <profile>
@@ -170,11 +170,15 @@
                 <configuration>
                     <excludeVulnerabilityIds>
                         <!-- com.google.guava:guava: https://ossindex.sonatype.org/vulnerability/sonatype-2020-0926
-                        Excluded because we assume that the attacker does not have access to the machine. -->
+                        Excluded because we assume that the attacker does not have local access to the machine. -->
                         <exclude>sonatype-2020-0926</exclude>
                         <!-- io.netty:netty-handler: https://ossindex.sonatype.org/vulnerability/sonatype-2020-0026
                         Not a vulnerability in netty but how it is configured by the client com.azure:azure-core-http-netty. -->
                         <exclude>sonatype-2020-0026</exclude>
+                        <!-- io.netty:netty-codec-http: https://ossindex.sonatype.org/vulnerability/CVE-2022-24823
+                        Excluded because we assume that the attacker does not have local access to the machine.
+                        Can be removed once com.azure:azure-core-http-netty upgrades to a newer netty version. -->
+                        <exclude>CVE-2022-24823</exclude>
                     </excludeVulnerabilityIds>
                 </configuration>
             </plugin>
