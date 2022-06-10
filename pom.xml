@@ -197,6 +197,13 @@
                     <finalName>document-files-virtual-schema-dist-${vs-common-document-files.version}-azure-blob-storage-${project.version}</finalName>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <useModulePath>false</useModulePath>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <parent>
