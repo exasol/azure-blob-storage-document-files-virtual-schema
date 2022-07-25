@@ -3,14 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.exasol</groupId>
     <artifactId>azure-blob-storage-document-files-virtual-schema</artifactId>
-    <version>1.0.2</version>
+    <version>1.1.0</version>
     <name>Virtual Schema for document data in files on Azure Blob Storage</name>
     <description>Adapter for document data access from files from Azure Blob Storage.</description>
     <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/</url>
     <properties>
         <junit.version>5.8.2</junit.version>
         <org.testcontainers.version>1.17.2</org.testcontainers.version>
-        <vs-common-document-files.version>7.0.2</vs-common-document-files.version>
+        <vs-common-document-files.version>7.1.0</vs-common-document-files.version>
     </properties>
     <profiles>
         <profile>
@@ -213,7 +213,7 @@
     <parent>
         <artifactId>azure-blob-storage-document-files-virtual-schema-generated-parent</artifactId>
         <groupId>com.exasol</groupId>
-        <version>1.0.2</version>
+        <version>1.1.0</version>
         <relativePath>pk_generated_parent.pom</relativePath>
     </parent>
 </project>
