@@ -12,7 +12,6 @@ Code name: CSV Support
 
 ### Compile Dependency Updates
 
-* Updated `com.azure:azure-storage-blob:12.17.1` to `12.18.0`
 * Updated `com.exasol:virtual-schema-common-document-files:7.0.2` to `7.1.0`
 
 ### Test Dependency Updates
