@@ -79,7 +79,7 @@
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-storage-blob</artifactId>
-            <version>12.19.1</version>
+            <version>12.17.1</version>
         </dependency>
         <!-- Test dependencies -->
         <dependency>
@@ -175,6 +175,7 @@
                         <exclude>CVE-2022-24823</exclude>
                         <exclude>CVE-2022-2047</exclude>
                         <exclude>CVE-2022-30187</exclude>
+                        <exclude>CVE-2022-38752</exclude>
                     </excludeVulnerabilityIds>
                 </configuration>
             </plugin>
