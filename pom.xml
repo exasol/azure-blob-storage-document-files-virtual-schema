@@ -8,7 +8,7 @@
     <description>Adapter for document data access from files from Azure Blob Storage.</description>
     <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/</url>
     <properties>
-        <junit.version>5.8.2</junit.version>
+        <junit.version>5.9.1</junit.version>
         <org.testcontainers.version>1.17.2</org.testcontainers.version>
         <vs-common-document-files.version>7.1.1</vs-common-document-files.version>
     </properties>
@@ -175,6 +175,9 @@
                         <exclude>CVE-2022-24823</exclude>
                         <exclude>CVE-2022-2047</exclude>
                         <exclude>CVE-2022-30187</exclude>
+                        <!-- org.yaml.snakeyaml (1.33) https://ossindex.sonatype.org/vulnerability/CVE-2022-38750
+                        Currently not fixed in latest version, however a test dependency and not used on untrusted files.
+                        Can be removed once org.yaml.snakeyaml upgrades to a newer version. -->
                         <exclude>CVE-2022-38752</exclude>
                     </excludeVulnerabilityIds>
                 </configuration>
