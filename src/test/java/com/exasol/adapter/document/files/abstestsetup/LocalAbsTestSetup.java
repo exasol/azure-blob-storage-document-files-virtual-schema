@@ -15,7 +15,7 @@ public class LocalAbsTestSetup implements AbsTestSetup {
     private String connectionString;
 
     public LocalAbsTestSetup() {
-        this.azuriteContainer = new GenericContainer<>("mcr.microsoft.com/azure-storage/azurite:3.17.1");
+        this.azuriteContainer = new GenericContainer<>("mcr.microsoft.com/azure-storage/azurite:3.20.1");
         this.azuriteContainer.addExposedPort(PORT_IN_CONTAINER);
         this.azuriteContainer.start();
         final Integer portOnHost = this.azuriteContainer.getMappedPort(PORT_IN_CONTAINER);
