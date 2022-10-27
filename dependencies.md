@@ -10,6 +10,7 @@
 | [Virtual Schema for document data in files][3]       | [MIT License][4]                              |
 | [error-reporting-java][5]                            | [MIT License][6]                              |
 | [Microsoft Azure client library for Blob Storage][7] | [The MIT License (MIT)][8]                    |
+| [jackson-databind][2]                                | [The Apache Software License, Version 2.0][1] |
 | [Project Lombok][9]                                  | [The MIT License][10]                         |
 
 ## Test Dependencies

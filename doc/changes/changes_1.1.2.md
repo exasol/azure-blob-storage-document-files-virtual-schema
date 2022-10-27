@@ -21,6 +21,7 @@ Code name: Fixed vulnerabilities
 * Updated `com.exasol:virtual-schema-common-document-files:7.1.1` to `7.1.2`
 * Updated `com.fasterxml.jackson.core:jackson-annotations:2.13.3` to `2.13.4`
 * Updated `com.fasterxml.jackson.core:jackson-core:2.13.3` to `2.13.4`
+* Added `com.fasterxml.jackson.core:jackson-databind:2.13.4.2`
 
 ### Test Dependency Updates
 
