@@ -155,6 +155,12 @@
             <version>0.1.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- override transitive dependency of azure-storage-blob to avoid vulnerability CVE-2022-42003 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.4.2</version>
+        </dependency>        
     </dependencies>
     <build>
         <plugins>
@@ -179,16 +185,10 @@
                         <!-- org.apache.hadoop:hadoop-hdfs-client:jar:3.3.4 -->
                         <!-- Rationale for exclusion: No update available, yet. -->
                         <exclude>sonatype-2022-5732</exclude>
-                        <!-- com.fasterxml.jackson.core:jackson-databind:jar:2.13.4 -->
-                        <!-- Rationale for exclusion: No update available, yet. -->
                         <!-- com.azure:azure-storage-blob:jar:12.20.0 dependency -->
                         <!-- io.projectreactor.netty:reactor-netty-core:jar:1.0.23 -->
                         <!-- Rationale for exclusion: No update available, yet. -->
-                        <exclude>CVE-2022-31684</exclude>
-                        <!-- com.azure:azure-storage-blob:jar:12.20.0 dependency-->           
-                        <!-- io.projectreactor.netty:reactor-netty-http:jar:1.0.23 -->
-                        <!-- Rationale for exclusion: No update available, yet. -->
-                        <exclude>CVE-2022-42003</exclude>  
+                        <exclude>CVE-2022-31684</exclude>              
                     </excludeVulnerabilityIds>
                 </configuration>
             </plugin>
