@@ -99,7 +99,7 @@
 [37]: https://www.mojohaus.org/flatten-maven-plugin/
 [38]: https://sonatype.github.io/ossindex-maven/maven-plugin/
 [39]: https://maven.apache.org/surefire/maven-surefire-plugin/
-[40]: https://www.mojohaus.org/versions-maven-plugin/
+[40]: https://www.mojohaus.org/versions/versions-maven-plugin/
 [41]: https://github.com/exasol/project-keeper/
 [42]: https://github.com/exasol/project-keeper/blob/main/LICENSE
 [43]: https://maven.apache.org/plugins/maven-assembly-plugin/
