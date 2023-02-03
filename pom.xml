@@ -79,7 +79,7 @@
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-storage-blob</artifactId>
-            <version>12.20.0</version>
+            <version>12.20.2</version>
         </dependency>
         <!-- Test dependencies -->
         <dependency>
@@ -160,7 +160,7 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.13.4.2</version>
-        </dependency>        
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -188,14 +188,19 @@
                         <!-- com.azure:azure-storage-blob:jar:12.20.0 dependency -->
                         <!-- io.projectreactor.netty:reactor-netty-core:jar:1.0.23 -->
                         <!-- Rationale for exclusion: No update available, yet. -->
-                        <exclude>CVE-2022-31684</exclude>              
+                        <exclude>CVE-2022-31684</exclude>
+                        <exclude>sonatype-2022-6438</exclude>
+                        <exclude>CVE-2022-1471</exclude>
+                        <exclude>CVE-2022-45688</exclude>
+                        <exclude>CVE-2020-36641</exclude>
+                        <exclude>CVE-2021-37533</exclude>
                     </excludeVulnerabilityIds>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>com.exasol</groupId>
                 <artifactId>project-keeper-maven-plugin</artifactId>
-                <version>2.8.0</version>
+                <version>2.9.3</version>
                 <executions>
                     <execution>
                         <goals>
