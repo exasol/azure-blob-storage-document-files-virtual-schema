@@ -24,7 +24,7 @@
 | [mockito-core][15]                              | [The MIT License][16]             |
 | [Testcontainers :: JUnit Jupiter Extension][17] | [MIT][8]                          |
 | [Test Database Builder for Java][18]            | [MIT License][19]                 |
-| [udf-debugging-java][20]                        | [MIT][21]                         |
+| [udf-debugging-java][20]                        | [MIT License][21]                 |
 | [Matcher for SQL Result Sets][22]               | [MIT License][23]                 |
 | [exasol-test-setup-abstraction-java][24]        | [MIT License][25]                 |
 | [SnakeYAML][26]                                 | [Apache License, Version 2.0][1]  |
@@ -47,16 +47,16 @@
 | [Apache Maven JAR Plugin][43]                           | [Apache License, Version 2.0][34]             |
 | [Artifact reference checker and unifier][44]            | [MIT License][45]                             |
 | [Apache Maven Dependency Plugin][46]                    | [Apache License, Version 2.0][34]             |
-| [Lombok Maven Plugin][47]                               | [The MIT License][21]                         |
-| [Maven Failsafe Plugin][48]                             | [Apache License, Version 2.0][34]             |
-| [JaCoCo :: Maven Plugin][49]                            | [Eclipse Public License 2.0][30]              |
-| [error-code-crawler-maven-plugin][50]                   | [MIT License][51]                             |
-| [Reproducible Build Maven Plugin][52]                   | [Apache 2.0][1]                               |
-| [Maven Clean Plugin][53]                                | [The Apache Software License, Version 2.0][1] |
-| [Maven Resources Plugin][54]                            | [The Apache Software License, Version 2.0][1] |
-| [Maven Install Plugin][55]                              | [The Apache Software License, Version 2.0][1] |
-| [Maven Deploy Plugin][56]                               | [The Apache Software License, Version 2.0][1] |
-| [Maven Site Plugin 3][57]                               | [The Apache Software License, Version 2.0][1] |
+| [Lombok Maven Plugin][47]                               | [The MIT License][48]                         |
+| [Maven Failsafe Plugin][49]                             | [Apache License, Version 2.0][34]             |
+| [JaCoCo :: Maven Plugin][50]                            | [Eclipse Public License 2.0][30]              |
+| [error-code-crawler-maven-plugin][51]                   | [MIT License][52]                             |
+| [Reproducible Build Maven Plugin][53]                   | [Apache 2.0][1]                               |
+| [Maven Clean Plugin][54]                                | [The Apache Software License, Version 2.0][1] |
+| [Maven Resources Plugin][55]                            | [The Apache Software License, Version 2.0][1] |
+| [Maven Install Plugin][56]                              | [The Apache Software License, Version 2.0][1] |
+| [Maven Deploy Plugin][57]                               | [The Apache Software License, Version 2.0][1] |
+| [Maven Site Plugin 3][58]                               | [The Apache Software License, Version 2.0][1] |
 
 [0]: https://github.com/FasterXML/jackson-core
 [1]: http://www.apache.org/licenses/LICENSE-2.0.txt
@@ -79,7 +79,7 @@
 [18]: https://github.com/exasol/test-db-builder-java/
 [19]: https://github.com/exasol/test-db-builder-java/blob/main/LICENSE
 [20]: https://github.com/exasol/udf-debugging-java/
-[21]: https://opensource.org/licenses/MIT
+[21]: https://github.com/exasol/udf-debugging-java/blob/main/LICENSE
 [22]: https://github.com/exasol/hamcrest-resultset-matcher/
 [23]: https://github.com/exasol/hamcrest-resultset-matcher/blob/main/LICENSE
 [24]: https://github.com/exasol/exasol-test-setup-abstraction-java/
@@ -106,13 +106,14 @@
 [45]: https://github.com/exasol/artifact-reference-checker-maven-plugin/blob/main/LICENSE
 [46]: https://maven.apache.org/plugins/maven-dependency-plugin/
 [47]: https://anthonywhitford.com/lombok.maven/lombok-maven-plugin/
-[48]: https://maven.apache.org/surefire/maven-failsafe-plugin/
-[49]: https://www.jacoco.org/jacoco/trunk/doc/maven.html
-[50]: https://github.com/exasol/error-code-crawler-maven-plugin/
-[51]: https://github.com/exasol/error-code-crawler-maven-plugin/blob/main/LICENSE
-[52]: http://zlika.github.io/reproducible-build-maven-plugin
-[53]: http://maven.apache.org/plugins/maven-clean-plugin/
-[54]: http://maven.apache.org/plugins/maven-resources-plugin/
-[55]: http://maven.apache.org/plugins/maven-install-plugin/
-[56]: http://maven.apache.org/plugins/maven-deploy-plugin/
-[57]: http://maven.apache.org/plugins/maven-site-plugin/
+[48]: https://opensource.org/licenses/MIT
+[49]: https://maven.apache.org/surefire/maven-failsafe-plugin/
+[50]: https://www.jacoco.org/jacoco/trunk/doc/maven.html
+[51]: https://github.com/exasol/error-code-crawler-maven-plugin/
+[52]: https://github.com/exasol/error-code-crawler-maven-plugin/blob/main/LICENSE
+[53]: http://zlika.github.io/reproducible-build-maven-plugin
+[54]: http://maven.apache.org/plugins/maven-clean-plugin/
+[55]: http://maven.apache.org/plugins/maven-resources-plugin/
+[56]: http://maven.apache.org/plugins/maven-install-plugin/
+[57]: http://maven.apache.org/plugins/maven-deploy-plugin/
+[58]: http://maven.apache.org/plugins/maven-site-plugin/

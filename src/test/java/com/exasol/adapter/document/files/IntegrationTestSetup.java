@@ -3,6 +3,7 @@ package com.exasol.adapter.document.files;
 import static com.exasol.adapter.document.GenericUdfCallHandler.*;
 
 import java.io.*;
+import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.sql.*;
@@ -21,7 +22,6 @@ import com.exasol.dbbuilder.dialects.DatabaseObject;
 import com.exasol.dbbuilder.dialects.exasol.*;
 import com.exasol.dbbuilder.dialects.exasol.udf.UdfScript;
 import com.exasol.exasoltestsetup.ExasolTestSetup;
-import com.exasol.exasoltestsetup.ServiceAddress;
 import com.exasol.udfdebugging.UdfTestSetup;
 
 import jakarta.json.*;
@@ -85,8 +85,14 @@ public class IntegrationTestSetup implements AutoCloseable {
         return createConnectionDefinition(configJson);
     }
     private Optional<String> getHostOverride() {
-        return this.absTestSetup.getHostOverride().map(address -> this.exasolTestSetup
-                .makeTcpServiceAccessibleFromDatabase(ServiceAddress.parse(address)).toString());
+        return this.absTestSetup.getHostOverride().map(address -> {
+
+            final String[] parts = address.split(":");
+            final String hostname = parts[0].split("/")[0];
+            final int port = Integer.parseInt(parts[1]);
+            return this.exasolTestSetup.makeTcpServiceAccessibleFromDatabase(new InetSocketAddress(hostname, port))
+                    .toString();
+        });
     }
     public JsonObjectBuilder getConnectionConfig() {
         final JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
