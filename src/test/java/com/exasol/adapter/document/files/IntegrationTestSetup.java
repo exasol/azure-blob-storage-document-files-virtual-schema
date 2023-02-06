@@ -178,10 +178,6 @@ public class IntegrationTestSetup implements AutoCloseable {
         if (!debugProperty.isBlank() || !profileProperty.isBlank()) {
             properties.put("MAX_PARALLEL_UDFS", "1");
         }
-        // if (System.getProperty("test.vs-logs", "false").equals("true")) {
-        // properties.put("DEBUG_ADDRESS", "127.0.0.1:3001");
-        // properties.put("LOG_LEVEL", "ALL");
-        // }
         return properties;
     }
 
