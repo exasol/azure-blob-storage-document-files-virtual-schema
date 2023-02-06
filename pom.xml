@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.exasol</groupId>
     <artifactId>azure-blob-storage-document-files-virtual-schema</artifactId>
@@ -190,14 +192,6 @@
                         a vulnerability in netty but how it is configured by the client
                         com.azure:azure-core-http-netty. -->
                         <exclude>sonatype-2020-0026</exclude>
-                        <!-- org.yaml.snakeyaml (1.33)
-                        https://ossindex.sonatype.org/vulnerability/CVE-2022-38750
-                        Currently
-                        not fixed in latest version, however a test dependency and not used on
-                        untrusted files.
-                        Can be removed once
-                        org.yaml.snakeyaml upgrades to a newer version. -->
-                        <!-- <exclude>CVE-2022-38752</exclude> -->
                         <!-- org.apache.hadoop:hadoop-common:jar:3.3.4 -->
                         <!-- Rationale for exclusion: No update available, yet. -->
                         <exclude>sonatype-2022-5820</exclude>
@@ -224,9 +218,12 @@
                         so this is a false positive. -->
                         <exclude>CVE-2020-36641</exclude>
                         <!-- org.yaml.snakeyaml (1.33)
+                        Currently not fixed in latest version, however a test dependency and not used on untrusted files.
                         https://ossindex.sonatype.org/vulnerability/CVE-2022-38750 -->
                         <exclude>CVE-2022-1471</exclude>
                         <!-- org.json:json:jar:20220924:
+                        Not an issue as the attacker does not control access to insert or adapt the JSON files to be read
+                        out.
                         https://ossindex.sonatype.org/vulnerability/CVE-2022-45688 -->
                         <exclude>CVE-2022-45688</exclude>
                     </excludeVulnerabilityIds>
@@ -248,7 +245,8 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <groupId>org.apache.maven.plugins</groupId>
                 <configuration>
-                    <finalName>document-files-virtual-schema-dist-${vs-common-document-files.version}-azure-blob-storage-${project.version}</finalName>
+                    <finalName>
+                        document-files-virtual-schema-dist-${vs-common-document-files.version}-azure-blob-storage-${project.version}</finalName>
                 </configuration>
             </plugin>
             <plugin>
