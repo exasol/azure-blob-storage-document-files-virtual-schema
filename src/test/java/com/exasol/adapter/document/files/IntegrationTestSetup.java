@@ -91,8 +91,9 @@ public class IntegrationTestSetup implements AutoCloseable {
             final String[] parts = address.split(":");
             final String hostname = parts[0].split("/")[0];
             final int port = Integer.parseInt(parts[1]);
-            return this.exasolTestSetup.makeTcpServiceAccessibleFromDatabase(new InetSocketAddress(hostname, port))
-                    .toString();
+            final InetSocketAddress isa = this.exasolTestSetup
+                    .makeTcpServiceAccessibleFromDatabase(new InetSocketAddress(hostname, port));
+            return isa.getHostString() + ":" + isa.getPort();
         });
     }
 
@@ -177,10 +178,10 @@ public class IntegrationTestSetup implements AutoCloseable {
         if (!debugProperty.isBlank() || !profileProperty.isBlank()) {
             properties.put("MAX_PARALLEL_UDFS", "1");
         }
-//        if (System.getProperty("test.vs-logs", "false").equals("true")) {
-//            properties.put("DEBUG_ADDRESS", "127.0.0.1:3001");
-//            properties.put("LOG_LEVEL", "ALL");
-//        }
+        // if (System.getProperty("test.vs-logs", "false").equals("true")) {
+        // properties.put("DEBUG_ADDRESS", "127.0.0.1:3001");
+        // properties.put("LOG_LEVEL", "ALL");
+        // }
         return properties;
     }
 
