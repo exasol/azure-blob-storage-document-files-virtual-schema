@@ -1,12 +1,25 @@
-# Virtual Schema for document data in files on Azure Blob Storage 1.1.3, released 2023-??-??
+# Virtual Schema for document data in files on Azure Blob Storage 1.1.3, released 2023-02-07
 
-Code name:
+Code name: Reviewed and fixed vulnerabilities, updated dependencies and refactored integration test setup class.
 
 ## Summary
 
-## Features
+Reviewed and fixed vulnerabilities. 
+Refactored IntegrationTestSetup to use system properties.
+## Bugfixes / Vulnerabilities
 
-* ISSUE_NUMBER: description
+
+* Fixed vulnerabilities
+    * [CVE-2021-37533](https://ossindex.sonatype.org/component/pkg:maven/commons-net/commons-net@3.6?utm_source=ossindex-client&utm_medium=integration&utm_content=1.8.1) - Overrode transitive test dependency to fix vulnerability.
+* Ignored vulnerabilities
+    * [sonatype-2022-6438](https://ossindex.sonatype.org/vulnerability/sonatype-2022-6438) - Exploit requires write access to the source code repository and attempts to inject malicious code will be detected during regular code reviews.
+    * [CVE-2020-36641](https://nvd.nist.gov/vuln/detail/CVE-2020-36641) - Vulnerability is rated as a false positive since CVE-2020-36641 is reported to be fixed in aXMLRPC 1.12.1, while ETAJ uses version 1.13.0.
+    * [CVE-2022-1471](https://ossindex.sonatype.org/vulnerability/CVE-2022-38750) - Dependency is used by the test framework
+    * [CVE-2020-36641](https://ossindex.sonatype.org/vulnerability/CVE-2022-45688) - Exploit requires access to manipulate hosted JSON files.
+
+## Refactoring
+
+*#15 : Use system properties to set DEBUG_ADDRESS and LOG_LEVEL #15
 
 ## Dependency Updates
 
