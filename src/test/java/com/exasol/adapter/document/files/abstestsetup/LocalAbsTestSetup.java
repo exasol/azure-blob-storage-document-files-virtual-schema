@@ -9,7 +9,13 @@ import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
 
 public class LocalAbsTestSetup implements AbsTestSetup {
+
+    private static final String ACCOUNT_NAME = "devstoreaccount1";
+    private static final String ACCOUNT_KEY = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq" //
+            + "/K1SZFPTOtr" //
+            + "/KBHBeksoGMGw==";
     private static final int PORT_IN_CONTAINER = 10000;
+
     private final GenericContainer<? extends GenericContainer<?>> azuriteContainer;
     private BlobServiceClient blobServiceClient;
     private String connectionString;
@@ -23,15 +29,11 @@ public class LocalAbsTestSetup implements AbsTestSetup {
 
     private void createAzuriteBlobServiceClient() {
         // Azurite default configuration
-        final var defaultEndpointsProtocol = "http";
-        final var accountName = "devstoreaccount1";
-        final var accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
-        final var blobEndpoint = "http://" + this.azuriteContainer.getHost() + ":"
-                + this.azuriteContainer.getMappedPort(PORT_IN_CONTAINER) + "/devstoreaccount1";
-        this.connectionString = "DefaultEndpointsProtocol=" + defaultEndpointsProtocol + ";AccountName=" + accountName
-                + ";AccountKey=" + accountKey + ";BlobEndpoint=" + blobEndpoint + ";";
-
-        this.blobServiceClient = new BlobServiceClientBuilder().connectionString(this.connectionString).buildClient();
+        final InetSocketAddress isa = new InetSocketAddress(this.azuriteContainer.getHost(),
+                this.azuriteContainer.getMappedPort(PORT_IN_CONTAINER));
+        this.blobServiceClient = new BlobServiceClientBuilder() //
+                .connectionString(getConnectionString(isa)) //
+                .buildClient();
     }
 
     @Override
@@ -61,15 +63,16 @@ public class LocalAbsTestSetup implements AbsTestSetup {
     }
 
     @Override
-    public String getConnectionString(final InetSocketAddress isa) {
+    public String getConnectionString(final InetSocketAddress inetSocketAddress) {
         final String defaultEndpointsProtocol = "http";
-        final String accountName = "devstoreaccount1";
-        final String accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
         final String blobEndpoint = "http://" //
-                + isa.getHostString() //
-                + ":" + isa.getPort() //
-                + "/devstoreaccount1";
-        return "DefaultEndpointsProtocol=" + defaultEndpointsProtocol + ";AccountName=" + accountName + ";AccountKey="
-                + accountKey + ";BlobEndpoint=" + blobEndpoint + ";";
+                + inetSocketAddress.getHostString() //
+                + ":" + inetSocketAddress.getPort() //
+                + "/" + ACCOUNT_NAME;
+        return "DefaultEndpointsProtocol=" + defaultEndpointsProtocol //
+                + ";AccountName=" + ACCOUNT_NAME //
+                + ";AccountKey=" + ACCOUNT_KEY //
+                + ";BlobEndpoint=" + blobEndpoint + ";";
     }
+
 }

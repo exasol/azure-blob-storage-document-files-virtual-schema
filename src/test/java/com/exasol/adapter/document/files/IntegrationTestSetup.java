@@ -87,48 +87,6 @@ public class IntegrationTestSetup implements AutoCloseable {
         final String jsonString = toJson(configuration);
         return this.exasolObjectFactory.createConnectionDefinition( //
                 "ABS_CONNECTION_" + System.currentTimeMillis(), "", "", jsonString);
-
-    private ConnectionDefinition createConnectionDefinitionOld() {
-        final JsonObjectBuilder configJson = getConnectionConfig();
-        return createConnectionDefinition(configJson);
-    }
-
-    private Optional<String> getHostOverride() {
-        return this.absTestSetup.getHostOverride().map(address -> {
-
-            final String[] parts = address.split(":");
-            final String hostname = parts[0].split("/")[0];
-            final int port = Integer.parseInt(parts[1]);
-            final InetSocketAddress isa = this.exasolTestSetup
-                    .makeTcpServiceAccessibleFromDatabase(new InetSocketAddress(hostname, port));
-            return isa.getHostString() + ":" + isa.getPort();
-        });
-    }
-
-    public JsonObjectBuilder getConnectionConfig() {
-        final JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-        if (absTestSetup instanceof LocalAbsTestSetup) {
-            // we're calling/working in the exasol database here so the connectionstring should be different
-            final var defaultEndpointsProtocol = "http";
-            final var accountName = "devstoreaccount1";
-            final var accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
-            final var gho = getHostOverride();
-            final var blobEndpoint = "http://" + gho.get() + "/devstoreaccount1";
-            final var connectionString = "DefaultEndpointsProtocol=" + defaultEndpointsProtocol + ";AccountName="
-                    + accountName + ";AccountKey=" + accountKey + ";BlobEndpoint=" + blobEndpoint + ";";
-            return objectBuilder.add("absContainerName", this.absContainer.getBlobContainerName())//
-                    .add("absStorageAccountConnectionString", connectionString);
-        } else {
-            return objectBuilder//
-                    .add("absContainerName", this.absContainer.getBlobContainerName())//
-                    .add("absStorageAccountConnectionString", this.absTestSetup.getStorageAccountConnectionString());
-        }
-    }
-
-    public ConnectionDefinition createConnectionDefinition(final JsonObjectBuilder details) {
-        final String json = toJson(details.build());
-        return this.exasolObjectFactory.createConnectionDefinition("ABS_CONNECTION_" + System.currentTimeMillis(), "",
-                "", json);
     }
 
     private String toJson(final JsonObject configJson) {
