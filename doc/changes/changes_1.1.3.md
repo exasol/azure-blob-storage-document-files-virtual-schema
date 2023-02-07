@@ -19,7 +19,7 @@ Refactored IntegrationTestSetup to use system properties.
 
 ## Refactoring
 
-*#15 : Use system properties to set DEBUG_ADDRESS and LOG_LEVEL #15
+*#15 : Use system properties to set DEBUG_ADDRESS and LOG_LEVEL.
 
 ## Dependency Updates
 
