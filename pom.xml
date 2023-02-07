@@ -245,8 +245,7 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <groupId>org.apache.maven.plugins</groupId>
                 <configuration>
-                    <finalName>
-                        document-files-virtual-schema-dist-${vs-common-document-files.version}-azure-blob-storage-${project.version}</finalName>
+                    <finalName>document-files-virtual-schema-dist-${vs-common-document-files.version}-azure-blob-storage-${project.version}</finalName>
                 </configuration>
             </plugin>
             <plugin>
