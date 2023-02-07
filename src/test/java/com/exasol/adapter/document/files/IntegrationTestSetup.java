@@ -3,6 +3,7 @@ package com.exasol.adapter.document.files;
 import static com.exasol.adapter.document.GenericUdfCallHandler.*;
 
 import java.io.*;
+import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.sql.*;
@@ -21,7 +22,6 @@ import com.exasol.dbbuilder.dialects.DatabaseObject;
 import com.exasol.dbbuilder.dialects.exasol.*;
 import com.exasol.dbbuilder.dialects.exasol.udf.UdfScript;
 import com.exasol.exasoltestsetup.ExasolTestSetup;
-import com.exasol.exasoltestsetup.ServiceAddress;
 import com.exasol.udfdebugging.UdfTestSetup;
 
 import jakarta.json.*;
@@ -29,7 +29,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class IntegrationTestSetup implements AutoCloseable {
-    private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-7.1.2-azure-blob-storage-1.1.2.jar";
+    private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-7.1.4-azure-blob-storage-1.1.3.jar";
     private final ExasolTestSetup exasolTestSetup;
     private final Connection exasolConnection;
     private final Statement exasolStatement;
@@ -63,7 +63,7 @@ public class IntegrationTestSetup implements AutoCloseable {
         this.exasolObjectFactory = new ExasolObjectFactory(this.exasolConnection,
                 ExasolObjectConfiguration.builder().withJvmOptions(jvmOptions.toArray(String[]::new)).build());
         final ExasolSchema adapterSchema = this.exasolObjectFactory.createSchema("ADAPTER");
-        //create a connection to Azure Blob Storage
+        // create a connection to Azure Blob Storage
         this.connectionDefinition = createConnectionDefinition();
 
         this.adapterScript = createAdapterScript(adapterSchema);
@@ -84,25 +84,31 @@ public class IntegrationTestSetup implements AutoCloseable {
         final JsonObjectBuilder configJson = getConnectionConfig();
         return createConnectionDefinition(configJson);
     }
+
     private Optional<String> getHostOverride() {
-        return this.absTestSetup.getHostOverride().map(address -> this.exasolTestSetup
-                .makeTcpServiceAccessibleFromDatabase(ServiceAddress.parse(address)).toString());
+        return this.absTestSetup.getHostOverride().map(address -> {
+
+            final String[] parts = address.split(":");
+            final String hostname = parts[0].split("/")[0];
+            final int port = Integer.parseInt(parts[1]);
+            final InetSocketAddress isa = this.exasolTestSetup
+                    .makeTcpServiceAccessibleFromDatabase(new InetSocketAddress(hostname, port));
+            return isa.getHostString() + ":" + isa.getPort();
+        });
     }
+
     public JsonObjectBuilder getConnectionConfig() {
         final JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-        if ( absTestSetup instanceof LocalAbsTestSetup){
-            //we're calling/working in the exasol database here so the connectionstring should be different
+        if (absTestSetup instanceof LocalAbsTestSetup) {
+            // we're calling/working in the exasol database here so the connectionstring should be different
             final var defaultEndpointsProtocol = "http";
             final var accountName = "devstoreaccount1";
             final var accountKey = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
             final var gho = getHostOverride();
-            final var blobEndpoint =  "http://"+ gho.get()+ "/devstoreaccount1";
-            final var connectionString = "DefaultEndpointsProtocol="+defaultEndpointsProtocol+
-                    ";AccountName="+accountName+
-                    ";AccountKey="+ accountKey+
-                    ";BlobEndpoint="+ blobEndpoint+";";
-            return objectBuilder
-                    .add("absContainerName", this.absContainer.getBlobContainerName())//
+            final var blobEndpoint = "http://" + gho.get() + "/devstoreaccount1";
+            final var connectionString = "DefaultEndpointsProtocol=" + defaultEndpointsProtocol + ";AccountName="
+                    + accountName + ";AccountKey=" + accountKey + ";BlobEndpoint=" + blobEndpoint + ";";
+            return objectBuilder.add("absContainerName", this.absContainer.getBlobContainerName())//
                     .add("absStorageAccountConnectionString", connectionString);
         } else {
             return objectBuilder//
@@ -112,9 +118,9 @@ public class IntegrationTestSetup implements AutoCloseable {
     }
 
     public ConnectionDefinition createConnectionDefinition(final JsonObjectBuilder details) {
-        final String json =toJson(details.build());
+        final String json = toJson(details.build());
         return this.exasolObjectFactory.createConnectionDefinition("ABS_CONNECTION_" + System.currentTimeMillis(), "",
-                "", json );
+                "", json);
     }
 
     private String toJson(final JsonObject configJson) {
@@ -171,10 +177,6 @@ public class IntegrationTestSetup implements AutoCloseable {
         final String profileProperty = System.getProperty("test.jprofiler", "");
         if (!debugProperty.isBlank() || !profileProperty.isBlank()) {
             properties.put("MAX_PARALLEL_UDFS", "1");
-        }
-        if (System.getProperty("test.vs-logs", "false").equals("true")) {
-            properties.put("DEBUG_ADDRESS", "127.0.0.1:3001");
-            properties.put("LOG_LEVEL", "ALL");
         }
         return properties;
     }
