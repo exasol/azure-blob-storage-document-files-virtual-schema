@@ -6,6 +6,7 @@ Code name: Reviewed and fixed vulnerabilities, updated dependencies and refactor
 
 Reviewed and fixed vulnerabilities. 
 Refactored IntegrationTestSetup to use system properties.
+
 ## Bugfixes / Vulnerabilities
 
 
