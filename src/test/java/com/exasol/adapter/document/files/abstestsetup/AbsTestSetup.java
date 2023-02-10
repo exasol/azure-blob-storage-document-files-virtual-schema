@@ -8,8 +8,6 @@ import com.azure.storage.blob.BlobServiceClient;
 public interface AbsTestSetup extends AutoCloseable {
     BlobServiceClient getAbsClient();
 
-    String getStorageAccountConnectionString();
-
     @Override
     void close();
 
@@ -18,4 +16,10 @@ public interface AbsTestSetup extends AutoCloseable {
     Optional<InetSocketAddress> getInetSocketAddress();
 
     String getConnectionString(InetSocketAddress inetSocketAddress);
+
+    // String getStorageAccountConnectionString();
+
+    default String getStorageAccountConnectionString() {
+        return getConnectionString(getInetSocketAddress().orElse(null));
+    }
 }

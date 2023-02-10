@@ -36,11 +36,6 @@ public class OnlineAbsTestSetup implements AbsTestSetup {
     }
 
     @Override
-    public String getStorageAccountConnectionString() {
-        return this.connectionString;
-    }
-
-    @Override
     public void close() {
         // nothing to do
     }

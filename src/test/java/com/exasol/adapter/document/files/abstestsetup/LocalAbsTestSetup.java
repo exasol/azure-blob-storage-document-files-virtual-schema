@@ -18,7 +18,6 @@ public class LocalAbsTestSetup implements AbsTestSetup {
 
     private final GenericContainer<? extends GenericContainer<?>> azuriteContainer;
     private BlobServiceClient blobServiceClient;
-    private String connectionString;
 
     public LocalAbsTestSetup() {
         this.azuriteContainer = new GenericContainer<>("mcr.microsoft.com/azure-storage/azurite:3.21.0");
@@ -28,22 +27,14 @@ public class LocalAbsTestSetup implements AbsTestSetup {
     }
 
     private void createAzuriteBlobServiceClient() {
-        // Azurite default configuration
-        final InetSocketAddress isa = new InetSocketAddress(this.azuriteContainer.getHost(),
-                this.azuriteContainer.getMappedPort(PORT_IN_CONTAINER));
         this.blobServiceClient = new BlobServiceClientBuilder() //
-                .connectionString(getConnectionString(isa)) //
+                .connectionString(getStorageAccountConnectionString()) //
                 .buildClient();
     }
 
     @Override
     public BlobServiceClient getAbsClient() {
         return this.blobServiceClient;
-    }
-
-    @Override
-    public String getStorageAccountConnectionString() {
-        return this.connectionString;
     }
 
     @Override
