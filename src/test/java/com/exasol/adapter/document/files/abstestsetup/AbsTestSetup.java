@@ -17,8 +17,6 @@ public interface AbsTestSetup extends AutoCloseable {
 
     String getConnectionString(InetSocketAddress inetSocketAddress);
 
-    // String getStorageAccountConnectionString();
-
     default String getStorageAccountConnectionString() {
         return getConnectionString(getInetSocketAddress().orElse(null));
     }
