@@ -1,6 +1,8 @@
 package com.exasol.adapter.document.files.abstestsetup;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -21,7 +23,8 @@ public class OnlineAbsTestSetup implements AbsTestSetup {
         }
         try {
             this.connectionString = Files.readString(Path.of(KEY_FILE));
-            this.blobServiceClient = new BlobServiceClientBuilder().connectionString(connectionString).buildClient();
+            this.blobServiceClient = new BlobServiceClientBuilder().connectionString(this.connectionString)
+                    .buildClient();
         } catch (final IOException exception) {
             throw new UncheckedIOException("Failed to read abs credentials from file.", exception);
         }
@@ -30,11 +33,6 @@ public class OnlineAbsTestSetup implements AbsTestSetup {
     @Override
     public BlobServiceClient getAbsClient() {
         return this.blobServiceClient;
-    }
-
-    @Override
-    public String getStorageAccountConnectionString() {
-        return connectionString;
     }
 
     @Override
@@ -48,7 +46,12 @@ public class OnlineAbsTestSetup implements AbsTestSetup {
     }
 
     @Override
-    public Optional<String> getHostOverride() {
+    public Optional<InetSocketAddress> getInetSocketAddress() {
         return Optional.empty();
+    }
+
+    @Override
+    public String getConnectionString(final InetSocketAddress inetSocketAddress) {
+        return this.connectionString;
     }
 }
