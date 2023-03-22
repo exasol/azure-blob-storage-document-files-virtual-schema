@@ -25,9 +25,11 @@ The release also refactored class `LocalAbsTestSetup`.
 * Updated `com.exasol:virtual-schema-common-document-files:7.1.4` to `7.2.0`
 * Removed `com.fasterxml.jackson.core:jackson-annotations:2.14.2`
 * Removed `com.fasterxml.jackson.core:jackson-core:2.14.2`
+* Removed `com.fasterxml.jackson.core:jackson-databind:2.14.2`
 
 ### Test Dependency Updates
 
+* Added `com.exasol:exasol-testcontainers:6.5.1`
 * Updated `com.exasol:udf-debugging-java:0.6.7` to `0.6.8`
 * Updated `com.exasol:virtual-schema-common-document-files:7.1.4` to `7.2.0`
 * Updated `org.mockito:mockito-core:5.1.1` to `5.2.0`

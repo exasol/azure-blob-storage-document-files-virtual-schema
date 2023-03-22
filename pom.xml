@@ -136,17 +136,17 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <!-- Explicitly upgrade testcontainers to fix container reuse. -->
+            <groupId>com.exasol</groupId>
+            <artifactId>exasol-testcontainers</artifactId>
+            <version>6.5.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.exasol</groupId>
             <artifactId>performance-test-recorder-java</artifactId>
             <version>0.1.2</version>
             <scope>test</scope>
-        </dependency>
-        <!-- override transitive dependency of azure-storage-blob to avoid vulnerability
-        CVE-2022-42003 -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.14.2</version>
         </dependency>
     </dependencies>
     <build>
@@ -156,49 +156,24 @@
                 <artifactId>ossindex-maven-plugin</artifactId>
                 <configuration>
                     <excludeVulnerabilityIds>
-                        <!-- com.google.guava:guava:
-                        https://ossindex.sonatype.org/vulnerability/sonatype-2020-0926
-                        Excluded
-                        because we assume that the attacker does not have local access to the
-                        machine. -->
+                        <!-- com.google.guava:guava: Excluded because we assume that the attacker does not have local access to the machine. -->
                         <exclude>sonatype-2020-0926</exclude>
-                        <!-- io.netty:netty-handler:
-                        https://ossindex.sonatype.org/vulnerability/sonatype-2020-0026
-                        Not
-                        a vulnerability in netty but how it is configured by the client
-                        com.azure:azure-core-http-netty. -->
+                        <!-- io.netty:netty-handler: Not a vulnerability in netty but how it is configured by the client
+                             com.azure:azure-core-http-netty. -->
                         <exclude>sonatype-2020-0026</exclude>
-                        <!-- org.apache.hadoop:hadoop-common:jar:3.3.4 -->
-                        <!-- Rationale for exclusion: No update available, yet. -->
+                        <!-- org.apache.hadoop:hadoop-common:jar:3.3.4
+                             Rationale for exclusion: No update available, yet. -->
                         <exclude>sonatype-2022-5820</exclude>
-                        <!-- org.apache.hadoop:hadoop-hdfs-client:jar:3.3.4 -->
-                        <!-- Rationale for exclusion: No update available, yet. -->
+                        <!-- org.apache.hadoop:hadoop-hdfs-client:jar:3.3.4 
+                             Rationale for exclusion: No update available, yet. -->
                         <exclude>sonatype-2022-5732</exclude>
-                        <!-- com.azure:azure-storage-blob:jar:12.20.0 dependency -->
-                        <!-- io.projectreactor.netty:reactor-netty-core:jar:1.0.23 -->
-                        <!-- Rationale for exclusion: No update available, yet. -->
-                        <exclude>CVE-2022-31684</exclude>
-                        <!-- Ignore vulnerability com.fasterxml.jackson.core:jackson-core:2.14.1
-                             as
-                        an exploit requires write access to the source code repository
-                             and
-                        attempts to inject malicious code will be detected during regular
-                             code
-                        reviews. -->
+                        <!-- Ignore vulnerability com.fasterxml.jackson.core:jackson-core:2.14.1 as
+                             an exploit requires write access to the source code repository and
+                             attempts to inject malicious code will be detected during regular code reviews. -->
                         <exclude>sonatype-2022-6438</exclude>
-                        <!-- Ignore vulnerability in Transitive dependency fr.turri:aXMLRPC
-                                  via
-                        com.exasol:exasol-test-setup-abstraction-java:jar.
-                                  CVE-2020-36641
-                        is reported to be fixed in aXMLRPC 1.12.1, while ETAJ uses version 1.13.0,
-                        so this is a false positive. -->
+                        <!-- Ignore vulnerability in Transitive dependency fr.turri:aXMLRPC via com.exasol:exasol-test-setup-abstraction-java:jar.
+                             CVE-2020-36641 is reported to be fixed in aXMLRPC 1.12.1, while ETAJ uses version 1.13.0, so this is a false positive. -->
                         <exclude>CVE-2020-36641</exclude>
-                        <exclude>CVE-2022-1471</exclude>
-                        <!-- org.json:json:jar:20220924:
-                        Not an issue as the attacker does not control access to insert or adapt the JSON files to be read
-                        out.
-                        https://ossindex.sonatype.org/vulnerability/CVE-2022-45688 -->
-                        <exclude>CVE-2022-45688</exclude>
                     </excludeVulnerabilityIds>
                 </configuration>
             </plugin>
