@@ -20,7 +20,7 @@ public class LocalAbsTestSetup implements AbsTestSetup {
     private BlobServiceClient blobServiceClient;
 
     public LocalAbsTestSetup() {
-        this.azuriteContainer = new GenericContainer<>("mcr.microsoft.com/azure-storage/azurite:3.21.0");
+        this.azuriteContainer = new GenericContainer<>("mcr.microsoft.com/azure-storage/azurite:3.22.0");
         this.azuriteContainer.addExposedPort(PORT_IN_CONTAINER);
         this.azuriteContainer.start();
         createAzuriteBlobServiceClient();
