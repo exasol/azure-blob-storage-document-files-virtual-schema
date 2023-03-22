@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.exasol</groupId>
     <artifactId>azure-blob-storage-document-files-virtual-schema</artifactId>
-    <version>1.1.4</version>
+    <version>1.2.0</version>
     <name>Virtual Schema for document data in files on Azure Blob Storage</name>
     <description>Adapter for document data access from files from Azure Blob Storage.</description>
     <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/</url>
