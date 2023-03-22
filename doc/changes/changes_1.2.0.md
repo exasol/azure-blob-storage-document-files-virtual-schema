@@ -40,3 +40,4 @@ The release also refactored class `LocalAbsTestSetup`.
 * Updated `com.exasol:project-keeper-maven-plugin:2.9.3` to `2.9.6`
 * Updated `org.apache.maven.plugins:maven-assembly-plugin:3.4.2` to `3.5.0`
 * Updated `org.apache.maven.plugins:maven-enforcer-plugin:3.1.0` to `3.2.1`
+* Removed `org.projectlombok:lombok-maven-plugin:1.18.20.0`

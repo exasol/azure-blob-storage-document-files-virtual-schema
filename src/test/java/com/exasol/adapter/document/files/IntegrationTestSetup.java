@@ -24,8 +24,6 @@ import com.exasol.exasoltestsetup.ExasolTestSetup;
 import com.exasol.udfdebugging.UdfTestSetup;
 
 import jakarta.json.*;
-import lombok.Getter;
-import lombok.Setter;
 
 public class IntegrationTestSetup implements AutoCloseable {
     private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-7.2.0-azure-blob-storage-1.2.0.jar";
@@ -39,9 +37,7 @@ public class IntegrationTestSetup implements AutoCloseable {
     private final AbsTestSetup absTestSetup;
     private final BlobContainerClient absContainer;
     private final UdfTestSetup udfTestSetup;
-    @Getter
-    @Setter
-    private ConnectionDefinition connectionDefinition;
+    private final ConnectionDefinition connectionDefinition;
 
     public IntegrationTestSetup(final ExasolTestSetup exasolTestSetup, final AbsTestSetup absTestSetup,
             final BlobContainerClient absContainer)
