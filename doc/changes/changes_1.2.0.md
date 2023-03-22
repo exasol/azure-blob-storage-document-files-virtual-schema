@@ -32,6 +32,7 @@ The release also refactored class `LocalAbsTestSetup`.
 * Added `com.exasol:exasol-testcontainers:6.5.1`
 * Updated `com.exasol:udf-debugging-java:0.6.7` to `0.6.8`
 * Updated `com.exasol:virtual-schema-common-document-files:7.1.4` to `7.2.0`
+* Removed `commons-net:commons-net:3.9.0`
 * Updated `org.mockito:mockito-core:5.1.1` to `5.2.0`
 * Removed `org.yaml:snakeyaml:1.33`
 

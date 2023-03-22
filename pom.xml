@@ -52,14 +52,6 @@
             <version>12.21.1</version>
         </dependency>
         <!-- Test dependencies -->
-        <!-- overriding transitive dependency of virtual-schema-common-document-files to avoid
-        vulnerability CVE-2021-37533 -->
-        <dependency>
-            <groupId>commons-net</groupId>
-            <artifactId>commons-net</artifactId>
-            <version>3.9.0</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
