@@ -9,3 +9,5 @@
 dependencies.md                                                  linguist-generated=true
 pk_generated_parent.pom                                          linguist-generated=true
 doc/changes/changelog.md                                         linguist-generated=true
+
+cloudSetup/.terraform.lock.hcl linguist-generated=true
