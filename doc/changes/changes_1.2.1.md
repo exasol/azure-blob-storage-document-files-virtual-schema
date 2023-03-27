@@ -1,4 +1,4 @@
-# Virtual Schema for Document Data in Files on Azure Blob Storage 1.2.1, released 2023-03-24
+# Virtual Schema for Document Data in Files on Azure Blob Storage 1.2.1, released 2023-03-27
 
 Code name: Fix performance regression tests
 
