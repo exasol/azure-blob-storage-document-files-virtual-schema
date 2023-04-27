@@ -33,12 +33,6 @@
             <groupId>com.exasol</groupId>
             <artifactId>virtual-schema-common-document-files</artifactId>
             <version>${vs-common-document-files.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-core</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.exasol</groupId>
@@ -120,16 +114,6 @@
                 <artifactId>ossindex-maven-plugin</artifactId>
                 <configuration>
                     <excludeVulnerabilityIds>
-                        <!-- io.netty:netty-handler: Not a vulnerability in netty but how it is configured by the client
-                             com.azure:azure-core-http-netty. -->
-                        <exclude>sonatype-2020-0026</exclude>
-                        <!-- org.apache.hadoop:hadoop-hdfs-client:jar:3.3.4 
-                             Rationale for exclusion: No update available, yet. -->
-                        <exclude>sonatype-2022-5732</exclude>
-                        <!-- Ignore vulnerability com.fasterxml.jackson.core:jackson-core:2.14.1 as
-                             an exploit requires write access to the source code repository and
-                             attempts to inject malicious code will be detected during regular code reviews. -->
-                        <exclude>sonatype-2022-6438</exclude>
                         <!-- Ignore vulnerability in Transitive dependency fr.turri:aXMLRPC via com.exasol:exasol-test-setup-abstraction-java:jar.
                              CVE-2020-36641 is reported to be fixed in aXMLRPC 1.12.1, while ETAJ uses version 1.13.0, so this is a false positive. -->
                         <exclude>CVE-2020-36641</exclude>
