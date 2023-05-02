@@ -71,7 +71,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Report Status to Slack channel
         if: always()
-        uses: ravsamhq/notify-slack-action@v2
+        uses: ravsamhq/notify-slack-action@v3
         with:
           status: ${{ job.status }}
           notification_title: "Azure Blob Storage VS Performance regression tests: {workflow} has {status_message}"
