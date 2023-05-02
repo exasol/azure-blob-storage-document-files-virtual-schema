@@ -17,7 +17,7 @@ Next create the Adapter Script:
  ```sql
 CREATE OR REPLACE JAVA ADAPTER SCRIPT ADAPTER.AZURE_BLOB_STORAGE_FILES_ADAPTER AS
     %scriptclass com.exasol.adapter.RequestDispatcher;
-    %jar /buckets/bfsdefault/default/document-files-virtual-schema-dist-7.3.0-azure-blob-storage-1.3.0.jar;
+    %jar /buckets/bfsdefault/default/document-files-virtual-schema-dist-7.3.1-azure-blob-storage-1.3.1.jar;
 /
 ```
 
@@ -30,7 +30,7 @@ CREATE OR REPLACE JAVA SET SCRIPT ADAPTER.IMPORT_FROM_AZURE_BLOB_STORAGE_DOCUMEN
   CONNECTION_NAME VARCHAR(500))
   EMITS(...) AS
     %scriptclass com.exasol.adapter.document.UdfEntryPoint;
-    %jar /buckets/bfsdefault/default/document-files-virtual-schema-dist-7.3.0-azure-blob-storage-1.3.0.jar;
+    %jar /buckets/bfsdefault/default/document-files-virtual-schema-dist-7.3.1-azure-blob-storage-1.3.1.jar;
 /
 ```
 
