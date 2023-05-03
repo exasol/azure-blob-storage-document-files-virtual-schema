@@ -14,8 +14,8 @@ This release updates performance regression rests for CSV files to use all data 
 
 ### Compile Dependency Updates
 
-* Updated `com.exasol:virtual-schema-common-document-files:7.3.0` to `7.3.1`
+* Updated `com.exasol:virtual-schema-common-document-files:7.3.0` to `7.3.2`
 
 ### Test Dependency Updates
 
-* Updated `com.exasol:virtual-schema-common-document-files:7.3.0` to `7.3.1`
+* Updated `com.exasol:virtual-schema-common-document-files:7.3.0` to `7.3.2`

@@ -8,7 +8,7 @@
     <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/</url>
     <properties>
         <org.testcontainers.version>1.18.0</org.testcontainers.version>
-        <vs-common-document-files.version>7.3.1</vs-common-document-files.version>
+        <vs-common-document-files.version>7.3.2</vs-common-document-files.version>
     </properties>
     <profiles>
         <profile>
