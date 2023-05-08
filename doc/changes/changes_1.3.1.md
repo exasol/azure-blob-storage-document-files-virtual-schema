@@ -1,4 +1,4 @@
-# Virtual Schema for Document Data in Files on Azure Blob Storage 1.3.1, released 2023-05-08
+# Virtual Schema for Document Data in Files on Azure Blob Storage 1.3.1, released 2023-05-09
 
 Code name: CSV Performance Regression Tests
 
