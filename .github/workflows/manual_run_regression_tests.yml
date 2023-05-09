@@ -1,4 +1,4 @@
-name: Regression Tests
+name: Performance Regression Tests
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
       - published
 
 jobs:
-  build:
+  performance-regression-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Print tag name
@@ -53,7 +53,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload regression test result
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: performance-test-results
           path: target/performanceLog-*.csv
