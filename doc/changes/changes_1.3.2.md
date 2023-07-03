@@ -23,6 +23,7 @@ This release fixes vulnerabilities in the following compile time dependencies:
 
 * Updated `com.azure:azure-storage-blob:12.22.0` to `12.22.3`
 * Updated `com.exasol:virtual-schema-common-document-files:7.3.2` to `7.3.3`
+* Added `org.slf4j:slf4j-jdk14:2.0.7`
 
 ### Test Dependency Updates
 
