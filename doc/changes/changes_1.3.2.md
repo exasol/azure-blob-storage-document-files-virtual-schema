@@ -1,4 +1,4 @@
-# Virtual Schema for Document Data in Files on Azure Blob Storage 1.3.2, released 2023-07-03
+# Virtual Schema for Document Data in Files on Azure Blob Storage 1.3.2, released 2023-07-04
 
 Code name: Update dependencies on top of 1.3.1
 
