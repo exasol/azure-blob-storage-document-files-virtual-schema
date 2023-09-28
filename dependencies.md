@@ -8,7 +8,7 @@
 | [Virtual Schema for document data in files][0]       | [MIT License][1]           |
 | [error-reporting-java][2]                            | [MIT License][3]           |
 | [Microsoft Azure client library for Blob Storage][4] | [The MIT License (MIT)][5] |
-| [SLF4J JDK14 Binding][6]                             | [MIT License][7]           |
+| [SLF4J JDK14 Provider][6]                            | [MIT License][7]           |
 
 ## Test Dependencies
 
@@ -39,10 +39,10 @@
 | [Versions Maven Plugin][36]                             | [Apache License, Version 2.0][30]              |
 | [duplicate-finder-maven-plugin Maven Mojo][37]          | [Apache License 2.0][38]                       |
 | [Project keeper maven plugin][39]                       | [The MIT License][40]                          |
-| [Apache Maven Assembly Plugin][41]                      | [Apache License, Version 2.0][30]              |
+| [Apache Maven Assembly Plugin][41]                      | [Apache-2.0][30]                               |
 | [Apache Maven JAR Plugin][42]                           | [Apache License, Version 2.0][30]              |
 | [Artifact reference checker and unifier][43]            | [MIT License][44]                              |
-| [Apache Maven Dependency Plugin][45]                    | [Apache License, Version 2.0][30]              |
+| [Apache Maven Dependency Plugin][45]                    | [Apache-2.0][30]                               |
 | [Maven Failsafe Plugin][46]                             | [Apache-2.0][30]                               |
 | [JaCoCo :: Maven Plugin][47]                            | [Eclipse Public License 2.0][26]               |
 | [error-code-crawler-maven-plugin][48]                   | [MIT License][49]                              |
@@ -67,7 +67,7 @@
 [11]: https://www.eclipse.org/legal/epl-v20.html
 [12]: https://github.com/mockito/mockito
 [13]: https://github.com/mockito/mockito/blob/main/LICENSE
-[14]: https://testcontainers.org
+[14]: https://java.testcontainers.org
 [15]: https://github.com/exasol/test-db-builder-java/
 [16]: https://github.com/exasol/test-db-builder-java/blob/main/LICENSE
 [17]: https://github.com/exasol/udf-debugging-java/
@@ -90,7 +90,7 @@
 [34]: http://www.apache.org/licenses/LICENSE-2.0.txt
 [35]: https://maven.apache.org/surefire/maven-surefire-plugin/
 [36]: https://www.mojohaus.org/versions/versions-maven-plugin/
-[37]: https://github.com/basepom/duplicate-finder-maven-plugin
+[37]: https://basepom.github.io/duplicate-finder-maven-plugin
 [38]: http://www.apache.org/licenses/LICENSE-2.0.html
 [39]: https://github.com/exasol/project-keeper/
 [40]: https://github.com/exasol/project-keeper/blob/main/LICENSE
