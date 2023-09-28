@@ -52,14 +52,14 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
 
     @AfterAll
     static void afterAll() throws Exception {
-        if (absTestSetup != null) {
-            absTestSetup.close();
-        }
         if (setup != null) {
             setup.close();
         }
         if (testContainer != null) {
             testContainer.close();
+        }
+        if (absTestSetup != null) {
+            absTestSetup.close();
         }
     }
 
