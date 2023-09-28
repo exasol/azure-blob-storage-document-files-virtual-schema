@@ -1,6 +1,5 @@
 # Virtual Schema for Document Data in Files on Azure Blob Storage 1.3.3, released 2023-09-28
 
-
 Code name: Fix vulnerabilities in dependencies
 
 ## Summary
