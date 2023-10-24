@@ -1,12 +1,16 @@
-# Virtual Schema for Document Data in Files on Azure Blob Storage 1.3.4, released 2023-??-??
+# Virtual Schema for Document Data in Files on Azure Blob Storage 1.3.4, released 2023-10-25
 
-Code name:
+Code name: Fix CVE-2023-39410 in `org.apache.avro:avro`
 
 ## Summary
 
-## Features
+This release fixes CVE-2023-39410 in compile dependency `org.apache.avro:avro`.
 
-* ISSUE_NUMBER: description
+The release also upgrades to [virtual-schema-common-document-files 7.3.6](https://github.com/exasol/virtual-schema-common-document-files/releases/tag/7.3.6). This new version validates that the given EDML mapping uses unique values for each `destinationTable` entry as duplicate values led to unexpected behavior.
+
+## Security
+
+* #38: Fixed CVE-2023-39410 in `org.apache.avro:avro`
 
 ## Dependency Updates
 
