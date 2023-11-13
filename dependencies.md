@@ -61,7 +61,7 @@
 [10]: https://junit.org/junit5/
 [11]: https://www.eclipse.org/legal/epl-v20.html
 [12]: https://github.com/mockito/mockito
-[13]: https://github.com/mockito/mockito/blob/main/LICENSE
+[13]: https://opensource.org/licenses/MIT
 [14]: https://java.testcontainers.org
 [15]: https://github.com/exasol/test-db-builder-java/
 [16]: https://github.com/exasol/test-db-builder-java/blob/main/LICENSE
