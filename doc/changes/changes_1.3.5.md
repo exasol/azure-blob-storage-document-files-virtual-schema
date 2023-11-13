@@ -27,4 +27,7 @@ This release adds integration tests with Exasol DB version 8.
 
 ### Plugin Dependency Updates
 
-* Updated `com.exasol:project-keeper-maven-plugin:2.9.14` to `2.9.15`
+* Updated `com.exasol:project-keeper-maven-plugin:2.9.14` to `2.9.16`
+* Updated `org.apache.maven.plugins:maven-dependency-plugin:3.6.0` to `3.6.1`
+* Updated `org.apache.maven.plugins:maven-failsafe-plugin:3.1.2` to `3.2.2`
+* Updated `org.apache.maven.plugins:maven-surefire-plugin:3.1.2` to `3.2.2`
