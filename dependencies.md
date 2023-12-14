@@ -3,29 +3,28 @@
 
 ## Compile Dependencies
 
-| Dependency                                            | License                                       |
-| ----------------------------------------------------- | --------------------------------------------- |
-| [Virtual Schema for document data in files][0]        | [MIT License][1]                              |
-| [error-reporting-java][2]                             | [MIT License][3]                              |
-| [Microsoft Azure client library for Blob Storage][4]  | [The MIT License (MIT)][5]                    |
-| [HTTP functionality for the Reactor Netty library][6] | [The Apache Software License, Version 2.0][7] |
-| [SLF4J JDK14 Provider][8]                             | [MIT License][9]                              |
+| Dependency                                           | License                    |
+| ---------------------------------------------------- | -------------------------- |
+| [Virtual Schema for document data in files][0]       | [MIT License][1]           |
+| [error-reporting-java][2]                            | [MIT License][3]           |
+| [Microsoft Azure client library for Blob Storage][4] | [The MIT License (MIT)][5] |
+| [SLF4J JDK14 Provider][6]                            | [MIT License][7]           |
 
 ## Test Dependencies
 
 | Dependency                                      | License                           |
 | ----------------------------------------------- | --------------------------------- |
-| [Hamcrest][10]                                  | [BSD License 3][11]               |
+| [Hamcrest][8]                                   | [BSD License 3][9]                |
 | [Virtual Schema for document data in files][0]  | [MIT License][1]                  |
-| [JUnit Jupiter Params][12]                      | [Eclipse Public License v2.0][13] |
-| [mockito-core][14]                              | [MIT][15]                         |
-| [Testcontainers :: JUnit Jupiter Extension][16] | [MIT][5]                          |
-| [Test Database Builder for Java][17]            | [MIT License][18]                 |
-| [udf-debugging-java][19]                        | [MIT License][20]                 |
-| [Matcher for SQL Result Sets][21]               | [MIT License][22]                 |
-| [exasol-test-setup-abstraction-java][23]        | [MIT License][24]                 |
-| [Performance Test Recorder Java][25]            | [MIT License][26]                 |
-| [JaCoCo :: Agent][27]                           | [Eclipse Public License 2.0][28]  |
+| [JUnit Jupiter Params][10]                      | [Eclipse Public License v2.0][11] |
+| [mockito-core][12]                              | [MIT][13]                         |
+| [Testcontainers :: JUnit Jupiter Extension][14] | [MIT][5]                          |
+| [Test Database Builder for Java][15]            | [MIT License][16]                 |
+| [udf-debugging-java][17]                        | [MIT License][18]                 |
+| [Matcher for SQL Result Sets][19]               | [MIT License][20]                 |
+| [exasol-test-setup-abstraction-java][21]        | [MIT License][22]                 |
+| [Performance Test Recorder Java][23]            | [MIT License][24]                 |
+| [JaCoCo :: Agent][25]                           | [Eclipse Public License 2.0][26]  |
 
 ## Plugin Dependencies
 
