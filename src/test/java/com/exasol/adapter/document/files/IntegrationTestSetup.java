@@ -26,7 +26,7 @@ import com.exasol.udfdebugging.UdfTestSetup;
 import jakarta.json.*;
 
 public class IntegrationTestSetup implements AutoCloseable {
-    private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-7.3.6-azure-blob-storage-1.3.5.jar";
+    private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-8.0.0-azure-blob-storage-2.0.0.jar";
     private final ExasolTestSetup exasolTestSetup;
     private final Connection exasolConnection;
     private final Statement exasolStatement;
