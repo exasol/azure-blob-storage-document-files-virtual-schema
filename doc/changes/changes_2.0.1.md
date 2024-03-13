@@ -1,12 +1,23 @@
-# Virtual Schema for Document Data in Files on Azure Blob Storage 2.0.1, released 2024-??-??
+# Virtual Schema for Document Data in Files on Azure Blob Storage 2.0.1, released 2024-03-13
 
-Code name:
+Code name: Fix vulnerabilities CVE-2023-52428, CVE-2024-26308 and CVE-2024-25710 in compile dependencies
 
 ## Summary
 
-## Features
+This release vulnerabilities in the following compile dependencies:
+* `com.nimbusds:nimbus-jose-jwt:jar:9.8.1:compile`:
+  * CVE-2023-52428
+* `org.apache.commons:commons-compress:jar:1.24.0:compile`:
+  * CVE-2024-26308
+  * CVE-2024-25710
 
-* ISSUE_NUMBER: description
+**Excluded Vulnerability** We accept vulnerability CVE-2017-10355 (CWE-833: Deadlock) in test dependency `xerces:xercesImpl:jar:2.12.2` as we assume that we only connect to the known endpoint ExaOperations.
+
+## Security
+
+* #45: Fixed CVE-2023-52428 in `com.nimbusds:nimbus-jose-jwt:jar:9.8.1:compile`
+* #46: Fixed CVE-2024-25710 in `org.apache.commons:commons-compress:jar:1.24.0:compile`
+* #47: Fixed CVE-2024-26308 in `org.apache.commons:commons-compress:jar:1.24.0:compile`
 
 ## Dependency Updates
 
