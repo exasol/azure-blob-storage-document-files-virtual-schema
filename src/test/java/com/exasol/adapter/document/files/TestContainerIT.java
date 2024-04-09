@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.azure.core.util.BinaryData;
@@ -16,6 +17,7 @@ import com.azure.storage.blob.models.BlobItem;
 import com.exasol.adapter.document.files.abstestsetup.AbsTestSetup;
 import com.exasol.adapter.document.files.abstestsetup.OnlineAbsTestSetup;
 
+@Tag("integration")
 class TestContainerIT {
 
     static AbsTestSetup absTestSetup = new OnlineAbsTestSetup();
