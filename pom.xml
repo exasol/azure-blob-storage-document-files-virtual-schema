@@ -7,7 +7,7 @@
     <description>Adapter for document data access from files from Azure Blob Storage.</description>
     <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/</url>
     <properties>
-        <vs-common-document-files.version>8.0.2</vs-common-document-files.version>
+        <vs-common-document-files.version>8.0.3</vs-common-document-files.version>
     </properties>
     <profiles>
         <profile>
