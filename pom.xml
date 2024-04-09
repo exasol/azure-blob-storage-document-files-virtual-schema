@@ -42,6 +42,13 @@
             <artifactId>azure-storage-blob</artifactId>
             <version>12.25.3</version>
         </dependency>
+        <dependency>
+            <!-- Fix CVE-2024-29025 in io.netty:netty-codec-http via azure-storage-blob -->
+            <groupId>com.azure</groupId>
+            <artifactId>azure-core-http-netty</artifactId>
+            <version>1.14.2</version>
+            <scope>runtime</scope>
+        </dependency>
         <!-- Test dependencies -->
         <dependency>
             <groupId>org.hamcrest</groupId>

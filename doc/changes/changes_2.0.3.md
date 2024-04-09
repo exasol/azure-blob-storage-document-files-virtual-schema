@@ -19,6 +19,10 @@ This release fixed vulnerabilities CVE-2024-29025, CVE-2024-29133 & CVE-2024-291
 * Updated `com.azure:azure-storage-blob:12.25.2` to `12.25.3`
 * Updated `com.exasol:virtual-schema-common-document-files:8.0.2` to `8.0.3`
 
+### Runtime Dependency Updates
+
+* Added `com.azure:azure-core-http-netty:1.14.2`
+
 ### Test Dependency Updates
 
 * Updated `com.exasol:exasol-test-setup-abstraction-java:2.1.1` to `2.1.2`

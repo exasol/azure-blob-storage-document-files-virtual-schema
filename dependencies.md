@@ -26,6 +26,12 @@
 | [Performance Test Recorder Java][23]            | [MIT License][24]                 |
 | [JaCoCo :: Agent][25]                           | [Eclipse Public License 2.0][26]  |
 
+## Runtime Dependencies
+
+| Dependency                                     | License                    |
+| ---------------------------------------------- | -------------------------- |
+| [Microsoft Azure Netty HTTP Client Library][4] | [The MIT License (MIT)][5] |
+
 ## Plugin Dependencies
 
 | Dependency                                              | License                           |
