@@ -37,7 +37,7 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
         final ExasolTestSetup exasolTestSetup = new ExasolTestSetupFactory(
                 Path.of("cloudSetup/generated/testConfig.json")).getTestSetup();
         absTestSetup = getAbsTestSetup(exasolTestSetup);
-        testContainer = new TestContainer(absTestSetup);
+        testContainer = TestContainer.create(absTestSetup);
         setup = new IntegrationTestSetup(exasolTestSetup, absTestSetup, testContainer.getBlobContainerClient());
     }
 
