@@ -9,11 +9,16 @@ public class TestContainer implements AutoCloseable {
     private final BlobContainerClient blobContainerClient;
     private final String blobContainerName;
 
-    public TestContainer(final AbsTestSetup testSetup) {
+    private TestContainer(final BlobContainerClient containerClient, final String containerName) {
+        this.blobContainerClient = containerClient;
+        this.blobContainerName = containerName;
+    }
+
+    public static TestContainer create(final AbsTestSetup testSetup) {
         final String containerName = "abs-document-vs-test-" + System.currentTimeMillis();
         final BlobServiceClient absClient = testSetup.getAbsClient();
-        this.blobContainerClient = absClient.createBlobContainer(containerName);
-        this.blobContainerName = containerName;
+        final BlobContainerClient containerClient = absClient.createBlobContainer(containerName);
+        return new TestContainer(containerClient, containerName);
     }
 
     // https://github.com/Azure/azure-sdk-for-java/issues/10180

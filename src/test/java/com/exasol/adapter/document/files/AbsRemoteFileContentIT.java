@@ -26,7 +26,7 @@ class AbsRemoteFileContentIT {
     @BeforeAll
     static void beforeAll() {
         testSetup = new LocalAbsTestSetup();
-        testBucket = new TestContainer(testSetup);
+        testBucket = TestContainer.create(testSetup);
         final var blobContainerClient = testBucket.getBlobContainerClient();
         blobContainerClient.getBlobClient(TEST_DATA_KEY).upload(BinaryData.fromBytes(TEST_DATA_VALUE.getBytes()));
         executorServiceFactory = new ExecutorServiceFactory();
