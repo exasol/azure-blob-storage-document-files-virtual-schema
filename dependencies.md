@@ -26,6 +26,12 @@
 | [Performance Test Recorder Java][23]            | [MIT License][24]                 |
 | [JaCoCo :: Agent][25]                           | [Eclipse Public License 2.0][26]  |
 
+## Runtime Dependencies
+
+| Dependency                                     | License                    |
+| ---------------------------------------------- | -------------------------- |
+| [Microsoft Azure Netty HTTP Client Library][4] | [The MIT License (MIT)][5] |
+
 ## Plugin Dependencies
 
 | Dependency                                              | License                           |
@@ -45,7 +51,7 @@
 | [Artifact reference checker and unifier][44]            | [MIT License][45]                 |
 | [Apache Maven Dependency Plugin][46]                    | [Apache-2.0][30]                  |
 | [Maven Failsafe Plugin][47]                             | [Apache-2.0][30]                  |
-| [JaCoCo :: Maven Plugin][48]                            | [Eclipse Public License 2.0][26]  |
+| [JaCoCo :: Maven Plugin][48]                            | [EPL-2.0][26]                     |
 | [error-code-crawler-maven-plugin][49]                   | [MIT License][50]                 |
 | [Reproducible Build Maven Plugin][51]                   | [Apache 2.0][35]                  |
 
