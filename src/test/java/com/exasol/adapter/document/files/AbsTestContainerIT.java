@@ -33,7 +33,7 @@ class AbsTestContainerIT {
         }
     }
 
-    // Note: This test will fail when Azure Blob Storage Gen2 is enabled.
+    // Note: This test is expected to fail when Azure Blob Storage Gen2 is enabled.
     @Test
     void emptyFilledContainerWithDirectory() {
         try (final AbsTestContainer testContainer = AbsTestContainer.create(absTestSetup)) {
