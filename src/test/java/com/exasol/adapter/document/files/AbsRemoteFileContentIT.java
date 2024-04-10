@@ -20,13 +20,13 @@ class AbsRemoteFileContentIT {
     private static final String TEST_DATA_KEY = "TEST_DATA";
     private static AbsTestSetup testSetup;
     private static RemoteFileContent remoteFileContent;
-    private static TestContainer testBucket;
+    private static AbsTestContainer testBucket;
     private static ExecutorServiceFactory executorServiceFactory;
 
     @BeforeAll
     static void beforeAll() {
         testSetup = new LocalAbsTestSetup();
-        testBucket = new TestContainer(testSetup);
+        testBucket = AbsTestContainer.create(testSetup);
         final var blobContainerClient = testBucket.getBlobContainerClient();
         blobContainerClient.getBlobClient(TEST_DATA_KEY).upload(BinaryData.fromBytes(TEST_DATA_VALUE.getBytes()));
         executorServiceFactory = new ExecutorServiceFactory();

@@ -5,15 +5,20 @@ import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.models.BlobItem;
 import com.exasol.adapter.document.files.abstestsetup.AbsTestSetup;
 
-public class TestContainer implements AutoCloseable {
+public class AbsTestContainer implements AutoCloseable {
     private final BlobContainerClient blobContainerClient;
     private final String blobContainerName;
 
-    public TestContainer(final AbsTestSetup testSetup) {
+    private AbsTestContainer(final BlobContainerClient containerClient, final String containerName) {
+        this.blobContainerClient = containerClient;
+        this.blobContainerName = containerName;
+    }
+
+    public static AbsTestContainer create(final AbsTestSetup testSetup) {
         final String containerName = "abs-document-vs-test-" + System.currentTimeMillis();
         final BlobServiceClient absClient = testSetup.getAbsClient();
-        this.blobContainerClient = absClient.createBlobContainer(containerName);
-        this.blobContainerName = containerName;
+        final BlobContainerClient containerClient = absClient.createBlobContainer(containerName);
+        return new AbsTestContainer(containerClient, containerName);
     }
 
     // https://github.com/Azure/azure-sdk-for-java/issues/10180

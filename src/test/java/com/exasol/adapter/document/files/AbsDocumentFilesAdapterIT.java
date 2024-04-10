@@ -29,7 +29,7 @@ import com.exasol.exasoltestsetup.testcontainers.ExasolTestcontainerTestSetup;
 @Testcontainers
 class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
     private static IntegrationTestSetup setup;
-    private static TestContainer testContainer;
+    private static AbsTestContainer testContainer;
     private static AbsTestSetup absTestSetup;
 
     @BeforeAll
@@ -37,7 +37,7 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
         final ExasolTestSetup exasolTestSetup = new ExasolTestSetupFactory(
                 Path.of("cloudSetup/generated/testConfig.json")).getTestSetup();
         absTestSetup = getAbsTestSetup(exasolTestSetup);
-        testContainer = new TestContainer(absTestSetup);
+        testContainer = AbsTestContainer.create(absTestSetup);
         setup = new IntegrationTestSetup(exasolTestSetup, absTestSetup, testContainer.getBlobContainerClient());
     }
 

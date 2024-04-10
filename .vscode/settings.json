@@ -15,6 +15,9 @@
       "-Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl"
     ]
   },
+  "[json]": {
+    "editor.indentSize": 2
+  },
   "sonarlint.connectedMode.project": {
     "connectionId": "exasol",
     "projectKey": "com.exasol:azure-blob-storage-document-files-virtual-schema"
