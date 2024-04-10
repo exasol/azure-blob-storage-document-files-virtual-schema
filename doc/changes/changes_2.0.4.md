@@ -1,4 +1,4 @@
-# Virtual Schema for Document Data in Files on Azure Blob Storage 2.0.4, released 2024-04-09
+# Virtual Schema for Document Data in Files on Azure Blob Storage 2.0.4, released 2024-04-10
 
 Code name: Improve integration tests
 
