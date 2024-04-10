@@ -20,11 +20,11 @@ class AbsRemoteFileFinderOnlineIT {
     private static final AbsTestSetup TEST_SETUP = new OnlineAbsTestSetup();
     private static final String CONTENT_1 = "content-1";
     private static AbsConnectionProperties connectionInformation;
-    private static TestContainer testContainer;
+    private static AbsTestContainer testContainer;
 
     @BeforeAll
     static void beforeAll() {
-        testContainer = TestContainer.create(TEST_SETUP);
+        testContainer = AbsTestContainer.create(TEST_SETUP);
         final var blobContainerClient = testContainer.getBlobContainerClient();
         final var file1 = blobContainerClient.getBlobClient("file-1.json");
         file1.upload(BinaryData.fromBytes(CONTENT_1.getBytes()));

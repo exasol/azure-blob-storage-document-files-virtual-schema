@@ -18,13 +18,13 @@ import com.exasol.adapter.document.files.abstestsetup.AbsTestSetup;
 import com.exasol.adapter.document.files.abstestsetup.OnlineAbsTestSetup;
 
 @Tag("integration")
-class TestContainerIT {
+class AbsTestContainerIT {
 
     static AbsTestSetup absTestSetup = new OnlineAbsTestSetup();
 
     @Test
     void emptyFilledContainer() {
-        try (final TestContainer testContainer = TestContainer.create(absTestSetup)) {
+        try (final AbsTestContainer testContainer = AbsTestContainer.create(absTestSetup)) {
             final BlobContainerClient client = testContainer.getBlobContainerClient();
             client.getBlobClient("blobName").upload(BinaryData.fromString("blob content"));
             assertThat(listBlobNames(client), contains("blobName"));
@@ -36,7 +36,7 @@ class TestContainerIT {
     // Note: This test will fail when Azure Blob Storage Gen2 is enabled.
     @Test
     void emptyFilledContainerWithDirectory() {
-        try (final TestContainer testContainer = TestContainer.create(absTestSetup)) {
+        try (final AbsTestContainer testContainer = AbsTestContainer.create(absTestSetup)) {
             final BlobContainerClient client = testContainer.getBlobContainerClient();
             client.getBlobClient("dir/blobName").upload(BinaryData.fromString("blob content"));
             assertThat(listBlobNames(client), contains("dir/blobName"));
@@ -47,7 +47,7 @@ class TestContainerIT {
 
     @Test
     void checkBlobStorageVersion() {
-        try (final TestContainer testContainer = TestContainer.create(absTestSetup)) {
+        try (final AbsTestContainer testContainer = AbsTestContainer.create(absTestSetup)) {
             final BlobContainerClient client = testContainer.getBlobContainerClient();
             client.getBlobClient("dir/blobName").upload(BinaryData.fromString("blob content"));
             final List<String> blobNames = listBlobNames(client);

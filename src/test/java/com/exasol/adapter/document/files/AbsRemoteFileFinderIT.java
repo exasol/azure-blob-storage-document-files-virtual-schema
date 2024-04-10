@@ -24,17 +24,17 @@ class AbsRemoteFileFinderIT {
     private static final String CONTENT_2 = "content-2";
     private static final String CONTENT_OTHER = "other";
     private static AbsConnectionProperties connectionInformation;
-    private static TestContainer testContainer;
+    private static AbsTestContainer testContainer;
 
     @BeforeAll
     static void beforeAll() {
-        testContainer = TestContainer.create(TEST_SETUP);
-        var blobContainerClient = testContainer.getBlobContainerClient();
-        var file1 = blobContainerClient.getBlobClient("file-1.json");
+        testContainer = AbsTestContainer.create(TEST_SETUP);
+        final var blobContainerClient = testContainer.getBlobContainerClient();
+        final var file1 = blobContainerClient.getBlobClient("file-1.json");
         file1.upload(BinaryData.fromBytes(CONTENT_1.getBytes()));
-        var file2 = blobContainerClient.getBlobClient("file-2.json");
+        final var file2 = blobContainerClient.getBlobClient("file-2.json");
         file2.upload(BinaryData.fromBytes(CONTENT_2.getBytes()));
-        var file3 = blobContainerClient.getBlobClient("other.json");
+        final var file3 = blobContainerClient.getBlobClient("other.json");
         file3.upload(BinaryData.fromBytes(CONTENT_OTHER.getBytes()));
         connectionInformation = AbsConnectionProperties.builder()
                 .absContainerName(testContainer.getBlobContainerClient().getBlobContainerName())

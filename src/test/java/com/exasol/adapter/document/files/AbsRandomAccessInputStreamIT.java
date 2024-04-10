@@ -11,13 +11,13 @@ class AbsRandomAccessInputStreamIT extends RandomAccessInputStreamTestBase {
     private static final String TEST_DATA_KEY = "TEST_DATA";
     long testDataLength;
     private AbsTestSetup testSetup;
-    private TestContainer testContainer;
+    private AbsTestContainer testContainer;
     private BlobClient blob;
 
     @Override
     protected void prepareTestSetup(final byte[] bytes) {
         this.testSetup = new LocalAbsTestSetup();
-        this.testContainer = TestContainer.create(this.testSetup);
+        this.testContainer = AbsTestContainer.create(this.testSetup);
         this.testDataLength = bytes.length;
         this.blob = this.testContainer.getBlobContainerClient().getBlobClient(TEST_DATA_KEY);
         this.blob.upload(BinaryData.fromBytes(bytes));
