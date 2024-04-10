@@ -19,7 +19,6 @@ import com.exasol.adapter.document.files.abstestsetup.OnlineAbsTestSetup;
 
 @Tag("integration")
 class AbsTestContainerIT {
-
     static AbsTestSetup absTestSetup = new OnlineAbsTestSetup();
 
     @Test
