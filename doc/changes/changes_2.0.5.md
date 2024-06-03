@@ -1,4 +1,4 @@
-# Virtual Schema for Document Data in Files on Azure Blob Storage 2.0.5, released 2024-06-03
+# Virtual Schema for Document Data in Files on Azure Blob Storage 2.0.5, released 2024-06-04
 
 Code name: Security update - fix for CVE-2024-36114
 
