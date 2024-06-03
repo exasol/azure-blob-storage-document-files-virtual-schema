@@ -24,7 +24,7 @@
 | [Matcher for SQL Result Sets][19]               | [MIT License][20]                 |
 | [exasol-test-setup-abstraction-java][21]        | [MIT License][22]                 |
 | [Performance Test Recorder Java][23]            | [MIT License][24]                 |
-| [JaCoCo :: Agent][25]                           | [Eclipse Public License 2.0][26]  |
+| [JaCoCo :: Agent][25]                           | [EPL-2.0][26]                     |
 
 ## Runtime Dependencies
 
@@ -37,7 +37,7 @@
 | Dependency                                              | License                           |
 | ------------------------------------------------------- | --------------------------------- |
 | [SonarQube Scanner for Maven][27]                       | [GNU LGPL 3][28]                  |
-| [Apache Maven Toolchains Plugin][29]                    | [Apache License, Version 2.0][30] |
+| [Apache Maven Toolchains Plugin][29]                    | [Apache-2.0][30]                  |
 | [Apache Maven Compiler Plugin][31]                      | [Apache-2.0][30]                  |
 | [Apache Maven Enforcer Plugin][32]                      | [Apache-2.0][30]                  |
 | [Maven Flatten Plugin][33]                              | [Apache Software Licenese][30]    |
@@ -47,7 +47,7 @@
 | [duplicate-finder-maven-plugin Maven Mojo][38]          | [Apache License 2.0][39]          |
 | [Project Keeper Maven plugin][40]                       | [The MIT License][41]             |
 | [Apache Maven Assembly Plugin][42]                      | [Apache-2.0][30]                  |
-| [Apache Maven JAR Plugin][43]                           | [Apache License, Version 2.0][30] |
+| [Apache Maven JAR Plugin][43]                           | [Apache-2.0][30]                  |
 | [Artifact reference checker and unifier][44]            | [MIT License][45]                 |
 | [Apache Maven Dependency Plugin][46]                    | [Apache-2.0][30]                  |
 | [Maven Failsafe Plugin][47]                             | [Apache-2.0][30]                  |
