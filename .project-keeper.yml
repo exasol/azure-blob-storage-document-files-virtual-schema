@@ -11,8 +11,8 @@ build:
   runnerOs: ubuntu-20.04
   freeDiskSpace: false
   exasolDbVersions:
-    - "8.24.0"
-    - "7.1.26"
+    - "8.27.0" # 8.29.1 not yet supported by exasol-testcontainers, see https://github.com/exasol/exasol-testcontainers/issues/258
+    - "7.1.29"
   workflows:
     - name: ci-build.yml
       stepCustomizations:
