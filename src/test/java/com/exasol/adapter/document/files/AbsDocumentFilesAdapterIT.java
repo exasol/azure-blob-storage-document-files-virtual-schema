@@ -17,6 +17,7 @@ import org.junit.jupiter.api.*;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import com.exasol.adapter.document.files.abstestsetup.*;
+import com.exasol.bucketfs.Bucket;
 import com.exasol.bucketfs.BucketAccessException;
 import com.exasol.dbbuilder.dialects.DatabaseObjectException;
 import com.exasol.dbbuilder.dialects.exasol.ConnectionDefinition;
@@ -51,7 +52,7 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
     }
 
     @AfterAll
-    static void afterAll() throws Exception {
+    static void afterAll() {
         if (setup != null) {
             setup.close();
         }
@@ -67,6 +68,11 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
     void after() {
         testContainer.empty();
         setup.dropCreatedObjects();
+    }
+
+    @Override
+    protected Bucket getBucketFSDefaultBucket() {
+        return setup.getBucket();
     }
 
     @Override
