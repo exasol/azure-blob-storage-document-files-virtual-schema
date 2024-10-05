@@ -14,7 +14,7 @@
 
 | Dependency                                      | License                           |
 | ----------------------------------------------- | --------------------------------- |
-| [Hamcrest][8]                                   | [BSD License 3][9]                |
+| [Hamcrest][8]                                   | [BSD-3-Clause][9]                 |
 | [Virtual Schema for document data in files][0]  | [MIT License][1]                  |
 | [JUnit Jupiter Params][10]                      | [Eclipse Public License v2.0][11] |
 | [mockito-core][12]                              | [MIT][13]                         |
@@ -58,7 +58,7 @@
 [6]: http://www.slf4j.org
 [7]: http://www.opensource.org/licenses/mit-license.php
 [8]: http://hamcrest.org/JavaHamcrest/
-[9]: http://opensource.org/licenses/BSD-3-Clause
+[9]: https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE
 [10]: https://junit.org/junit5/
 [11]: https://www.eclipse.org/legal/epl-v20.html
 [12]: https://github.com/mockito/mockito
