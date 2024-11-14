@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>azure-blob-storage-document-files-virtual-schema</artifactId>
-    <version>2.1.1</version>
+    <version>2.1.2</version>
     <name>Virtual Schema for document data in files on Azure Blob Storage</name>
     <description>Adapter for document data access from files from Azure Blob Storage.</description>
     <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/</url>
     <properties>
-        <vs-common-document-files.version>8.1.2</vs-common-document-files.version>
+        <vs-common-document-files.version>8.1.4</vs-common-document-files.version>
     </properties>
     <profiles>
         <profile>
@@ -40,13 +40,13 @@
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-storage-blob</artifactId>
-            <version>12.27.0</version>
+            <version>12.29.0</version>
         </dependency>
         <!-- Test dependencies -->
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
-            <version>2.2</version>
+            <version>3.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -59,25 +59,25 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>5.10.3</version>
+            <version>5.11.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.12.0</version>
+            <version>5.14.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>1.20.0</version>
+            <version>1.20.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.exasol</groupId>
             <artifactId>test-db-builder-java</artifactId>
-            <version>3.5.4</version>
+            <version>3.6.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -89,13 +89,13 @@
         <dependency>
             <groupId>com.exasol</groupId>
             <artifactId>hamcrest-resultset-matcher</artifactId>
-            <version>1.6.5</version>
+            <version>1.7.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.exasol</groupId>
             <artifactId>exasol-test-setup-abstraction-java</artifactId>
-            <version>2.1.4</version>
+            <version>2.1.5</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -108,7 +108,7 @@
             <!-- Enable log output for integration tests -->
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
-            <version>2.0.13</version>
+            <version>2.0.16</version>
         </dependency>
     </dependencies>
     <build>
@@ -146,7 +146,7 @@
             <plugin>
                 <groupId>com.exasol</groupId>
                 <artifactId>project-keeper-maven-plugin</artifactId>
-                <version>4.3.3</version>
+                <version>4.4.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -181,7 +181,7 @@
     <parent>
         <artifactId>azure-blob-storage-document-files-virtual-schema-generated-parent</artifactId>
         <groupId>com.exasol</groupId>
-        <version>2.1.1</version>
+        <version>2.1.2</version>
         <relativePath>pk_generated_parent.pom</relativePath>
     </parent>
 </project>
