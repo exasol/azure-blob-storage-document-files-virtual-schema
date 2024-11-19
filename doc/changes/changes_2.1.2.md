@@ -37,6 +37,7 @@ Users are recommended to upgrade to version 1.11.4Â  or 1.12.0, which fix this 
 
 ### Test Dependency Updates
 
+* Added `com.exasol:bucketfs-java:3.2.1`
 * Updated `com.exasol:exasol-test-setup-abstraction-java:2.1.4` to `2.1.6`
 * Updated `com.exasol:hamcrest-resultset-matcher:1.6.5` to `1.7.0`
 * Updated `com.exasol:test-db-builder-java:3.5.4` to `3.6.0`
