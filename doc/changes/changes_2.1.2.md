@@ -30,6 +30,7 @@ Users are recommended to upgrade to version 1.11.4Â  or 1.12.0, which fix this 
 
 ### Compile Dependency Updates
 
+* Added `com.azure:azure-core-http-netty:1.15.7`
 * Updated `com.azure:azure-storage-blob:12.27.0` to `12.29.0`
 * Updated `com.exasol:virtual-schema-common-document-files:8.1.2` to `8.1.5`
 * Updated `org.slf4j:slf4j-jdk14:2.0.13` to `2.0.16`

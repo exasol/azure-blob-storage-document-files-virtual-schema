@@ -8,6 +8,7 @@
 | [Virtual Schema for document data in files][0]       | [MIT License][1]           |
 | [error-reporting-java][2]                            | [MIT License][3]           |
 | [Microsoft Azure client library for Blob Storage][4] | [The MIT License (MIT)][5] |
+| [Microsoft Azure Netty HTTP Client Library][4]       | [The MIT License (MIT)][5] |
 | [SLF4J JDK14 Provider][6]                            | [MIT License][7]           |
 
 ## Test Dependencies
