@@ -6,8 +6,6 @@ sources:
       - udf_coverage
       - jar_artifact
 build:
-  runnerOs: ubuntu-20.04
-  freeDiskSpace: false
   exasolDbVersions:
     - "8.31.0" # Tests fail with 8.32.0, see https://github.com/exasol/virtual-schema-common-document/issues/193
     - "7.1.30"
@@ -15,6 +13,14 @@ build:
     - name: ci-build.yml
       stepCustomizations:
         - action: INSERT_AFTER
+          job: matrix-build
+          stepId: enable-testcontainer-reuse
+          content:
+            name: Fix VM Crash in UDFs
+            id: fix-vm-crash
+            run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+        - action: INSERT_AFTER
+          job: matrix-build
           stepId: enable-testcontainer-reuse
           content:
             name: Configure Azure credentials
