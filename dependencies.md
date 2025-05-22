@@ -8,7 +8,7 @@
 | [Virtual Schema for document data in files][0]       | [MIT License][1]           |
 | [error-reporting-java][2]                            | [MIT License][3]           |
 | [Microsoft Azure client library for Blob Storage][4] | [The MIT License (MIT)][5] |
-| [SLF4J JDK14 Provider][6]                            | [MIT License][7]           |
+| [SLF4J JDK14 Provider][6]                            | [MIT][7]                   |
 
 ## Test Dependencies
 
@@ -61,7 +61,7 @@
 [4]: https://github.com/Azure/azure-sdk-for-java
 [5]: http://opensource.org/licenses/MIT
 [6]: http://www.slf4j.org
-[7]: http://www.opensource.org/licenses/mit-license.php
+[7]: https://opensource.org/license/mit
 [8]: http://hamcrest.org/JavaHamcrest/
 [9]: https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE
 [10]: https://junit.org/junit5/
