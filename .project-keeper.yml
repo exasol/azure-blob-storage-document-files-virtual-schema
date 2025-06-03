@@ -8,7 +8,7 @@ sources:
 build:
   runnerOs: ubuntu-latest # Exasol 7.1.x does not yet support the latest Ubuntu version
   exasolDbVersions:
-    - "8.34.0"
+    - "8.31.0" # Tests fail with 8.32.0, see https://github.com/exasol/virtual-schema-common-document/issues/193
     # - "7.1.30" # Exasol 7.1.x does not yet support the latest Ubuntu version
   workflows:
     - name: ci-build.yml
