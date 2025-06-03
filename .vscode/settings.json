@@ -19,5 +19,6 @@
     "sonarlint.connectedMode.project": {
         "connectionId": "exasol",
         "projectKey": "com.exasol:azure-blob-storage-document-files-virtual-schema"
-    }
+    },
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
