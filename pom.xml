@@ -7,7 +7,7 @@
     <description>Adapter for document data access from files from Azure Blob Storage.</description>
     <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/</url>
     <properties>
-        <vs-common-document-files.version>8.1.5</vs-common-document-files.version>
+        <vs-common-document-files.version>8.1.7</vs-common-document-files.version>
     </properties>
     <profiles>
         <profile>
@@ -113,7 +113,7 @@
         <dependency>
             <groupId>com.exasol</groupId>
             <artifactId>performance-test-recorder-java</artifactId>
-            <version>0.1.3</version>
+            <version>0.1.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -142,6 +142,8 @@
                     <excludeVulnerabilityIds>
                         <!-- Transitive test dependency xerces:xercesImpl:jar:2.12.2. We assume that we only connect to the known endpoint ExaOperations.-->
                         <exclude>CVE-2017-10355</exclude>
+                        <!-- com.exasol:exasol-jdbc:jar:24.2.1:test -->
+                        <exclude>CVE-2024-55551</exclude>
                     </excludeVulnerabilityIds>
                 </configuration>
             </plugin>
