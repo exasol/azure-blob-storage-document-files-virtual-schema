@@ -10,8 +10,14 @@ Code name:
 
 ## Dependency Updates
 
+### Compile Dependency Updates
+
+* Updated `com.exasol:virtual-schema-common-document-files:8.1.5` to `8.1.7`
+
 ### Test Dependency Updates
 
+* Updated `com.exasol:performance-test-recorder-java:0.1.3` to `0.1.4`
+* Updated `com.exasol:virtual-schema-common-document-files:8.1.5` to `8.1.7`
 * Updated `org.jacoco:org.jacoco.agent:0.8.12` to `0.8.13`
 
 ### Plugin Dependency Updates
