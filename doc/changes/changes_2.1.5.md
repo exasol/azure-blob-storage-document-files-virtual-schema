@@ -1,6 +1,6 @@
 # Virtual Schema for Document Data in Files on Azure Blob Storage 2.1.5, released 2025-08-01
 
-Code name: Fixes for CVE-2025-22227, CVE-2025-48924 
+Code name: Fixes for CVE-2025-22227, CVE-2025-48924
 
 ## Summary
 
@@ -45,6 +45,10 @@ CWE: CWE-674
 * #79: Fixed vulnerability CVE-2025-48924 in dependency `org.apache.commons:commons-lang3:jar:3.16.0:test`
 
 ## Dependency Updates
+
+### Test Dependency Updates
+
+* Updated `com.exasol:udf-debugging-java:0.6.14` to `0.6.17`
 
 ### Plugin Dependency Updates
 
