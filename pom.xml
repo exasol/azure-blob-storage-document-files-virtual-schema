@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>azure-blob-storage-document-files-virtual-schema</artifactId>
-    <version>2.1.5</version>
+    <version>2.1.6</version>
     <name>Virtual Schema for document data in files on Azure Blob Storage</name>
     <description>Adapter for document data access from files from Azure Blob Storage.</description>
     <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/</url>
@@ -29,10 +29,10 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <!-- Fix vulnerabilities CVE-2025-25193 and CVE-2025-24970 -->
+                <!-- Fix vulnerabilities CVE-2025-25193, CVE-2025-24970 and CVE-2025-55163,-->
                 <groupId>io.netty</groupId>
                 <artifactId>netty-bom</artifactId>
-                <version>4.1.118.Final</version>
+                <version>4.1.124.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -197,7 +197,7 @@
     <parent>
         <artifactId>azure-blob-storage-document-files-virtual-schema-generated-parent</artifactId>
         <groupId>com.exasol</groupId>
-        <version>2.1.5</version>
+        <version>2.1.6</version>
         <relativePath>pk_generated_parent.pom</relativePath>
     </parent>
 </project>
