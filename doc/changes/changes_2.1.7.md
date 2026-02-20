@@ -1,4 +1,4 @@
-# Virtual Schema for Document Data in Files on Azure Blob Storage 2.1.7, released 2026-02-19
+# Virtual Schema for Document Data in Files on Azure Blob Storage 2.1.7, released 2026-02-20
 
 Code name: Fixes for vulnerabilities CVE-2025-58056 and CVE-2025-58057
 
