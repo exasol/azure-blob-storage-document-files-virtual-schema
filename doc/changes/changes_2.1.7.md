@@ -41,11 +41,12 @@ CWE: CWE-409
 
 ### Compile Dependency Updates
 
-* Updated `com.exasol:virtual-schema-common-document-files:8.1.7` to `8.1.12`
+* Updated `com.exasol:virtual-schema-common-document-files:8.1.7` to `8.1.13`
 
 ### Test Dependency Updates
 
-* Updated `com.exasol:virtual-schema-common-document-files:8.1.7` to `8.1.12`
+* Updated `com.exasol:exasol-test-setup-abstraction-java:2.1.7` to `2.1.11`
+* Updated `com.exasol:virtual-schema-common-document-files:8.1.7` to `8.1.13`
 * Updated `org.jacoco:org.jacoco.agent:0.8.13` to `0.8.14`
 
 ### Plugin Dependency Updates
