@@ -47,6 +47,7 @@ http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2025-67721
 
 * #87: Fixed vulnerability CVE-2025-58056 in dependency `io.netty:netty-codec-http:jar:4.1.124.Final:compile`
 * #85: Fixed vulnerability CVE-2025-58057 in dependency `io.netty:netty-codec:jar:4.1.124.Final:compile`
+* #91: Fixed vulnerability CVE-2025-67721 in dependency `io.airlift:aircompressor:jar:2.0.2:compile`
 
 ## Dependency Updates
 
