@@ -32,6 +32,17 @@ CWE: CWE-409
 - http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2025-58057
 - https://github.com/netty/netty/security/advisories/GHSA-3p8m-j85q-pgmj
 
+### CVE-2025-67721 (CWE-125) Out-of-bounds Read in dependency `io.airlift:aircompressor:jar:2.0.2:compile`
+
+Aircompressor is a library with ports of the Snappy, LZO, LZ4, and Zstandard compression algorithms to Java. In versions 3.3 and below, incorrect handling of malformed data in Java-based decompressor implementations for Snappy and LZ4 allow remote attackers to read previous buffer contents via crafted compressed input. With certain crafted compressed inputs, elements from the output buffer can end up in the uncompressed output, potentially leaking sensitive data. This is relevant for applications that reuse the same output buffer to uncompress multiple inputs. This can be the case of a web server that allocates a fix-sized buffer for performance purposes. There is similar vulnerability in GHSA-cmp6-m4wj-q63q. This issue is fixed in version 3.4.
+
+CVE: CVE-2025-67721 
+CWE: CWE-125
+
+#### References
+https://github.com/advisories/GHSA-vx9q-rhv9-3jvg
+http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2025-67721
+
 ## Security
 
 * #87: Fixed vulnerability CVE-2025-58056 in dependency `io.netty:netty-codec-http:jar:4.1.124.Final:compile`
