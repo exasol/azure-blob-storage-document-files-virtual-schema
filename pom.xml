@@ -29,7 +29,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <!-- Fix vulnerabilities CVE-2025-25193, CVE-2025-24970 and CVE-2025-55163,-->
+                <!-- Fix vulnerabilities CVE-2025-25193, CVE-2025-24970, CVE-2025-55163, CVE-2026-33870 & CVE-2026-33871 -->
                 <groupId>io.netty</groupId>
                 <artifactId>netty-bom</artifactId>
                 <version>4.2.12.Final</version>
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>6.0.3</version>
+            <version>5.14.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>

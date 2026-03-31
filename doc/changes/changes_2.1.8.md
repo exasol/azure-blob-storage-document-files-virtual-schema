@@ -1,4 +1,4 @@
-# Virtual Schema for Document Data in Files on Azure Blob Storage 2.1.8, released 2026-03-31
+# Virtual Schema for Document Data in Files on Azure Blob Storage 2.1.8, released 2026-04-01
 
 Code name: Fixed vulnerabilities CVE-2026-33870, CVE-2026-33871
 
@@ -43,6 +43,6 @@ io.netty:netty-codec-http2 - Allocation of Resources Without Limits or Throttlin
 * Updated `com.exasol:performance-test-recorder-java:0.1.4` to `0.1.5`
 * Updated `com.exasol:test-db-builder-java:3.6.0` to `3.6.4`
 * Updated `com.exasol:udf-debugging-java:0.6.17` to `0.6.18`
-* Updated `org.junit.jupiter:junit-jupiter-params:5.11.4` to `6.0.3`
+* Updated `org.junit.jupiter:junit-jupiter-params:5.11.4` to `5.14.3`
 * Updated `org.mockito:mockito-core:5.15.2` to `5.23.0`
 * Updated `org.testcontainers:junit-jupiter:1.20.4` to `1.21.4`
