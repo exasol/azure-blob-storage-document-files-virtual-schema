@@ -33,7 +33,7 @@ io.netty:netty-codec-http2 - Allocation of Resources Without Limits or Throttlin
 
 ### Compile Dependency Updates
 
-* Updated `com.azure:azure-storage-blob:12.29.0` to `12.33.2`
+* Updated `com.azure:azure-storage-blob:12.29.0` to `12.29.1`
 * Updated `com.exasol:error-reporting-java:1.0.1` to `1.0.2`
 * Updated `org.slf4j:slf4j-jdk14:2.0.16` to `2.0.17`
 
