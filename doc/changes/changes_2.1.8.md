@@ -45,4 +45,5 @@ io.netty:netty-codec-http2 - Allocation of Resources Without Limits or Throttlin
 * Updated `com.exasol:udf-debugging-java:0.6.17` to `0.6.18`
 * Updated `org.junit.jupiter:junit-jupiter-params:5.11.4` to `5.14.3`
 * Updated `org.mockito:mockito-core:5.15.2` to `5.23.0`
-* Updated `org.testcontainers:junit-jupiter:1.20.4` to `1.21.4`
+* Removed `org.testcontainers:junit-jupiter:1.20.4`
+* Added `org.testcontainers:testcontainers-junit-jupiter:2.0.4`
