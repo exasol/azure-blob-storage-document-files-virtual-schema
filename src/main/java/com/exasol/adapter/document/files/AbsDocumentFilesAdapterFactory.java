@@ -1,7 +1,6 @@
 package com.exasol.adapter.document.files;
 
-import com.exasol.adapter.AdapterFactory;
-import com.exasol.adapter.VirtualSchemaAdapter;
+import com.exasol.adapter.*;
 import com.exasol.adapter.document.DocumentAdapter;
 import com.exasol.logging.VersionCollector;
 
@@ -17,7 +16,7 @@ public class AbsDocumentFilesAdapterFactory implements AdapterFactory {
     public static final String ADAPTER_NAME = "AZURE_BLOB_STORAGE_DOCUMENT_FILES";
 
     @Override
-    public VirtualSchemaAdapter createAdapter() {
+    public VirtualSchemaAdapter createAdapter(final AdapterContext context) {
         return new DocumentAdapter(new DocumentFilesAdapter(ADAPTER_NAME, new AbsFileFinderFactory()));
     }
 
@@ -31,5 +30,10 @@ public class AbsDocumentFilesAdapterFactory implements AdapterFactory {
     @Override
     public String getAdapterName() {
         return ADAPTER_NAME;
+    }
+
+    @Override
+    public String getAdapterProjectShortTag() {
+        return "VSABS";
     }
 }

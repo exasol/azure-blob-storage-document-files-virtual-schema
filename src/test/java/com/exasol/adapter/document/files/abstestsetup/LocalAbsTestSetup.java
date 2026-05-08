@@ -23,6 +23,13 @@ public class LocalAbsTestSetup implements AbsTestSetup {
         // https://mcr.microsoft.com/en-us/product/azure-storage/azurite/tags
         this.azuriteContainer = new GenericContainer<>("mcr.microsoft.com/azure-storage/azurite:3.35.0");
         this.azuriteContainer.addExposedPort(PORT_IN_CONTAINER);
+        this.azuriteContainer.setCommand("azurite",
+                "-l", "/data",
+                "--blobHost", "0.0.0.0",
+                "--queueHost", "0.0.0.0",
+                "--tableHost", "0.0.0.0",
+                // No newer docker image available, need to disable API version check
+                "--skipApiVersionCheck");
         this.azuriteContainer.start();
         createAzuriteBlobServiceClient();
     }

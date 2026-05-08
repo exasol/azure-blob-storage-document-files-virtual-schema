@@ -26,7 +26,7 @@ import com.exasol.udfdebugging.UdfTestSetup;
 import jakarta.json.*;
 
 public class IntegrationTestSetup implements AutoCloseable {
-    private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-8.1.14-azure-blob-storage-2.1.8.jar";
+    private static final String ADAPTER_JAR = "document-files-virtual-schema-dist-9.0.0-azure-blob-storage-3.0.0.jar";
     private final ExasolTestSetup exasolTestSetup;
     private final Connection exasolConnection;
     private final Statement exasolStatement;
@@ -127,7 +127,7 @@ public class IntegrationTestSetup implements AutoCloseable {
             final ConnectionDefinition connection) {
         final VirtualSchema virtualSchema = getPreconfiguredVirtualSchemaBuilder(schemaName)
                 .connectionDefinition(connection)//
-                .properties(getVirtualSchemaProperties(mapping)).build();
+                .addProperties(getVirtualSchemaProperties(mapping)).build();
         this.createdObjects.add(virtualSchema);
         return virtualSchema;
     }
