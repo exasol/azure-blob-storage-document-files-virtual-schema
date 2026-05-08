@@ -8,7 +8,7 @@ This release adds anonymous feature-usage telemetry via `telemetry-java`. See th
 
 ## Breaking Change
 
-Starting with this release, the Oracle Virtual Schema does not support Exasol versions 7.1 anymore. Only LTS version 2025.1.x and the current version are supported.
+Starting with this release, the Azure Blob Storage Virtual Schema does not support Exasol version 7.1 anymore. Only LTS version 2025.1.x and the current version are supported.
 
 This release also fixes the following vulnerability:
 
