@@ -11,7 +11,7 @@ connection string, not a JSON object.
 To get the connection string from the Azure portal:
 
 1. Open the storage account.
-2. In the resource menu, select **Security + networking** > **Access keys**.
+2. In the resource menu, select **Security + networking** → **Access keys**.
 3. Select **Show keys**.
 4. Copy one of the **Connection string** values.
 5. Paste the copied value into `abs-cs.json`.
