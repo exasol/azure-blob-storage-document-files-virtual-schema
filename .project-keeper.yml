@@ -6,10 +6,10 @@ sources:
       - udf_coverage
       - jar_artifact
 build:
-  runnerOs: ubuntu-latest # Exasol 7.1.x does not yet support the latest Ubuntu version
+  runnerOs: ubuntu-latest
   exasolDbVersions:
-    - "2025.1.9"
-    # - "7.1.30" # Exasol 7.1.x does not yet support the latest Ubuntu version
+    - "2025.2.1"
+    - "2025.1.10"
   workflows:
     - name: ci-build.yml
       stepCustomizations:

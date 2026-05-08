@@ -2,13 +2,19 @@
 
 This user guide will help you to get started with the Azure Blob Storage (ABS) File Virtual Schema.
 
+## Telemetry
+
+This application uses `telemetry-java` to send anonymous feature-usage events.
+
+For details on what is collected and how to disable telemetry, see the [documentation](https://github.com/exasol/telemetry-java/blob/main/doc/app-user-guide.md).
+
 ### Installation
 
 Upload the latest available [release of this adapter](https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/releases) to BucketFS. See the Exasol documentation for details: [Create a bucket in BucketFS](https://docs.exasol.com/administration/on-premise/bucketfs/create_new_bucket_in_bucketfs_service.htm), [Access Files in BucketFS](https://docs.exasol.com/administration/on-premise/bucketfs/accessfiles.htm).
 
 Then create a schema to hold the adapter script.
 
-```
+```sql
 CREATE SCHEMA ADAPTER;
 ```
 
@@ -17,7 +23,7 @@ Next create the Adapter Script:
  ```sql
 CREATE OR REPLACE JAVA ADAPTER SCRIPT ADAPTER.AZURE_BLOB_STORAGE_FILES_ADAPTER AS
     %scriptclass com.exasol.adapter.RequestDispatcher;
-    %jar /buckets/bfsdefault/default/document-files-virtual-schema-dist-8.1.14-azure-blob-storage-2.1.9.jar;
+    %jar /buckets/bfsdefault/default/document-files-virtual-schema-dist-9.0.0-azure-blob-storage-3.0.0.jar;
 /
 ```
 
@@ -30,7 +36,7 @@ CREATE OR REPLACE JAVA SET SCRIPT ADAPTER.IMPORT_FROM_AZURE_BLOB_STORAGE_DOCUMEN
   CONNECTION_NAME VARCHAR(500))
   EMITS(...) AS
     %scriptclass com.exasol.adapter.document.UdfEntryPoint;
-    %jar /buckets/bfsdefault/default/document-files-virtual-schema-dist-8.1.14-azure-blob-storage-2.1.9.jar;
+    %jar /buckets/bfsdefault/default/document-files-virtual-schema-dist-9.0.0-azure-blob-storage-3.0.0.jar;
 /
 ```
 
