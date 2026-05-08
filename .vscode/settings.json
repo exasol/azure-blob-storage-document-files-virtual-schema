@@ -13,7 +13,10 @@
             "-Djava.util.logging.config.file=src/test/resources/logging.properties",
             "-Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl",
             "-Dcom.exasol.dockerdb.image=2025.2.1"
-        ]
+        ],
+        "env": {
+            "TESTCONTAINERS_RYUK_DISABLED": "true"
+        }
     },
     "sonarlint.connectedMode.project": {
         "connectionId": "exasol",
