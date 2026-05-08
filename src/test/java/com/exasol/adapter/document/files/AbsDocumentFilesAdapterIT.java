@@ -110,7 +110,7 @@ class AbsDocumentFilesAdapterIT extends AbstractDocumentFilesAdapterIT {
                 .createConnectionDefinition("EMPTY_ABS_CONNECTION", "", "", "{");
         final VirtualSchema.Builder virtualSchemaBuilder = setup
                 .getPreconfiguredVirtualSchemaBuilder("EMPTY_CONNECTION_SCHEMA").connectionDefinition(connection)
-                .properties(Map.of("MAPPING", "/bfsdefault/default/mapping.json"));
+                .addProperties(Map.of("MAPPING", "/bfsdefault/default/mapping.json"));
         final DatabaseObjectException exception = assertThrows(DatabaseObjectException.class,
                 virtualSchemaBuilder::build);
         assertThat(exception.getCause().getMessage(), containsString(
