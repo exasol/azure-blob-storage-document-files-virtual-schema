@@ -27,6 +27,7 @@ Scripts
 venv/
 pom.xml.versionsBackup
 setEnv.sh
+.metals
 
 ~*
 *.lock
