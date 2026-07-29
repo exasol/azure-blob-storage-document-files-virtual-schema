@@ -30,7 +30,6 @@ jobs:
           java-version: |
             11
             17
-          cache: "maven"
       - name: Run local smoketests
         run: |
           mvn --batch-mode --update-snapshots clean artifact-reference-checker:verify test -DtrimStackTrace=false -Dtest.coverage=false \
