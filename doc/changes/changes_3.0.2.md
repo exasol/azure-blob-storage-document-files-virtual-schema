@@ -87,7 +87,6 @@ Netty - HTTP/2 Host header deduplication failure enables request routing bypass
 * Updated `com.exasol:udf-debugging-java:0.6.18` to `0.6.20`
 * Updated `com.exasol:virtual-schema-common-document-files:9.0.0` to `9.0.2`
 * Updated `org.jacoco:org.jacoco.agent:0.8.14` to `0.8.15`
-* Updated `org.junit.jupiter:junit-jupiter-params:5.14.4` to `6.1.2`
 
 ### Plugin Dependency Updates
 
