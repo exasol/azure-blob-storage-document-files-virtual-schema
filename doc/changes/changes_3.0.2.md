@@ -1,4 +1,4 @@
-# Virtual Schema for Document Data in Files on Azure Blob Storage 3.0.2, released 2026-??-??
+# Virtual Schema for Document Data in Files on Azure Blob Storage 3.0.2, released 2026-07-29
 
 Code name: Fixed vulnerabilities CVE-2026-55831, CVE-2026-55833, CVE-2026-56745, CVE-2026-56746, CVE-2026-59898, CVE-2026-59899, CVE-2026-59900
 
