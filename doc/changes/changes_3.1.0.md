@@ -1,4 +1,4 @@
-# Virtual Schema for Document Data in Files on Azure Blob Storage 3.1.0, released 2026-??-??
+# Virtual Schema for Document Data in Files on Azure Blob Storage 3.1.0, released 2026-08-04
 
 Code name: `TIMESTAMP` Precision Support
 
