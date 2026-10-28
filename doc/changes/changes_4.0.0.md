@@ -4,7 +4,9 @@ Code name: Fix vulnerabilities
 
 ## Summary
 
-This release upgrades `virtual-schema-common-document-files` to version 10.0.1 and updates Azure SDK, Netty, Reactor, and Jackson dependencies to fix known vulnerabilities. Java 17 is now required to build and run this Virtual Schema. Exasol 8 is no longer supported.
+This release upgrades `virtual-schema-common-document-files` to version 10.0.1 and updates Azure SDK, Netty, Reactor, and Jackson dependencies to fix known vulnerabilities. Java 17 is now required to build and run this Virtual Schema.
+
+Exasol 8 is no longer supported.
 
 ## Security
 
