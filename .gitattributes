@@ -10,6 +10,7 @@
 .github/zizmor.yml                         linguist-generated=true
 dependencies.md                            linguist-generated=true
 pk_generated_parent.pom                    linguist-generated=true
+src/assembly/all-dependencies.xml          linguist-generated=true
 doc/changes/changelog.md                   linguist-generated=true
 SECURITY.md                                linguist-generated=true
 
