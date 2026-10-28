@@ -8,6 +8,14 @@ This release upgrades `virtual-schema-common-document-files` to version 10.0.1 a
 
 ## Security
 
+* #134, #154, #156, #153, #167–#192: Fixed Netty CVE-2026-59903, CVE-2026-89044, CVE-2026-100655 through CVE-2026-100666, CVE-2026-93488, CVE-2026-93491, CVE-2026-93558, CVE-2026-93562, CVE-2026-93565 through CVE-2026-93568, CVE-2026-93573, and CVE-2026-93574 (HTTP request smuggling, cache exposure, and resource exhaustion) in `io.netty:*:4.2.16.Final`.
+* #144, #149, #150: Fixed CVE-2026-75596, CVE-2026-75595, and CVE-2026-62243 (TLS validation and algorithmic-complexity flaws) in `io.netty:netty-handler:4.2.16.Final`.
+* #145, #146: Fixed CVE-2026-47857 and CVE-2026-47863 (fair-backpressure stream hangs) in `io.projectreactor:reactor-core:3.7.18`.
+* #139–#143: Fixed CVE-2026-47844, CVE-2026-47845, CVE-2026-47848, CVE-2026-47874, and CVE-2026-47843 (routing, authentication, credential, and denial-of-service flaws) in `io.projectreactor.netty:*:1.3.6`.
+* #136, #137, #161–#163, #193, #194, #210: Fixed CVE-2026-19032, CVE-2026-68497, CVE-2026-91776, CVE-2026-91777, CVE-2026-83557, CVE-2026-89407, CVE-2026-89425, and CVE-2026-110879 (Jackson deserialization and parser resource-exhaustion flaws) in `com.fasterxml.jackson.core:*:2.22.1`.
+* #152, #155, #157–#159, #164, #190, #191, #196, #198, #199, #201–#208: Fixed CVE-2026-73334, CVE-2026-86231, CVE-2026-87795, CVE-2026-87823, CVE-2026-89045, CVE-2026-90559, CVE-2026-93451, CVE-2026-93452, CVE-2026-104880, CVE-2026-108104, CVE-2026-108106, CVE-2026-110257 through CVE-2026-110263, and CVE-2026-110270 (KMS URL, certificate, native-memory, CSV, and bytecode denial-of-service flaws) in common document-file dependencies.
+* #192: Fixed CVE-2026-100665 (QUIC hostname validation) in `io.netty:netty-codec-classes-quic:4.2.16.Final`.
+
 * #134
 * #136
 * #137
