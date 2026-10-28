@@ -8,11 +8,11 @@ This release upgrades `virtual-schema-common-document-files` to version 10.0.1 a
 
 ## Security
 
-* #134, #154, #156, #153, #167–#192: Fixed Netty CVE-2026-59903, CVE-2026-89044, CVE-2026-100655 through CVE-2026-100666, CVE-2026-93488, CVE-2026-93491, CVE-2026-93558, CVE-2026-93562, CVE-2026-93565 through CVE-2026-93568, CVE-2026-93573, and CVE-2026-93574 (HTTP request smuggling, cache exposure, and resource exhaustion) in `io.netty:*:4.2.16.Final`.
+* #134, #148, #153, #154, #156, #167–#192: Fixed Netty CVE-2026-59903, CVE-2026-62380, CVE-2026-89044, CVE-2026-100655 through CVE-2026-100666, CVE-2026-93488, CVE-2026-93491, CVE-2026-93558, CVE-2026-93562, CVE-2026-93565 through CVE-2026-93568, CVE-2026-93573, and CVE-2026-93574 (HTTP request smuggling, cache exposure, null-byte handling, and resource exhaustion) in `io.netty:*:4.2.16.Final`.
 * #144, #149, #150: Fixed CVE-2026-75596, CVE-2026-75595, and CVE-2026-62243 (TLS validation and algorithmic-complexity flaws) in `io.netty:netty-handler:4.2.16.Final`.
 * #145, #146: Fixed CVE-2026-47857 and CVE-2026-47863 (fair-backpressure stream hangs) in `io.projectreactor:reactor-core:3.7.18`.
 * #139–#143: Fixed CVE-2026-47844, CVE-2026-47845, CVE-2026-47848, CVE-2026-47874, and CVE-2026-47843 (routing, authentication, credential, and denial-of-service flaws) in `io.projectreactor.netty:*:1.3.6`.
-* #136, #137, #161–#163, #193, #194, #210: Fixed CVE-2026-19032, CVE-2026-68497, CVE-2026-91776, CVE-2026-91777, CVE-2026-83557, CVE-2026-89407, CVE-2026-89425, and CVE-2026-110879 (Jackson deserialization and parser resource-exhaustion flaws) in `com.fasterxml.jackson.core:*:2.22.1`.
+* #136, #137, #161–#163, #165, #193, #194, #210: Fixed CVE-2026-19032, CVE-2026-68497, CVE-2026-68498, CVE-2026-91776, CVE-2026-91777, CVE-2026-83557, CVE-2026-89407, CVE-2026-89425, and CVE-2026-110879 (Jackson deserialization and parser resource-exhaustion flaws) in `com.fasterxml.jackson.core:*:2.22.1`.
 * #152: Fixed CVE-2026-73334 (untrusted KMS URL) in `org.apache.parquet:parquet-hadoop:1.17.1`.
 * #155: Fixed CVE-2026-86231 (certificate-revocation bypass) in `com.github.mwiede:jsch:2.28.4`.
 * #157, #158, #159: Fixed CVE-2026-87795, CVE-2026-87823, and CVE-2026-89045 (native bounds and loop flaws) in `com.github.luben:zstd-jni:1.5.7-3`.
@@ -21,74 +21,6 @@ This release upgrades `virtual-schema-common-document-files` to version 10.0.1 a
 * #201, #202: Fixed CVE-2026-110262 and CVE-2026-110270 (bytecode memory exhaustion) in `org.ow2.asm:asm-commons:9.10.1`.
 * #203, #204, #205, #206, #207, #208: Fixed CVE-2026-110257, CVE-2026-110258, CVE-2026-110259, CVE-2026-110260, CVE-2026-110261, and CVE-2026-110263 (crafted-bytecode denial of service) in `org.ow2.asm:asm:9.10.1`.
 * #192: Fixed CVE-2026-100665 (QUIC hostname validation) in `io.netty:netty-codec-classes-quic:4.2.16.Final`.
-
-* #134
-* #136
-* #137
-* #139
-* #140
-* #141
-* #142
-* #143
-* #144
-* #145
-* #146
-* #148
-* #149
-* #150
-* #152
-* #153
-* #154
-* #155
-* #156
-* #157
-* #158
-* #159
-* #161
-* #162
-* #163
-* #164
-* #165
-* #167
-* #168
-* #169
-* #170
-* #171
-* #172
-* #173
-* #174
-* #175
-* #176
-* #177
-* #178
-* #179
-* #180
-* #181
-* #182
-* #183
-* #184
-* #185
-* #186
-* #187
-* #188
-* #189
-* #190
-* #191
-* #192
-* #193
-* #194
-* #196
-* #198
-* #199
-* #201
-* #202
-* #203
-* #204
-* #205
-* #206
-* #207
-* #208
-* #210
 
 ## Dependency Updates
 
