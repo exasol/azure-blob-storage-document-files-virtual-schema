@@ -8,7 +8,7 @@ This release upgrades `virtual-schema-common-document-files` to version 10.0.1 a
 
 ## Security
 
-* #134, #148, #153, #154, #156, #167–#191: Fixed Netty CVE-2026-59903, CVE-2026-62380, CVE-2026-89044, CVE-2026-100655 through CVE-2026-100664, CVE-2026-100666, CVE-2026-93488, CVE-2026-93491, CVE-2026-93558, CVE-2026-93562, CVE-2026-93565 through CVE-2026-93568, CVE-2026-93573, and CVE-2026-93574 (HTTP request smuggling, cache exposure, null-byte handling, and resource exhaustion) in `io.netty:*:4.2.16.Final`.
+* #134, #148, #153, #154, #156, #167–#189: Fixed Netty CVE-2026-59903, CVE-2026-62380, CVE-2026-89044, CVE-2026-100655 through CVE-2026-100664, CVE-2026-100666, CVE-2026-93488, CVE-2026-93491, CVE-2026-93558, CVE-2026-93562, CVE-2026-93565 through CVE-2026-93568, CVE-2026-93573, and CVE-2026-93574 (HTTP request smuggling, cache exposure, null-byte handling, and resource exhaustion) in `io.netty:*:4.2.16.Final`.
 * #144, #149, #150: Fixed CVE-2026-75596, CVE-2026-75595, and CVE-2026-62243 (TLS validation and algorithmic-complexity flaws) in `io.netty:netty-handler:4.2.16.Final`.
 * #145, #146: Fixed CVE-2026-47857 and CVE-2026-47863 (fair-backpressure stream hangs) in `io.projectreactor:reactor-core:3.7.18`.
 * #139–#143: Fixed CVE-2026-47844, CVE-2026-47845, CVE-2026-47848, CVE-2026-47874, and CVE-2026-47843 (routing, authentication, credential, and denial-of-service flaws) in `io.projectreactor.netty:*:1.3.6`.
