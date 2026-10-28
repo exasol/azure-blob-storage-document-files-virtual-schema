@@ -13,7 +13,13 @@ This release upgrades `virtual-schema-common-document-files` to version 10.0.1 a
 * #145, #146: Fixed CVE-2026-47857 and CVE-2026-47863 (fair-backpressure stream hangs) in `io.projectreactor:reactor-core:3.7.18`.
 * #139–#143: Fixed CVE-2026-47844, CVE-2026-47845, CVE-2026-47848, CVE-2026-47874, and CVE-2026-47843 (routing, authentication, credential, and denial-of-service flaws) in `io.projectreactor.netty:*:1.3.6`.
 * #136, #137, #161–#163, #193, #194, #210: Fixed CVE-2026-19032, CVE-2026-68497, CVE-2026-91776, CVE-2026-91777, CVE-2026-83557, CVE-2026-89407, CVE-2026-89425, and CVE-2026-110879 (Jackson deserialization and parser resource-exhaustion flaws) in `com.fasterxml.jackson.core:*:2.22.1`.
-* #152, #155, #157–#159, #164, #190, #191, #196, #198, #199, #201–#208: Fixed CVE-2026-73334, CVE-2026-86231, CVE-2026-87795, CVE-2026-87823, CVE-2026-89045, CVE-2026-90559, CVE-2026-93451, CVE-2026-93452, CVE-2026-104880, CVE-2026-108104, CVE-2026-108106, CVE-2026-110257 through CVE-2026-110263, and CVE-2026-110270 (KMS URL, certificate, native-memory, CSV, and bytecode denial-of-service flaws) in common document-file dependencies.
+* #152: Fixed CVE-2026-73334 (untrusted KMS URL) in `org.apache.parquet:parquet-hadoop:1.17.1`.
+* #155: Fixed CVE-2026-86231 (certificate-revocation bypass) in `com.github.mwiede:jsch:2.28.4`.
+* #157, #158, #159: Fixed CVE-2026-87795, CVE-2026-87823, and CVE-2026-89045 (native bounds and loop flaws) in `com.github.luben:zstd-jni:1.5.7-3`.
+* #164, #190, #191, #198, #199: Fixed CVE-2026-90559, CVE-2026-93451, CVE-2026-93452, CVE-2026-108104, and CVE-2026-108106 (native buffer and allocation flaws) in `org.xerial.snappy:snappy-java:1.1.10.7`.
+* #196: Fixed CVE-2026-104880 (CSV interpretation conflict) in `de.siegmar:fastcsv:3.7.0`.
+* #201, #202: Fixed CVE-2026-110262 and CVE-2026-110270 (bytecode memory exhaustion) in `org.ow2.asm:asm-commons:9.10.1`.
+* #203, #204, #205, #206, #207, #208: Fixed CVE-2026-110257, CVE-2026-110258, CVE-2026-110259, CVE-2026-110260, CVE-2026-110261, and CVE-2026-110263 (crafted-bytecode denial of service) in `org.ow2.asm:asm:9.10.1`.
 * #192: Fixed CVE-2026-100665 (QUIC hostname validation) in `io.netty:netty-codec-classes-quic:4.2.16.Final`.
 
 * #134
