@@ -11,8 +11,8 @@ import com.azure.storage.blob.BlobServiceClientBuilder;
 public class LocalAbsTestSetup implements AbsTestSetup {
 
     private static final String ACCOUNT_NAME = "devstoreaccount1";
-    private static final String ACCOUNT_KEY = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq" //
-            + "/K1SZFPTOtr" //
+    private static final String ACCOUNT_KEY = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq"
+            + "/K1SZFPTOtr"
             + "/KBHBeksoGMGw==";
     private static final int PORT_IN_CONTAINER = 10000;
 
@@ -36,15 +36,15 @@ public class LocalAbsTestSetup implements AbsTestSetup {
     }
 
     private static BlobServiceClient createAzuriteBlobServiceClient(final String host, final int port) {
-        return new BlobServiceClientBuilder() //
-                .connectionString(createConnectionString(host, port)) //
+        return new BlobServiceClientBuilder()
+                .connectionString(createConnectionString(host, port))
                 .buildClient();
     }
 
     private static String createConnectionString(final String host, final int port) {
-        return "DefaultEndpointsProtocol=http" //
-                + ";AccountName=" + ACCOUNT_NAME //
-                + ";AccountKey=" + ACCOUNT_KEY //
+        return "DefaultEndpointsProtocol=http"
+                + ";AccountName=" + ACCOUNT_NAME
+                + ";AccountKey=" + ACCOUNT_KEY
                 + ";BlobEndpoint=http://" + host + ":" + port + "/" + ACCOUNT_NAME + ";";
     }
 

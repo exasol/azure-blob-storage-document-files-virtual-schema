@@ -7,7 +7,6 @@
     <description>Adapter for document data access from files from Azure Blob Storage.</description>
     <url>https://github.com/exasol/azure-blob-storage-document-files-virtual-schema/</url>
     <properties>
-        <!-- virtual-schema-common-document-files 10 requires Java 17 -->
         <java.version>17</java.version>
         <vs-common-document-files.version>10.0.1</vs-common-document-files.version>
     </properties>
