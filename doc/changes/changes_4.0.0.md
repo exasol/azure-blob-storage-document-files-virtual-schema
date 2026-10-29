@@ -46,7 +46,7 @@ Exasol 8 is no longer supported.
 ### Plugin Dependency Updates
 
 * Updated `com.exasol:error-code-crawler-maven-plugin:2.1.0` to `2.1.2`
-* Updated `com.exasol:project-keeper-maven-plugin:5.7.4` to `5.8.1`
+* Updated `com.exasol:project-keeper-maven-plugin:5.7.4` to `5.8.2`
 * Updated `io.github.git-commit-id:git-commit-id-maven-plugin:10.0.0` to `10.0.1`
 * Updated `org.apache.maven.plugins:maven-artifact-plugin:3.6.1` to `3.7.0`
 * Updated `org.apache.maven.plugins:maven-compiler-plugin:3.15.0` to `3.16.0`
