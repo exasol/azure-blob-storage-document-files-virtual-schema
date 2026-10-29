@@ -11,13 +11,13 @@ import com.azure.storage.blob.BlobServiceClientBuilder;
 public class LocalAbsTestSetup implements AbsTestSetup {
 
     private static final String ACCOUNT_NAME = "devstoreaccount1";
-    private static final String ACCOUNT_KEY = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq" //
-            + "/K1SZFPTOtr" //
+    private static final String ACCOUNT_KEY = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq"
+            + "/K1SZFPTOtr"
             + "/KBHBeksoGMGw==";
     private static final int PORT_IN_CONTAINER = 10000;
 
     private final GenericContainer<? extends GenericContainer<?>> azuriteContainer;
-    private BlobServiceClient blobServiceClient;
+    private final BlobServiceClient blobServiceClient;
 
     public LocalAbsTestSetup() {
         // https://mcr.microsoft.com/en-us/product/azure-storage/azurite/tags
@@ -31,13 +31,21 @@ public class LocalAbsTestSetup implements AbsTestSetup {
                 // No newer docker image available, need to disable API version check
                 "--skipApiVersionCheck");
         this.azuriteContainer.start();
-        createAzuriteBlobServiceClient();
+        this.blobServiceClient = createAzuriteBlobServiceClient(this.azuriteContainer.getHost(),
+                this.azuriteContainer.getMappedPort(PORT_IN_CONTAINER));
     }
 
-    private void createAzuriteBlobServiceClient() {
-        this.blobServiceClient = new BlobServiceClientBuilder() //
-                .connectionString(getStorageAccountConnectionString()) //
+    private static BlobServiceClient createAzuriteBlobServiceClient(final String host, final int port) {
+        return new BlobServiceClientBuilder()
+                .connectionString(createConnectionString(host, port))
                 .buildClient();
+    }
+
+    private static String createConnectionString(final String host, final int port) {
+        return "DefaultEndpointsProtocol=http"
+                + ";AccountName=" + ACCOUNT_NAME
+                + ";AccountKey=" + ACCOUNT_KEY
+                + ";BlobEndpoint=http://" + host + ":" + port + "/" + ACCOUNT_NAME + ";";
     }
 
     @Override
@@ -63,15 +71,7 @@ public class LocalAbsTestSetup implements AbsTestSetup {
 
     @Override
     public String getConnectionString(final InetSocketAddress inetSocketAddress) {
-        final String defaultEndpointsProtocol = "http";
-        final String blobEndpoint = "http://" //
-                + inetSocketAddress.getHostString() //
-                + ":" + inetSocketAddress.getPort() //
-                + "/" + ACCOUNT_NAME;
-        return "DefaultEndpointsProtocol=" + defaultEndpointsProtocol //
-                + ";AccountName=" + ACCOUNT_NAME //
-                + ";AccountKey=" + ACCOUNT_KEY //
-                + ";BlobEndpoint=" + blobEndpoint + ";";
+        return createConnectionString(inetSocketAddress.getHostString(), inetSocketAddress.getPort());
     }
 
 }

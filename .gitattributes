@@ -10,6 +10,7 @@
 .github/zizmor.yml                         linguist-generated=true
 dependencies.md                            linguist-generated=true
 pk_generated_parent.pom                    linguist-generated=true
+src/assembly/all-dependencies.xml          linguist-generated=true
 doc/changes/changelog.md                   linguist-generated=true
 SECURITY.md                                linguist-generated=true
 
@@ -17,3 +18,8 @@ cloudSetup/.terraform.lock.hcl linguist-generated=true
 
 .settings/org.eclipse.jdt.core.prefs linguist-generated=true
 .settings/org.eclipse.jdt.ui.prefs   linguist-generated=true
+*.sh text eol=lf
+*.bat text eol=crlf
+/mvnw linguist-generated=true
+/mvnw.cmd linguist-generated=true
+/.mvn/wrapper/maven-wrapper.properties linguist-generated=true
